@@ -1,0 +1,3553 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nuoan Labs — Rateio & Compra Coletiva</title>
+  <link rel="icon" type="image/jpeg" href="logo-nuoan.jpg" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: #f0f9ff; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #bae6fd; border-radius: 3px; }
+  </style>
+</head>
+<body class="bg-sky-50/40 text-slate-800 min-h-screen flex flex-col">
+
+  <!-- TELA / BANNER DE BOAS-VINDAS -->
+  <section id="welcomeGateScreen" class="flex-1 flex flex-col items-center justify-center p-4 sm:p-6 bg-gradient-to-br from-sky-100 via-white to-sky-50">
+    <div class="max-w-4xl w-full bg-white border border-sky-200 shadow-sky-900/10 rounded-3xl shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12">
+      <!-- Banner Esquerdo -->
+      <div class="lg:col-span-6 bg-gradient-to-br from-sky-500 to-sky-600 text-white p-8 sm:p-10 flex flex-col justify-between space-y-6">
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <img src="logo-nuoan.jpg" alt="Nuoan Labs" class="w-16 h-16 rounded-full object-cover border-2 border-white shadow-lg" />
+            <div>
+              <span id="gateCycleBadge" class="text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-white/20 text-white">
+                Rateio #01 • Acesso Exclusivo
+              </span>
+              <h1 class="text-xl font-extrabold tracking-tight mt-1">Nuoan Labs</h1>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <h2 class="text-2xl sm:text-3xl font-extrabold leading-tight">Sejam bem-vindos!</h2>
+            <p class="text-sm text-sky-100 mt-3 leading-relaxed">
+              Bem-vindos ao portal oficial de rateio e compra coletiva da <strong>Nuoan Labs</strong>. Para visualizar nosso catálogo exclusivo de produtos, valores, acompanhar seus pedidos e realizar pagamentos, crie seu cadastro gratuito ou entre com sua conta.
+            </p>
+          </div>
+
+          <div class="space-y-2 pt-2 text-xs text-sky-50">
+            <div class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center font-bold">✓</span>
+              <span>Catálogo fechado exclusivo para clientes cadastrados</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center font-bold">✓</span>
+              <span>Reservas de Segunda 00:00 até Sábado 15:00 (mín. 3 peças)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center font-bold">✓</span>
+              <span>PIX com valor exato automático e consulta todos os dias</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-white/20 flex items-center justify-between text-[11px] text-sky-100">
+          <span>Quitação até Segunda-feira às 22:00</span>
+          <button type="button" onclick="openAdminModal()" class="underline hover:text-white font-semibold">
+            Área Admin
+          </button>
+        </div>
+      </div>
+
+      <!-- Formulário Direito -->
+      <div class="lg:col-span-6 p-6 sm:p-8 flex flex-col justify-center bg-white">
+        <div class="flex gap-4 border-b border-sky-200 pb-3">
+          <button type="button" id="gateTabRegister" onclick="switchGateAuthMode('register')" class="text-sm font-bold text-sky-600 border-b-2 border-sky-500 pb-1">
+            Criar Cadastro
+          </button>
+          <button type="button" id="gateTabLogin" onclick="switchGateAuthMode('login')" class="text-sm font-bold text-slate-400 hover:text-slate-700 pb-1">
+            Já tenho conta
+          </button>
+        </div>
+
+        <form id="gateRegisterForm" onsubmit="handleGateRegister(event)" class="mt-5 space-y-3">
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Nome Completo *</label>
+            <input id="gateRegName" type="text" required placeholder="Digite seu nome completo"
+              class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-xl px-3.5 py-2.5 text-sm outline-none" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">E-mail *</label>
+            <input id="gateRegEmail" type="email" required placeholder="seuemail@exemplo.com"
+              class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-xl px-3.5 py-2.5 text-sm outline-none" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Telefone / WhatsApp (com DDD) *</label>
+            <input id="gateRegPhone" type="tel" required placeholder="Ex: 11999998888"
+              class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-xl px-3.5 py-2.5 text-sm outline-none" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Crie uma Senha *</label>
+            <input id="gateRegPassword" type="password" required minlength="4" placeholder="Mínimo 4 caracteres"
+              class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-xl px-3.5 py-2.5 text-sm outline-none" />
+          </div>
+          <button type="submit" class="w-full py-3 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-bold text-sm transition shadow-md">
+            Cadastrar e Acessar Portal &rarr;
+          </button>
+        </form>
+
+        <form id="gateLoginForm" onsubmit="handleGateLogin(event)" class="hidden mt-5 space-y-3.5">
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">E-mail cadastrado *</label>
+            <input id="gateLoginEmail" type="email" required placeholder="seuemail@exemplo.com"
+              class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-xl px-3.5 py-2.5 text-sm outline-none" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Senha *</label>
+            <input id="gateLoginPassword" type="password" required placeholder="Sua senha"
+              class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-xl px-3.5 py-2.5 text-sm outline-none" />
+          </div>
+          <button type="submit" class="w-full py-3 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-bold text-sm transition shadow-md">
+            Entrar e Acessar Portal &rarr;
+          </button>
+          <p class="text-center text-xs text-slate-500 pt-1">
+            Primeiro acesso? <button type="button" onclick="switchGateAuthMode('register')" class="text-sky-600 font-semibold underline">Crie seu cadastro agora</button>
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <footer class="mt-6 text-center text-xs text-slate-500">
+      Desenvolvido pela <strong class="text-sky-700 font-bold">Tonelada Tecnologia</strong> — <span class="italic">uma tecnologia de peso</span>.
+    </footer>
+  </section>
+
+  <!-- CONTEÚDO PRINCIPAL DA LOJA -->
+  <div id="mainAppContainer" class="hidden flex-1 flex flex-col">
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-sky-200/80 shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2 sm:gap-3">
+        <div class="flex items-center gap-2.5 sm:gap-3">
+          <img src="logo-nuoan.jpg" alt="Nuoan Labs" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover border-2 border-sky-400 shadow-md shrink-0" />
+          <div>
+            <div class="flex items-center gap-2">
+              <h1 class="font-bold text-sm sm:text-lg leading-tight text-slate-900">Nuoan Labs</h1>
+              <span id="headerCycleBadge" class="inline-flex items-center gap-1 text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full bg-sky-500 text-white">
+                Rateio #01
+              </span>
+              <span id="weekendStatusBadge" class="hidden md:inline-flex items-center gap-1 text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-300">
+                ⏸ Compras pausadas (Reabre Seg 00:00)
+              </span>
+            </div>
+            <p class="text-[10px] sm:text-xs text-slate-500">Compras: Seg 00:00 a Sáb 15:00 • Quitação até Seg 22:00</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-1.5 sm:gap-2">
+          <span id="adminBypassBadge" class="hidden px-2.5 py-1 rounded-lg bg-amber-100 text-amber-800 border border-amber-300 text-[11px] font-bold">
+            Modo Admin
+          </span>
+
+          <button type="button" onclick="openCartModal()" class="relative inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-sky-500 hover:bg-sky-600 text-white text-xs sm:text-sm font-bold transition shadow-sm">
+            🛒 <span class="hidden sm:inline">Carrinho</span>
+            <span id="headerCartCount" class="px-1.5 py-0.5 text-[10px] font-extrabold rounded-full bg-white text-sky-600">0</span>
+          </button>
+
+          <button type="button" onclick="openTrackingBoardModal()" class="hidden lg:inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-sky-100 hover:bg-sky-200 text-sky-700 border border-sky-200 text-xs font-semibold transition">
+            📦 Rastreios
+          </button>
+
+          <button type="button" id="headerMyOrdersBtn" onclick="openMyOrdersModal('summary')" class="px-3 py-2 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 text-xs sm:text-sm font-semibold transition">
+            Meus Pedidos (<span id="headerOrderCount">0</span>)
+          </button>
+          <button type="button" id="headerLogoutBtn" onclick="logoutClient()" class="px-2.5 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 text-xs" title="Sair da conta">
+            Sair
+          </button>
+
+          <button type="button" onclick="openAdminModal()" class="px-2.5 sm:px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 text-xs sm:text-sm font-medium transition">
+            Admin
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Barra Cliente Logado -->
+    <div id="loggedClientBar" class="hidden bg-sky-100/80 border-b border-sky-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex flex-wrap items-center justify-between gap-2 text-xs">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          <span class="text-slate-500">Logado: <strong id="loggedClientName" class="text-slate-900"></strong></span>
+          <span id="loggedClientTotalSignalsBadge" class="px-2.5 py-0.5 rounded-full bg-white text-sky-700 border border-sky-200 font-bold">
+            Sinais: 0 pçs (R$ 0,00)
+          </span>
+          <span id="loggedClientReadyBadge" class="hidden px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-300 font-bold">
+            🔓 Habilitado p/ Pagar: R$ 0,00
+          </span>
+        </div>
+        <div class="flex flex-wrap items-center gap-3">
+          <span id="loggedClientCreditBadge" class="hidden px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-800 border border-purple-300 font-semibold">
+            Crédito: R$ 0,00
+          </span>
+          <button type="button" onclick="openMyOrdersModal('summary')" class="text-sky-600 hover:underline font-bold">
+            📊 Extrato & Quitação (Até Seg 22:00) &rarr;
+          </button>
+          <button type="button" onclick="openMyOrdersModal('paid')" class="text-emerald-600 hover:underline font-semibold">
+            Quitados (<span id="loggedClientPaidCount">0</span>)
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Banner Pausa Sábado 15h e Domingo -->
+    <div id="weekendPurchasesPausedBanner" class="hidden bg-sky-900 text-white border-b border-sky-700">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-3 text-xs">
+        <div class="flex items-center gap-2.5">
+          <span class="text-lg">🗓️</span>
+          <p>
+            <strong>Encerramento semanal (Sábado após 15:00 e Domingo):</strong> Novas reservas estão pausadas até <strong id="weekendReopenCountdown" class="font-mono underline">--d --h --m --s</strong> (virada de Domingo para Segunda às 00:00). Você pode consultar seus pedidos e realizar o pagamento normalmente!
+          </p>
+        </div>
+        <button type="button" onclick="openMyOrdersModal('summary')" class="px-4 py-1.5 rounded-lg bg-sky-500 hover:bg-sky-600 text-white font-bold shrink-0">
+          Ver Meus Pedidos / Pagar &rarr;
+        </button>
+      </div>
+    </div>
+
+    <!-- Banner Itens Habilitados -->
+    <div id="clientReadyAlertBanner" class="hidden bg-amber-50 border-b border-amber-300 text-amber-950">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-3 text-xs">
+        <div class="flex items-center gap-2.5">
+          <span class="text-lg">🎉</span>
+          <p>
+            <strong>Atenção! Você possui <span id="bannerReadyCount">0</span> peça(s) habilitada(s) para quitação!</strong>
+            O valor cheio já está disponível para pagamento a qualquer hora — prazo limite até <strong>Segunda-feira às 22:00</strong>.
+          </p>
+        </div>
+        <button type="button" onclick="openMyOrdersModal('summary')" class="px-4 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold shrink-0">
+          Quitar Agora &rarr;
+        </button>
+      </div>
+    </div>
+
+    <!-- Hero / Regras -->
+    <section class="bg-gradient-to-b from-sky-100/70 via-sky-50/40 to-white border-b border-sky-200/70 py-6">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-4 flex items-start gap-3">
+            <span id="heroCycleTag" class="px-2 h-7 rounded-lg bg-sky-100 text-sky-700 font-extrabold text-xs flex items-center justify-center shrink-0">#01</span>
+            <div>
+              <h3 class="font-semibold text-sm text-slate-900">Ciclo Semanal (Seg 00:00 a Sáb 15:00)</h3>
+              <p class="text-xs text-slate-500 mt-0.5">Pedido mínimo de <strong>3 peças</strong> (sinal). Produtos em ordem alfabética (A–Z). Após Sábado 15:00 e Domingo fica aberto para consulta e quitação.</p>
+            </div>
+          </div>
+          <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-4 flex items-start gap-3">
+            <span class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-600 font-bold text-sm flex items-center justify-center shrink-0">10</span>
+            <div>
+              <h3 class="font-semibold text-sm text-slate-900">Boxes de 10 Peças (Água Bacteriostática Livre)</h3>
+              <p class="text-xs text-slate-500 mt-0.5">Completou 10 peças, habilita quitação (prazo até <strong>Segunda 22:00</strong>). <strong>Água Bacteriostática</strong> não precisa fechar 10 peças — já libera na hora!</p>
+            </div>
+          </div>
+          <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-4 flex items-start gap-3">
+            <span class="w-7 h-7 rounded-lg bg-sky-100 text-sky-600 font-bold text-sm flex items-center justify-center shrink-0">📦</span>
+            <div>
+              <h3 class="font-semibold text-sm text-slate-900">Taxa de Manuseio e Embalo (Não é Frete)</h3>
+              <p class="text-xs text-slate-500 mt-0.5">Cobrada na quitação sobre os itens fechados: 1 a 9 peças <strong>R$ 69,99</strong> • 10+ peças <strong>R$ 98,99</strong>. <em>Refere-se apenas a manuseio/embalo e não inclui envio/frete.</em></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filtros e Busca -->
+        <div class="mt-6 flex flex-col sm:flex-row gap-3">
+          <div class="relative flex-1">
+            <input id="searchInput" type="text" placeholder="Buscar produto por nome ou categoria (ordem alfabética A-Z)..." oninput="renderCatalog()"
+              class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-xl px-4 py-2.5 text-sm outline-none" />
+          </div>
+          <select id="categoryFilter" onchange="renderCatalog()"
+            class="bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-xl px-4 py-2.5 text-sm outline-none">
+            <option value="ALL">Todas as Categorias</option>
+          </select>
+          <select id="statusFilter" onchange="renderCatalog()"
+            class="bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-xl px-4 py-2.5 text-sm outline-none">
+            <option value="ALL">Todos os Produtos (A–Z)</option>
+            <option value="HAS_COMPLETED">Com Box já Fechado / Liberado</option>
+            <option value="ALMOST_FULL">Quase Fechando Box (7 a 9/10)</option>
+          </select>
+          <button type="button" onclick="openTrackingBoardModal()" class="lg:hidden px-4 py-2.5 rounded-xl bg-sky-100 hover:bg-sky-200 text-sky-700 border border-sky-200 text-xs font-semibold">
+            📦 Consultar Rastreios e Envios
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Catálogo -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-16">
+      <div id="loadingState" class="text-center py-16">
+        <div class="inline-block w-8 h-8 border-4 border-sky-500 border-t-transparent rounded-full animate-spin"></div>
+        <p class="text-slate-500 text-sm mt-3">Sincronizando produtos, clientes e boxes em tempo real...</p>
+      </div>
+
+      <div id="emptyState" class="hidden text-center py-16 bg-white border border-sky-200/80 shadow-sm rounded-2xl">
+        <p class="text-slate-900 font-semibold">Nenhum produto encontrado</p>
+        <p class="text-slate-500 text-sm mt-1">Aguarde o cadastro de produtos ou ajuste os filtros de busca.</p>
+      </div>
+
+      <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"></div>
+    </main>
+
+    <!-- Rodapé Oficial Tonelada Tecnologia -->
+    <footer class="bg-white border-t border-sky-200/80 text-slate-500 py-5 px-4 text-center text-xs mt-auto">
+      <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+        <span>© Nuoan Labs — Todos os direitos reservados</span>
+        <span>
+          Desenvolvido pela <strong class="text-sky-700 font-bold">Tonelada Tecnologia</strong> — <span class="italic">uma tecnologia de peso</span>.
+        </span>
+      </div>
+    </footer>
+
+    <!-- BARRA FLUTUANTE DO CARRINHO -->
+    <div id="floatingCartBar" class="hidden fixed bottom-4 inset-x-4 z-40 max-w-3xl mx-auto">
+      <div class="bg-slate-900 text-white rounded-2xl p-3.5 sm:px-5 shadow-2xl border border-sky-400/40 flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-sky-500 hover:bg-sky-600 text-white flex items-center justify-center font-extrabold text-base shrink-0">
+            🛒
+          </div>
+          <div>
+            <p class="text-xs text-sky-300 font-semibold">
+              <span id="floatingCartPieces">0</span> peça(s) • <span id="floatingCartMinInfo">Mínimo 3 peças</span>
+            </p>
+            <p class="text-sm sm:text-base font-extrabold text-white">
+              Total dos Sinais PIX: <span id="floatingCartTotal" class="text-emerald-400">R$ 0,00</span>
+            </p>
+          </div>
+        </div>
+        <button type="button" onclick="openCartModal()" class="px-4 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs sm:text-sm transition shadow-md">
+          Abrir Carrinho &rarr;
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL CARRINHO -->
+  <div id="cartModal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4">
+    <div class="bg-white border border-sky-200 rounded-2xl max-w-2xl w-full p-5 sm:p-6 shadow-2xl max-h-[92vh] flex flex-col overflow-hidden">
+      <div class="flex justify-between items-start gap-3 border-b border-sky-200 pb-3.5 shrink-0">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded bg-sky-100 text-sky-700">🛒 Carrinho de Reservas</span>
+            <span id="cartCycleTag" class="text-[11px] font-bold px-2 py-0.5 rounded bg-sky-500 text-white">Rateio #01</span>
+          </div>
+          <h2 class="text-lg font-bold text-slate-900 mt-1">Finalizar Reservas & Pagar Sinais</h2>
+        </div>
+        <button type="button" onclick="closeCartModal()" class="text-slate-500 hover:opacity-75 text-2xl leading-none">&times;</button>
+      </div>
+      <div id="cartModalBody" class="flex-1 min-h-0 overflow-y-auto py-4 space-y-4 custom-scrollbar"></div>
+    </div>
+  </div>
+
+  <!-- MODAL ÁREA DO CLIENTE -->
+  <div id="myOrdersModal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4">
+    <div class="bg-white border border-sky-200 rounded-2xl max-w-5xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden">
+      <div class="px-6 py-4 border-b border-sky-200 flex items-center justify-between shrink-0">
+        <div>
+          <h2 class="text-lg font-bold text-slate-900">Minha Conta — Nuoan Labs</h2>
+          <p id="myOrdersSubtitle" class="text-xs text-slate-500"></p>
+        </div>
+        <button type="button" onclick="closeMyOrdersModal()" class="text-slate-500 hover:opacity-75 text-2xl leading-none">&times;</button>
+      </div>
+
+      <div class="flex flex-wrap border-b border-sky-200 px-6 gap-x-5 gap-y-1 bg-sky-50/70 shrink-0">
+        <button type="button" onclick="switchClientPortalTab('summary')" id="clientTab-summary" class="client-portal-tab py-3 text-xs sm:text-sm font-semibold border-b-2 text-sky-600 border-sky-500 whitespace-nowrap">
+          📊 Extrato & Quitação (Prazo Seg 22:00)
+        </button>
+        <button type="button" onclick="switchClientPortalTab('active')" id="clientTab-active" class="client-portal-tab py-3 text-xs sm:text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-slate-700 whitespace-nowrap">
+          Peças Individuais & Cancelamento
+        </button>
+        <button type="button" onclick="switchClientPortalTab('paid')" id="clientTab-paid" class="client-portal-tab py-3 text-xs sm:text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-slate-700 whitespace-nowrap">
+          ✅ Somente Compras Quitadas
+        </button>
+        <button type="button" onclick="switchClientPortalTab('tracking')" id="clientTab-tracking" class="client-portal-tab py-3 text-xs sm:text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-slate-700 whitespace-nowrap">
+          📦 Rastreios e Envios
+        </button>
+      </div>
+
+      <div id="myOrdersBody" class="flex-1 min-h-0 overflow-y-auto p-6 custom-scrollbar space-y-5"></div>
+    </div>
+  </div>
+
+  <!-- MODAL MURAL DE RASTREIOS -->
+  <div id="trackingBoardModal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4">
+    <div class="bg-white border border-sky-200 rounded-2xl max-w-4xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+      <div class="px-6 py-4 border-b border-sky-200 flex items-center justify-between shrink-0">
+        <div>
+          <h2 class="text-lg font-bold text-slate-900">📦 Rastreios e Envios por Rateio / Data de Fechamento</h2>
+          <p class="text-xs text-slate-500">Consulte as informações de envio atualizadas pelos administradores separadas por ciclo de rateio e data de fechamento.</p>
+        </div>
+        <button type="button" onclick="closeTrackingBoardModal()" class="text-slate-500 hover:opacity-75 text-2xl leading-none">&times;</button>
+      </div>
+
+      <div class="px-6 py-3 bg-sky-50/70 border-b border-sky-200 flex flex-col sm:flex-row gap-3 shrink-0">
+        <input id="publicTrackingSearch" type="text" oninput="renderPublicTrackingBoard()" placeholder="Filtrar por nome do produto, número do rateio ou data..."
+          class="flex-1 bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3.5 py-2 text-xs outline-none" />
+      </div>
+
+      <div id="publicTrackingBody" class="flex-1 min-h-0 overflow-y-auto p-6 custom-scrollbar space-y-5"></div>
+    </div>
+  </div>
+
+  <!-- MODAL PAINEL ADMINISTRATIVO -->
+  <div id="adminModal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4">
+    <div class="bg-white border border-sky-200 rounded-2xl max-w-6xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden">
+      <div class="px-6 py-4 border-b border-sky-200 flex items-center justify-between gap-2 shrink-0">
+        <div>
+          <h2 class="text-lg font-bold text-slate-900">Painel Administrativo — Nuoan Labs (<span id="adminHeaderCycleLabel">Rateio #01</span>)</h2>
+          <p id="loggedAdminBanner" class="hidden text-xs text-emerald-600 font-medium"></p>
+        </div>
+        <div class="flex items-center gap-3">
+          <button type="button" id="adminLogoutBtn" onclick="logoutAdmin()" class="hidden px-3 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 text-xs">
+            Sair do Admin
+          </button>
+          <button type="button" onclick="closeAdminModal()" class="text-slate-500 hover:opacity-75 text-2xl leading-none">&times;</button>
+        </div>
+      </div>
+
+      <!-- Login Admin -->
+      <div id="adminLoginView" class="p-8 max-w-sm mx-auto w-full space-y-3">
+        <p class="text-sm text-slate-500 text-center">Entre com seu E-mail e Senha individual de Administrador.</p>
+        <div>
+          <label class="block text-xs text-slate-700 mb-1">E-mail do Administrador</label>
+          <input id="adminEmailInput" type="email" value="admin@rateio.com" placeholder="admin@rateio.com"
+            class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-xl px-4 py-2.5 text-sm outline-none" />
+        </div>
+        <div>
+          <label class="block text-xs text-slate-700 mb-1">Senha Individual</label>
+          <input id="adminPasswordInput" type="password" placeholder="Senha (inicial: admin123)"
+            class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-xl px-4 py-2.5 text-sm outline-none" />
+        </div>
+        <button type="button" onclick="loginAdmin()" class="w-full py-2.5 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-semibold text-sm">
+          Acessar Painel
+        </button>
+      </div>
+
+      <!-- Conteúdo Admin Logado -->
+      <div id="adminDashboardView" class="hidden flex-1 min-h-0 flex flex-col overflow-hidden">
+        <div class="flex flex-wrap items-center border-b border-sky-200 px-4 sm:px-6 py-2 gap-1.5 sm:gap-2 bg-sky-50/70 shrink-0">
+          <button type="button" onclick="switchAdminTab('unpaid')" id="tab-unpaid" class="admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-sky-500 bg-sky-500 text-white transition">
+            ⚠️ Pendentes Quitação (<span id="adminUnpaidBadgeCount">0</span>)
+          </button>
+          <button type="button" onclick="switchAdminTab('tracking')" id="tab-tracking" class="admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-sky-200 bg-white text-slate-600 hover:bg-sky-100 transition">
+            📦 Rastreios e Envios
+          </button>
+          <button type="button" onclick="switchAdminTab('closings')" id="tab-closings" class="admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-sky-200 bg-white text-slate-600 hover:bg-sky-100 transition">
+            Boxes & Quitação (PIX / Cartão)
+          </button>
+          <button type="button" onclick="switchAdminTab('clients')" id="tab-clients" class="admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-sky-200 bg-white text-slate-600 hover:bg-sky-100 transition">
+            Pedidos por Cliente
+          </button>
+          <button type="button" onclick="switchAdminTab('weekly')" id="tab-weekly" class="admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-sky-200 bg-white text-slate-600 hover:bg-sky-100 transition">
+            Rateios & Arrecadação (Seg–Sáb 15h)
+          </button>
+          <button type="button" onclick="switchAdminTab('products')" id="tab-products" class="admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-sky-200 bg-white text-slate-600 hover:bg-sky-100 transition">
+            Cadastrar Produto (1 a 1)
+          </button>
+          <button type="button" onclick="switchAdminTab('bulk')" id="tab-bulk" class="admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-sky-200 bg-white text-slate-600 hover:bg-sky-100 transition">
+            Cadastro em Lote (+100)
+          </button>
+          <button type="button" onclick="switchAdminTab('settings')" id="tab-settings" class="admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-sky-200 bg-white text-slate-600 hover:bg-sky-100 transition">
+            ❖ Chave PIX & Config
+          </button>
+          <button type="button" onclick="switchAdminTab('admins')" id="tab-admins" class="admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-sky-200 bg-white text-slate-600 hover:bg-sky-100 transition">
+            Admins & Auditoria
+          </button>
+        </div>
+
+        <div class="flex-1 min-h-0 overflow-y-auto p-6 custom-scrollbar space-y-6">
+          <!-- ABA PENDENTES -->
+          <div id="view-unpaid" class="space-y-4">
+            <div class="bg-amber-50 border border-amber-300 text-amber-950 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div>
+                <h3 class="font-bold text-sm">⚠️ Lista de Clientes com Itens Habilitados Pendentes de Quitação</h3>
+                <p class="text-xs opacity-90 mt-0.5">
+                  Todos os clientes abaixo possuem peças habilitadas (Boxes completos 10/10 ou Água Bacteriostática) com prazo de pagamento até <strong>Segunda-feira às 22:00</strong>. Clique no botão do WhatsApp para enviar a mensagem padrão de cobrança.
+                </p>
+              </div>
+              <input id="adminUnpaidSearch" type="text" oninput="renderAdminUnpaidList()" placeholder="Pesquisar cliente, telefone, e-mail ou produto..."
+                class="bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3.5 py-2 text-xs w-full sm:w-72 outline-none" />
+            </div>
+            <div id="adminUnpaidList" class="space-y-3"></div>
+          </div>
+
+          <!-- ABA RASTREIOS -->
+          <div id="view-tracking" class="hidden space-y-5">
+            <div class="bg-sky-50 border border-sky-200 text-slate-800 rounded-xl p-4 flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <h3 class="font-bold text-slate-900 text-sm">📦 Rastreios e Envios (Agrupados por Data de Fechamento do Rateio)</h3>
+                <p class="text-xs text-slate-500 mt-0.5">
+                  Escreva abaixo a informação manual de envio/andamento. Você pode aplicar a mesma informação para <strong>todos os produtos fechados naquela data</strong> de uma vez ou atualizar cada Box individualmente.
+                </p>
+              </div>
+              <input id="adminTrackingSearch" type="text" oninput="renderAdminTracking()" placeholder="Buscar produto, data ou status..."
+                class="bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-1.5 text-xs w-full sm:w-64 outline-none" />
+            </div>
+            <div id="adminTrackingList" class="space-y-5"></div>
+          </div>
+
+          <!-- ABA CHAVE PIX & CONFIG -->
+          <div id="view-settings" class="hidden grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-5 space-y-3.5">
+              <div class="flex items-center justify-between">
+                <h3 class="font-bold text-sm text-slate-900">❖ Cadastro da Chave PIX Recebedora & WhatsApp do Admin</h3>
+                <span id="pixActiveStatusBadge" class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800 border border-amber-300">Verificando...</span>
+              </div>
+              <p class="text-xs text-slate-500">
+                Cadastre abaixo a chave PIX oficial (o QR Code e Copia e Cola já saem automaticamente com o valor exato de cada cliente) e o WhatsApp do Administrador (usado também quando o cliente solicita pagamento via <strong>Cartão de Crédito</strong>).
+              </p>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div>
+                  <label class="block text-xs text-slate-700 mb-1">Tipo da Chave PIX *</label>
+                  <select id="settingPixType" class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs">
+                    <option value="CPF">CPF</option>
+                    <option value="CNPJ">CNPJ</option>
+                    <option value="EMAIL">E-mail</option>
+                    <option value="TELEFONE">Telefone (+55)</option>
+                    <option value="ALEATORIA">Chave Aleatória (EVP)</option>
+                  </select>
+                </div>
+                <div class="sm:col-span-2">
+                  <label class="block text-xs text-slate-700 mb-1">Chave PIX Recebedora *</label>
+                  <input id="settingPixKey" type="text" placeholder="Ex: 12.345.678/0001-99 ou seuemail@pix.com" class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs font-mono outline-none" />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs text-slate-700 mb-1">Nome do Titular / Recebedor *</label>
+                  <input id="settingPixReceiverName" type="text" placeholder="Ex: Nuoan Labs" class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs" />
+                </div>
+                <div>
+                  <label class="block text-xs text-slate-700 mb-1">Cidade do Titular *</label>
+                  <input id="settingPixCity" type="text" value="SAO PAULO" placeholder="Ex: SAO PAULO" class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs" />
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs text-slate-700 mb-1">WhatsApp do Admin (para Cartão de Crédito / Suporte)</label>
+                <input id="settingStoreWhatsapp" type="text" placeholder="Ex: 5511999998888" class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs" />
+              </div>
+
+              <button type="button" onclick="saveSettings()" class="w-full py-2.5 rounded-lg bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs transition">
+                Salvar Chave PIX e Contato (Exige Senha Admin)
+              </button>
+            </div>
+
+            <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-5 space-y-3">
+              <h3 class="font-bold text-sm text-slate-900">Envio de E-mail Automático (Fechamento Sábado 15:00)</h3>
+              <p class="text-[11px] text-slate-500 leading-relaxed">
+                Crie uma conta grátis em <strong>emailjs.com</strong>, crie um template com <code class="text-sky-600">{{to_email}}</code>, <code class="text-sky-600">{{subject}}</code> e <code class="text-sky-600">{{message}}</code> e cole os 3 códigos abaixo:
+              </p>
+              <div>
+                <label class="block text-xs text-slate-700 mb-1">EmailJS Public Key</label>
+                <input id="settingEmailJsPublicKey" type="text" placeholder="Ex: user_xxxxxxxxxxxx" class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs font-mono" />
+              </div>
+              <div>
+                <label class="block text-xs text-slate-700 mb-1">EmailJS Service ID</label>
+                <input id="settingEmailJsServiceId" type="text" placeholder="Ex: service_xxxxxxx" class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs font-mono" />
+              </div>
+              <div>
+                <label class="block text-xs text-slate-700 mb-1">EmailJS Template ID</label>
+                <input id="settingEmailJsTemplateId" type="text" placeholder="Ex: template_xxxxxxx" class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs font-mono" />
+              </div>
+              <button type="button" onclick="saveEmailJsSettings()" class="px-4 py-2 rounded-lg bg-sky-500 hover:bg-sky-600 text-white font-semibold text-xs">
+                Salvar Configuração de E-mail
+              </button>
+            </div>
+          </div>
+
+          <!-- ABA RATEIOS & ARRECADAÇÃO -->
+          <div id="view-weekly" class="hidden space-y-5">
+            <div class="flex flex-wrap items-center justify-between gap-3 bg-white border border-sky-200/80 shadow-sm rounded-xl p-4">
+              <div>
+                <h3 class="font-bold text-slate-900 text-base">Ciclos de Rateio Numerados (Segunda 00:00 até Sábado 15:00)</h3>
+                <p class="text-xs text-slate-500">Cada semana é numerada sequencialmente a partir do Rateio #01. Fecha sábado às 15:00 e abre novo ciclo na segunda às 00:00.</p>
+              </div>
+              <div class="flex flex-wrap items-center gap-2">
+                <select id="weeklySelector" onchange="renderWeeklyRevenue()" class="bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs font-semibold"></select>
+                <button type="button" onclick="triggerWeeklyReportEmail(true)" class="px-3.5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs">
+                  Enviar Lista de Boxes Fechados Agora
+                </button>
+              </div>
+            </div>
+
+            <div id="weeklySummaryCards" class="grid grid-cols-1 sm:grid-cols-3 gap-4"></div>
+
+            <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl overflow-hidden">
+              <div class="px-4 py-3 border-b border-sky-200 bg-sky-50/70 flex justify-between items-center">
+                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700">Histórico de Todos os Rateios Numerados</h4>
+              </div>
+              <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs">
+                  <thead class="bg-sky-50 text-slate-600 border-b border-sky-200">
+                    <tr>
+                      <th class="p-3">Rateio / Período (Seg 00:00 a Sáb 15:00)</th>
+                      <th class="p-3">Reservas no Ciclo</th>
+                      <th class="p-3">Sinais Arrecadados</th>
+                      <th class="p-3">Restantes Quitados (PIX / Cartão)</th>
+                      <th class="p-3 text-right">Total Arrecadado</th>
+                      <th class="p-3 text-center">Relatório E-mail</th>
+                    </tr>
+                  </thead>
+                  <tbody id="weeklyHistoryTable" class="divide-y border-sky-200"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- ABA CLIENTES -->
+          <div id="view-clients" class="hidden space-y-5">
+            <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-4 space-y-3">
+              <div>
+                <h3 class="font-bold text-slate-900 text-sm">Gerenciar Pedidos e Forma de Pagamento de Qualquer Cliente</h3>
+                <p class="text-xs text-slate-500">Busque pelo nome, e-mail ou telefone para ver pedidos, confirmar quitação via <strong>PIX</strong> ou <strong>Cartão de Crédito</strong>, adicionar ou excluir produtos.</p>
+              </div>
+              <input id="adminClientSearch" type="text" oninput="renderAdminClients()" placeholder="Buscar cliente por nome, e-mail ou telefone..."
+                class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3.5 py-2 text-xs outline-none" />
+            </div>
+            <div id="adminClientsList" class="space-y-4"></div>
+          </div>
+
+          <!-- ABA BOXES -->
+          <div id="view-closings" class="hidden space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <h3 class="font-bold text-slate-900">Controle de Boxes (10 peças por Box • Água Bacteriostática Livre)</h3>
+                <p class="text-xs text-slate-500">Boxes completos (10/10) ou Água Bacteriostática já ficam habilitados para cobrar o restante + taxa de manuseio/embalo até Segunda-feira às 22:00. Marque se foi pago via <strong>PIX</strong> ou <strong>Cartão de Crédito</strong>.</p>
+              </div>
+              <select id="adminClosingFilter" onchange="renderAdminClosings()" class="bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-1.5 text-xs">
+                <option value="ALL">Todos os Boxes</option>
+                <option value="COMPLETED">Somente Boxes Liberados (10/10 ou Livre)</option>
+                <option value="IN_PROGRESS">Boxes em Andamento (&lt; 10)</option>
+              </select>
+            </div>
+            <div id="adminClosingsList" class="space-y-4"></div>
+          </div>
+
+          <!-- ABA PRODUTOS -->
+          <div id="view-products" class="hidden space-y-6">
+            <div class="bg-sky-50 border border-sky-200 text-slate-800 rounded-xl p-4 space-y-2 text-xs">
+              <div class="flex items-center gap-2 text-sky-600 font-bold">
+                <span>📘 Instruções para Cadastro Manual e Correção de Valores — Nuoan Labs (Ordem Alfabética A–Z)</span>
+              </div>
+              <ol class="list-decimal list-inside space-y-1 text-slate-700 leading-relaxed">
+                <li><strong>Nome do Produto:</strong> Digite o título completo do item (a lista do site é organizada automaticamente em <strong>ordem alfabética A–Z</strong>).</li>
+                <li><strong>Valor do Box (10 pçs) (R$):</strong> Ao preencher o valor total do Box fechado (10 peças), o sistema calcula automaticamente o <strong>Valor por Peça</strong> (dividido por 10).</li>
+                <li><strong>Valor por Peça (R$):</strong> Se preferir digitar o valor unitário da peça, o <strong>Valor do Box (10 pçs)</strong> é calculado automaticamente (× 10).</li>
+                <li><strong>Valor do Sinal (R$):</strong> Valor pago na reserva inicial de cada peça (padrão <code>20.00</code>).</li>
+                <li><strong>Regra Especial Água Bacteriostática:</strong> Produtos com nome <em>Água Bacteriostática</em> não precisam fechar 10 peças no Box e ficam liberados imediatamente para quitação.</li>
+              </ol>
+            </div>
+
+            <form onsubmit="addSingleProduct(event)" class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-4 space-y-3">
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
+                <div class="lg:col-span-2">
+                  <label class="block text-[11px] font-semibold text-slate-700 mb-1">Nome do Produto *</label>
+                  <input id="prodName" type="text" required placeholder="Ex: Água Bacteriostática 30ml"
+                    class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs outline-none" />
+                </div>
+                <div>
+                  <label class="block text-[11px] font-semibold text-sky-600 mb-1">Valor do Box (10 pçs) (R$) *</label>
+                  <input id="prodBoxPrice" type="number" step="0.01" required placeholder="Ex: 3500.00" oninput="syncPriceFromBox()"
+                    class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs outline-none" />
+                </div>
+                <div>
+                  <label class="block text-[11px] font-semibold text-sky-600 mb-1">Valor por Peça (R$) *</label>
+                  <input id="prodFull" type="number" step="0.01" required placeholder="Ex: 350.00" oninput="syncPriceFromPiece()"
+                    class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs outline-none" />
+                </div>
+                <div>
+                  <label class="block text-[11px] font-semibold text-emerald-600 mb-1">Valor do Sinal (R$) *</label>
+                  <input id="prodDeposit" type="number" step="0.01" value="20" required placeholder="20.00"
+                    class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs outline-none" />
+                </div>
+                <div>
+                  <label class="block text-[11px] font-semibold text-slate-700 mb-1">Categoria & Ação</label>
+                  <div class="flex gap-2">
+                    <input id="prodCategory" type="text" placeholder="Ex: Geral"
+                      class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs outline-none" />
+                    <button type="submit" class="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs shrink-0">
+                      Salvar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+            <div class="overflow-x-auto border border-sky-200 rounded-xl">
+              <table class="w-full text-left text-xs">
+                <thead class="bg-sky-50 text-slate-600 border-b border-sky-200">
+                  <tr>
+                    <th class="p-3">Produto (A–Z)</th>
+                    <th class="p-3">Categoria</th>
+                    <th class="p-3">Sinal</th>
+                    <th class="p-3">Valor por Peça</th>
+                    <th class="p-3">Valor do Box (10 pçs)</th>
+                    <th class="p-3">Boxes / Reservas Ativas</th>
+                    <th class="p-3 text-right">Ações</th>
+                  </tr>
+                </thead>
+                <tbody id="adminProductsTable" class="divide-y border-sky-200"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- ABA LOTE -->
+          <div id="view-bulk" class="hidden space-y-4">
+            <div class="bg-sky-50 border border-sky-200 text-slate-800 rounded-xl p-4 space-y-2 text-xs">
+              <div class="flex items-center gap-2 text-sky-600 font-bold">
+                <span>📗 Instruções para Cadastro em Lote (+100 Produtos) — Nuoan Labs</span>
+              </div>
+              <p class="text-slate-700">Para cadastrar dezenas ou centenas de produtos de uma só vez, siga este padrão:</p>
+              <ul class="list-disc list-inside space-y-1 text-slate-700 leading-relaxed">
+                <li>Coloque <strong>1 produto por linha</strong> separando os 5 campos por <strong>ponto e vírgula (<code>;</code>)</strong>.</li>
+                <li>Ordem dos campos: <code>Nome do Produto; Valor do Sinal; Valor do Box (10 pçs); Valor por Peça; Categoria</code></li>
+                <li>Use <strong>ponto (<code>.</code>)</strong> para centavos.</li>
+              </ul>
+            </div>
+
+            <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-4">
+              <h3 class="font-bold text-sm text-slate-900">Cole sua lista de produtos abaixo:</h3>
+              <textarea id="bulkInput" rows="9" placeholder="Água Bacteriostática 30ml; 20.00; 800.00; 80.00; Insumos&#10;Peptídeo BPC-157 5mg; 20.00; 3500.00; 350.00; Peptídeos"
+                class="w-full mt-3 bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-xl p-3 text-xs font-mono outline-none"></textarea>
+              <button type="button" onclick="importBulkProducts()" class="mt-3 px-5 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-semibold text-xs">
+                Importar Todos os Produtos em Lote Agora
+              </button>
+            </div>
+          </div>
+
+          <!-- ABA ADMINS & AUDITORIA -->
+          <div id="view-admins" class="hidden space-y-6">
+            <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-4 space-y-3">
+              <div>
+                <h3 class="font-bold text-sm text-slate-900">Cadastrar Novo Administrador (Nuoan Labs)</h3>
+                <p class="text-xs text-slate-500">Cada administrador cadastrado terá login individual e receberá a lista de boxes fechados no sábado às 15:00.</p>
+              </div>
+              <form onsubmit="addNewAdmin(event)" class="grid grid-cols-1 sm:grid-cols-4 gap-3">
+                <input id="newAdminName" type="text" required placeholder="Nome do Admin" class="bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs" />
+                <input id="newAdminEmail" type="email" required placeholder="E-mail do Admin (receberá relatórios)" class="bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs" />
+                <input id="newAdminPass" type="password" required minlength="4" placeholder="Senha individual" class="bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs" />
+                <button type="submit" class="px-4 py-2 rounded-lg bg-sky-500 hover:bg-sky-600 text-white font-semibold text-xs">
+                  + Cadastrar Admin
+                </button>
+              </form>
+
+              <div class="overflow-x-auto border border-sky-200 rounded-xl mt-3">
+                <table class="w-full text-left text-xs">
+                  <thead class="bg-sky-50 text-slate-600 border-b border-sky-200">
+                    <tr>
+                      <th class="p-3">Nome</th>
+                      <th class="p-3">E-mail (Destino Relatório)</th>
+                      <th class="p-3">Cadastrado em</th>
+                      <th class="p-3 text-right">Ações</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminsTableBody" class="divide-y border-sky-200"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl overflow-hidden">
+              <div class="px-4 py-3 border-b border-sky-200 bg-sky-50/70">
+                <h3 class="font-bold text-sm text-slate-900">Registro de Auditoria (Alterações por Administrador)</h3>
+                <p class="text-xs text-slate-500">Histórico completo de quem adicionou, alterou ou excluiu registros no painel.</p>
+              </div>
+              <div class="overflow-x-auto max-h-80 custom-scrollbar">
+                <table class="w-full text-left text-xs">
+                  <thead class="bg-sky-50 text-slate-600 border-b border-sky-200 sticky top-0">
+                    <tr>
+                      <th class="p-3">Data / Hora</th>
+                      <th class="p-3">Administrador</th>
+                      <th class="p-3">Ação Realizada</th>
+                      <th class="p-3">Detalhes</th>
+                    </tr>
+                  </thead>
+                  <tbody id="auditLogsTableBody" class="divide-y border-sky-200"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase SDK + Lógica Completa -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+    import {
+      getFirestore, collection, doc, addDoc, setDoc, updateDoc, deleteDoc,
+      onSnapshot, query, orderBy, serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDbgu58V1xIGd8gIA6cEapnAczxu9qFcr4",
+      authDomain: "rateio-63ed4.firebaseapp.com",
+      projectId: "rateio-63ed4",
+      storageBucket: "rateio-63ed4.firebasestorage.app",
+      messagingSenderId: "228099568947",
+      appId: "1:228099568947:web:7c5bb0aae09e79449a3a46",
+      measurementId: "G-4WEKPE9HP0"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const COL = {
+      products: "nuoan_products",
+      reservations: "nuoan_reservations",
+      users: "nuoan_users",
+      admins: "nuoan_admins",
+      auditLogs: "nuoan_audit_logs",
+      weeklyReports: "nuoan_weekly_reports",
+      boxTrackings: "nuoan_box_trackings",
+      config: "nuoan_config"
+    };
+
+    const BRAND_NAME = "Nuoan Labs";
+    const STORAGE_PREFIX = "nuoan";
+    const IS_DARK = false;
+    const MIN_PIECES = 3;
+    const RATEIO_01_MONDAY_MS = new Date(2026, 10, 23, 0, 0, 0, 0).getTime();
+
+    let products = [];
+    let reservations = [];
+    let users = [];
+    let admins = [];
+    let auditLogs = [];
+    let weeklyReports = {};
+    let boxTrackings = {};
+    let storeConfig = {
+      pixType: "CPF",
+      pixKey: "",
+      pixReceiverName: BRAND_NAME,
+      pixCity: "SAO PAULO",
+      storeWhatsapp: "",
+      emailJsPublicKey: "",
+      emailJsServiceId: "",
+      emailJsTemplateId: ""
+    };
+
+    let cart = JSON.parse(localStorage.getItem(STORAGE_PREFIX + "_cart") || "{}");
+    let cardSelectedQty = {};
+    let acceptedSettlementTerms = false;
+
+    let currentUser = null;
+    let currentAdmin = null;
+    let activeClientPortalTab = "summary";
+
+    const formatBRL = (val) => Number(val || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+    const formatDateTime = (ms) => ms ? new Date(ms).toLocaleString("pt-BR") : "-";
+    const formatDateOnly = (ms) => {
+      if (!ms) return "Data não registrada";
+      const d = new Date(ms);
+      return d.toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit", year: "numeric" });
+    };
+
+    function isNoBoxLimitProduct(productName) {
+      const normalized = (productName || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase();
+      return normalized.includes("agua bacteriostatica");
+    }
+
+    function sortProductsAlphabetically(list) {
+      return [...list].sort((a, b) =>
+        (a.name || "").localeCompare((b.name || ""), "pt-BR", { sensitivity: "base" })
+      );
+    }
+
+    function calculateHandlingFee(readyPiecesCount) {
+      if (readyPiecesCount <= 0) return 0;
+      if (readyPiecesCount <= 9) return 69.99;
+      return 98.99;
+    }
+
+    function getBrazilDate() {
+      const str = new Date().toLocaleString("en-US", { timeZone: "America/Sao_Paulo" });
+      return new Date(str);
+    }
+
+    function getAdminWhatsappLink(customText) {
+      const rawPhone = (storeConfig.storeWhatsapp || "").replace(/\D/g, "");
+      if (!rawPhone) return null;
+      const fullPhone = rawPhone.startsWith("55") ? rawPhone : `55${rawPhone}`;
+      return `https://wa.me/${fullPhone}?text=${encodeURIComponent(customText)}`;
+    }
+
+    function getRateioCycleInfo(timestampMs) {
+      const localStr = new Date(timestampMs).toLocaleString("en-US", { timeZone: "America/Sao_Paulo" });
+      const d = new Date(localStr);
+      const day = d.getDay();
+      const diffToMonday = day === 0 ? 1 : (1 - day);
+
+      const mondayStart = new Date(d.getFullYear(), d.getMonth(), d.getDate() + diffToMonday, 0, 0, 0, 0);
+      const saturdayEnd = new Date(mondayStart.getFullYear(), mondayStart.getMonth(), mondayStart.getDate() + 5, 15, 0, 0, 0);
+
+      const weekDiff = Math.floor((mondayStart.getTime() - RATEIO_01_MONDAY_MS) / (7 * 24 * 60 * 60 * 1000));
+      const cycleNumber = Math.max(1, weekDiff + 1);
+      const cycleCode = String(cycleNumber).padStart(2, "0");
+
+      const pad = (n) => String(n).padStart(2, "0");
+      const key = `${mondayStart.getFullYear()}-${pad(mondayStart.getMonth() + 1)}-${pad(mondayStart.getDate())}`;
+      const shortTitle = `Rateio #${cycleCode}`;
+      const label = `${shortTitle} • Seg ${pad(mondayStart.getDate())}/${pad(mondayStart.getMonth() + 1)} 00:00 até Sáb ${pad(saturdayEnd.getDate())}/${pad(saturdayEnd.getMonth() + 1)} 15:00`;
+
+      return {
+        key,
+        cycleNumber,
+        cycleCode,
+        shortTitle,
+        label,
+        startMs: mondayStart.getTime(),
+        endMs: saturdayEnd.getTime()
+      };
+    }
+
+    function updateCycleBadgesUI() {
+      const brNow = getBrazilDate();
+      const currentCycle = getRateioCycleInfo(brNow.getTime());
+
+      const gateBadge = document.getElementById("gateCycleBadge");
+      if (gateBadge) gateBadge.textContent = `${currentCycle.shortTitle} • Acesso Exclusivo`;
+
+      const headerBadge = document.getElementById("headerCycleBadge");
+      if (headerBadge) headerBadge.textContent = currentCycle.shortTitle;
+
+      const heroTag = document.getElementById("heroCycleTag");
+      if (heroTag) heroTag.textContent = `#${currentCycle.cycleCode}`;
+
+      const cartTag = document.getElementById("cartCycleTag");
+      if (cartTag) cartTag.textContent = currentCycle.shortTitle;
+
+      const adminHeaderTag = document.getElementById("adminHeaderCycleLabel");
+      if (adminHeaderTag) adminHeaderTag.textContent = currentCycle.shortTitle;
+    }
+
+    window.syncPriceFromBox = function () {
+      const boxVal = parseFloat(document.getElementById("prodBoxPrice").value);
+      const pieceInput = document.getElementById("prodFull");
+      if (!isNaN(boxVal) && boxVal >= 0) {
+        pieceInput.value = (boxVal / 10).toFixed(2);
+      } else {
+        pieceInput.value = "";
+      }
+    };
+
+    window.syncPriceFromPiece = function () {
+      const pieceVal = parseFloat(document.getElementById("prodFull").value);
+      const boxInput = document.getElementById("prodBoxPrice");
+      if (!isNaN(pieceVal) && pieceVal >= 0) {
+        boxInput.value = (pieceVal * 10).toFixed(2);
+      } else {
+        boxInput.value = "";
+      }
+    };
+
+    window.copyTextToClipboard = function (text, successMsg) {
+      if (!text) return;
+      navigator.clipboard.writeText(text).then(() => {
+        alert(successMsg || "Copiado!");
+      }).catch(() => {
+        prompt("Copie abaixo:", text);
+      });
+    };
+
+    // --- GERADOR PIX EMV BACEN (VALOR TRAVADO) ---
+    function crc16CCITT(str) {
+      let crc = 0xFFFF;
+      for (let i = 0; i < str.length; i++) {
+        crc ^= str.charCodeAt(i) << 8;
+        for (let j = 0; j < 8; j++) {
+          if ((crc & 0x8000) !== 0) crc = ((crc << 1) ^ 0x1021) & 0xFFFF;
+          else crc = (crc << 1) & 0xFFFF;
+        }
+      }
+      return crc.toString(16).toUpperCase().padStart(4, "0");
+    }
+
+    function emvField(id, value) {
+      const len = String(value.length).padStart(2, "0");
+      return `${id}${len}${value}`;
+    }
+
+    function normalizeAscii(str, maxLen) {
+      return (str || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-zA-Z0-9 ]/g, "")
+        .trim()
+        .toUpperCase()
+        .slice(0, maxLen) || "RATEIO";
+    }
+
+    function formatPixKeyForBacen(rawKey, pixType) {
+      const trimmed = (rawKey || "").trim();
+      if (!trimmed) return "";
+      if (pixType === "CPF" || pixType === "CNPJ") {
+        return trimmed.replace(/\D/g, "");
+      }
+      if (pixType === "TELEFONE") {
+        const digits = trimmed.replace(/\D/g, "");
+        if (digits.startsWith("55") && digits.length >= 12) return `+${digits}`;
+        return `+55${digits}`;
+      }
+      if (pixType === "EMAIL") {
+        return trimmed.toLowerCase();
+      }
+      return trimmed;
+    }
+
+    function generatePixPayload(pixKey, receiverName, city, amount, txid = "RATEIO") {
+      if (!pixKey) return "";
+      const cleanKey = formatPixKeyForBacen(pixKey, storeConfig.pixType);
+      const merchantAccount = emvField("00", "br.gov.bcb.pix") + emvField("01", cleanKey);
+      const numericAmount = Number(amount || 0);
+      const formattedAmount = numericAmount.toFixed(2);
+      const cleanName = normalizeAscii(receiverName || BRAND_NAME, 25);
+      const cleanCity = normalizeAscii(city || "SAO PAULO", 15);
+      const cleanTxid = normalizeAscii(txid, 20).replace(/\s+/g, "") || "RATEIO";
+
+      let payload =
+        emvField("00", "01") +
+        emvField("26", merchantAccount) +
+        emvField("52", "0000") +
+        emvField("53", "986") +
+        (numericAmount > 0 ? emvField("54", formattedAmount) : "") +
+        emvField("58", "BR") +
+        emvField("59", cleanName) +
+        emvField("60", cleanCity) +
+        emvField("62", emvField("05", cleanTxid)) +
+        "6304";
+
+      return payload + crc16CCITT(payload);
+    }
+
+    function isPurchasesPausedNow() {
+      const brNow = getBrazilDate();
+      const day = brNow.getDay();
+      if (day === 0) return true;
+      if (day === 6 && brNow.getHours() >= 15) return true;
+      return false;
+    }
+
+    let lastPausedState = isPurchasesPausedNow();
+
+    function updateWeekendScheduleUI() {
+      updateCycleBadgesUI();
+      const paused = isPurchasesPausedNow();
+      const weekendBanner = document.getElementById("weekendPurchasesPausedBanner");
+      const weekendBadge = document.getElementById("weekendStatusBadge");
+      const bypassBadge = document.getElementById("adminBypassBadge");
+
+      if (paused && !currentAdmin) {
+        if (weekendBanner) weekendBanner.classList.remove("hidden");
+        if (weekendBadge) weekendBadge.classList.remove("hidden");
+        if (bypassBadge) bypassBadge.classList.add("hidden");
+      } else {
+        if (weekendBanner) weekendBanner.classList.add("hidden");
+        if (weekendBadge) weekendBadge.classList.add("hidden");
+        if (paused && currentAdmin && bypassBadge) {
+          bypassBadge.classList.remove("hidden");
+        } else if (bypassBadge) {
+          bypassBadge.classList.add("hidden");
+        }
+      }
+
+      if (paused) {
+        const brNow = getBrazilDate();
+        const day = brNow.getDay();
+        const daysUntilMonday = day === 6 ? 2 : 1;
+        const reopenDate = new Date(
+          brNow.getFullYear(),
+          brNow.getMonth(),
+          brNow.getDate() + daysUntilMonday,
+          0, 0, 0, 0
+        );
+        const diffMs = Math.max(0, reopenDate.getTime() - brNow.getTime());
+        const totalSec = Math.floor(diffMs / 1000);
+        const d = Math.floor(totalSec / 86400);
+        const h = Math.floor((totalSec % 86400) / 3600);
+        const m = Math.floor((totalSec % 3600) / 60);
+        const s = totalSec % 60;
+        const pad = (n) => String(n).padStart(2, "0");
+        const cdEl = document.getElementById("weekendReopenCountdown");
+        if (cdEl) cdEl.textContent = `${d}d ${pad(h)}h ${pad(m)}m ${pad(s)}s`;
+      }
+
+      if (paused !== lastPausedState) {
+        lastPausedState = paused;
+        renderCatalog();
+        renderCartModal();
+        updateCartUI();
+      }
+    }
+
+    setInterval(updateWeekendScheduleUI, 1000);
+    updateWeekendScheduleUI();
+
+    function updateWelcomeGateVisibility() {
+      const gate = document.getElementById("welcomeGateScreen");
+      const mainApp = document.getElementById("mainAppContainer");
+      const canSeeCatalog = Boolean(currentUser || currentAdmin);
+
+      if (canSeeCatalog) {
+        gate.classList.add("hidden");
+        mainApp.classList.remove("hidden");
+      } else {
+        gate.classList.remove("hidden");
+        mainApp.classList.add("hidden");
+      }
+      updateCartUI();
+    }
+
+    window.switchGateAuthMode = function (mode) {
+      const isRegister = mode === "register";
+      document.getElementById("gateRegisterForm").classList.toggle("hidden", !isRegister);
+      document.getElementById("gateLoginForm").classList.toggle("hidden", isRegister);
+
+      const activeCls = "text-sm font-bold text-sky-600 border-b-2 border-sky-500 pb-1";
+      const inactiveCls = "text-sm font-bold text-slate-400 hover:text-slate-700 pb-1";
+
+      document.getElementById("gateTabRegister").className = isRegister ? activeCls : inactiveCls;
+      document.getElementById("gateTabLogin").className = !isRegister ? activeCls : inactiveCls;
+    };
+
+    window.handleGateRegister = async function (e) {
+      e.preventDefault();
+      const name = document.getElementById("gateRegName").value.trim();
+      const email = document.getElementById("gateRegEmail").value.trim().toLowerCase();
+      const phone = document.getElementById("gateRegPhone").value.replace(/\D/g, "");
+      const password = document.getElementById("gateRegPassword").value;
+
+      if (phone.length < 10) {
+        alert("Informe um telefone/WhatsApp válido com DDD.");
+        return;
+      }
+      if (users.some(u => (u.email || "").toLowerCase() === email)) {
+        alert("Este e-mail já está cadastrado. Entre na aba 'Já tenho conta'.");
+        switchGateAuthMode("login");
+        return;
+      }
+
+      const newUserRef = await addDoc(collection(db, COL.users), {
+        name,
+        email,
+        phone,
+        password,
+        createdAtMs: Date.now(),
+        createdAt: serverTimestamp()
+      });
+
+      currentUser = { id: newUserRef.id, name, email, phone, password };
+      localStorage.setItem(STORAGE_PREFIX + "_user_id", newUserRef.id);
+      document.getElementById("gateRegisterForm").reset();
+      updateClientHeaderUI();
+      updateWelcomeGateVisibility();
+    };
+
+    window.handleGateLogin = function (e) {
+      e.preventDefault();
+      const email = document.getElementById("gateLoginEmail").value.trim().toLowerCase();
+      const password = document.getElementById("gateLoginPassword").value;
+
+      const found = users.find(u => (u.email || "").toLowerCase() === email && u.password === password);
+      if (!found) {
+        alert("E-mail ou senha inválidos.");
+        return;
+      }
+
+      currentUser = found;
+      localStorage.setItem(STORAGE_PREFIX + "_user_id", found.id);
+      document.getElementById("gateLoginForm").reset();
+      updateClientHeaderUI();
+      updateWelcomeGateVisibility();
+    };
+
+    async function logAdminAudit(action, details) {
+      if (!currentAdmin) return;
+      await addDoc(collection(db, COL.auditLogs), {
+        adminId: currentAdmin.id,
+        adminName: currentAdmin.name,
+        adminEmail: currentAdmin.email,
+        action,
+        details,
+        createdAtMs: Date.now(),
+        createdAt: serverTimestamp()
+      });
+    }
+
+    function verifyCurrentAdminPassword() {
+      if (!currentAdmin) {
+        alert("Sessão de administrador expirada. Faça login novamente.");
+        return false;
+      }
+      const typed = prompt(`Admin [${currentAdmin.name}], digite sua senha individual para confirmar:`);
+      if (typed === null) return false;
+      if (typed !== currentAdmin.password) {
+        alert("Senha incorreta! Operação bloqueada.");
+        return false;
+      }
+      return true;
+    }
+
+    // --- MODAIS ---
+    window.openCartModal = () => {
+      renderCartModal();
+      document.getElementById("cartModal").classList.remove("hidden");
+    };
+    window.closeCartModal = () => document.getElementById("cartModal").classList.add("hidden");
+    window.openMyOrdersModal = (initialTab = "summary") => {
+      activeClientPortalTab = initialTab;
+      switchClientPortalTab(initialTab);
+      document.getElementById("myOrdersModal").classList.remove("hidden");
+    };
+    window.closeMyOrdersModal = () => document.getElementById("myOrdersModal").classList.add("hidden");
+    window.openTrackingBoardModal = () => {
+      renderPublicTrackingBoard();
+      document.getElementById("trackingBoardModal").classList.remove("hidden");
+    };
+    window.closeTrackingBoardModal = () => document.getElementById("trackingBoardModal").classList.add("hidden");
+    window.openAdminModal = () => document.getElementById("adminModal").classList.remove("hidden");
+    window.closeAdminModal = () => document.getElementById("adminModal").classList.add("hidden");
+
+    window.switchClientPortalTab = function (tab) {
+      activeClientPortalTab = tab;
+      document.querySelectorAll(".client-portal-tab").forEach(el => {
+        el.className = "client-portal-tab py-3 text-xs sm:text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-slate-700 whitespace-nowrap";
+      });
+      const activeEl = document.getElementById(`clientTab-${tab}`);
+      if (activeEl) {
+        activeEl.className = "client-portal-tab py-3 text-xs sm:text-sm font-semibold border-b-2 text-sky-600 border-sky-500 whitespace-nowrap";
+      }
+      renderMyOrders();
+    };
+
+    // --- CARRINHO ---
+    function saveCartState() {
+      localStorage.setItem(STORAGE_PREFIX + "_cart", JSON.stringify(cart));
+      updateCartUI();
+    }
+
+    function getCartSummary() {
+      const items = [];
+      let totalPieces = 0;
+      let totalDeposit = 0;
+      let totalFull = 0;
+
+      Object.entries(cart).forEach(([productId, qty]) => {
+        const count = Number(qty || 0);
+        if (count <= 0) return;
+        const p = products.find(item => item.id === productId);
+        if (!p) return;
+
+        const subtotalDeposit = Number(p.depositPrice || 0) * count;
+        const subtotalFull = Number(p.fullPrice || 0) * count;
+        totalPieces += count;
+        totalDeposit += subtotalDeposit;
+        totalFull += subtotalFull;
+
+        items.push({
+          product: p,
+          qty: count,
+          subtotalDeposit,
+          subtotalFull
+        });
+      });
+
+      const meetsMinPieces = totalPieces >= MIN_PIECES;
+      const missingPieces = Math.max(0, MIN_PIECES - totalPieces);
+
+      return { items, totalPieces, totalDeposit, totalFull, meetsMinPieces, missingPieces };
+    }
+
+    function updateCartUI() {
+      const { totalPieces, totalDeposit, meetsMinPieces, missingPieces } = getCartSummary();
+      const headerBadge = document.getElementById("headerCartCount");
+      const floatingBar = document.getElementById("floatingCartBar");
+      const canSeeCatalog = Boolean(currentUser || currentAdmin);
+      const paused = isPurchasesPausedNow() && !currentAdmin;
+
+      if (headerBadge) headerBadge.textContent = totalPieces;
+
+      if (floatingBar) {
+        if (totalPieces > 0 && canSeeCatalog && !paused) {
+          floatingBar.classList.remove("hidden");
+          document.getElementById("floatingCartPieces").textContent = totalPieces;
+          const infoEl = document.getElementById("floatingCartMinInfo");
+          if (infoEl) {
+            infoEl.textContent = meetsMinPieces
+              ? "Pedido mínimo atingido ✓"
+              : `Faltam ${missingPieces} pç(s) p/ mínimo de ${MIN_PIECES}`;
+          }
+          document.getElementById("floatingCartTotal").textContent = formatBRL(totalDeposit);
+        } else {
+          floatingBar.classList.add("hidden");
+        }
+      }
+    }
+
+    window.changeCardQty = function (productId, delta) {
+      if (isPurchasesPausedNow() && !currentAdmin) return;
+      const current = cardSelectedQty[productId] || 1;
+      const next = Math.max(1, current + delta);
+      cardSelectedQty[productId] = next;
+
+      const qtyEl = document.getElementById(`card-qty-${productId}`);
+      const btnTotalEl = document.getElementById(`card-btn-total-${productId}`);
+      const p = products.find(item => item.id === productId);
+
+      if (qtyEl) qtyEl.textContent = next;
+      if (btnTotalEl && p) {
+        btnTotalEl.textContent = formatBRL(Number(p.depositPrice || 0) * next);
+      }
+    };
+
+    window.addToCart = function (productId) {
+      if (isPurchasesPausedNow() && !currentAdmin) {
+        alert("Novas compras ficam pausadas após Sábado às 15:00 e no Domingo. Reabrem na virada de Domingo para Segunda-feira às 00:00!");
+        return;
+      }
+      const p = products.find(item => item.id === productId);
+      if (!p) return;
+
+      const qtyToAdd = cardSelectedQty[productId] || 1;
+      cart[productId] = (cart[productId] || 0) + qtyToAdd;
+      cardSelectedQty[productId] = 1;
+
+      saveCartState();
+      renderCatalog();
+    };
+
+    window.updateCartItemQty = function (productId, delta) {
+      if (isPurchasesPausedNow() && !currentAdmin && delta > 0) {
+        alert("Novas compras ficam pausadas após Sábado às 15:00 e no Domingo.");
+        return;
+      }
+      const current = Number(cart[productId] || 0);
+      const next = current + delta;
+      if (next <= 0) delete cart[productId];
+      else cart[productId] = next;
+      saveCartState();
+      renderCatalog();
+      renderCartModal();
+    };
+
+    window.removeCartItem = function (productId) {
+      delete cart[productId];
+      saveCartState();
+      renderCatalog();
+      renderCartModal();
+    };
+
+    window.renderCartModal = function () {
+      const body = document.getElementById("cartModalBody");
+      if (!body) return;
+
+      const summary = getCartSummary();
+      const currentCycle = getRateioCycleInfo(Date.now());
+      const paused = isPurchasesPausedNow() && !currentAdmin;
+
+      if (summary.items.length === 0) {
+        body.innerHTML = `
+          <div class="text-center py-10 space-y-3">
+            <p class="text-4xl">🛒</p>
+            <p class="text-sm font-bold text-slate-900">Seu carrinho da ${BRAND_NAME} (${currentCycle.shortTitle}) está vazio</p>
+            <p class="text-xs text-slate-500 max-w-sm mx-auto">
+              ${paused
+                ? `Novas compras ficam pausadas após Sábado às 15:00 e no Domingo, reabrindo na Segunda-feira às 00:00 (${currentCycle.shortTitle}). Você já pode acessar "Meus Pedidos" para acompanhar seus pedidos ou efetuar pagamentos!`
+                : `Escolha no mínimo <strong>3 peças</strong> (podendo misturar produtos diferentes) para liberar o fechamento e gerar o PIX único dos sinais.`
+              }
+            </p>
+            <div class="flex flex-wrap justify-center gap-2 pt-2">
+              <button type="button" onclick="closeCartModal()" class="px-5 py-2 rounded-xl bg-sky-500 hover:bg-sky-600 text-white text-xs font-semibold">
+                Voltar ao Catálogo
+              </button>
+              <button type="button" onclick="closeCartModal(); openMyOrdersModal('summary');" class="px-5 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 text-xs font-semibold">
+                Ir para Meus Pedidos / Pagar
+              </button>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      const receiverDisplay = storeConfig.pixReceiverName || BRAND_NAME;
+      const canGeneratePix = Boolean(storeConfig.pixKey && summary.meetsMinPieces && !paused);
+      const payload = canGeneratePix
+        ? generatePixPayload(storeConfig.pixKey, receiverDisplay, storeConfig.pixCity, summary.totalDeposit, `R${currentCycle.cycleCode}P${summary.totalPieces}`)
+        : "";
+
+      const qrUrl = payload ? `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(payload)}` : "";
+      const creditCardWaUrl = getAdminWhatsappLink(
+        `Olá Admin da ${BRAND_NAME}! Gostaria de realizar o pagamento do meu pedido (${currentCycle.shortTitle} - ${summary.totalPieces} peça(s), sinal ${formatBRL(summary.totalDeposit)}) no *Cartão de Crédito*.`
+      );
+
+      body.innerHTML = `
+        <div class="bg-sky-50 border border-sky-200 text-slate-800 rounded-xl px-3.5 py-2 flex items-center justify-between text-xs">
+          <span class="font-bold text-sky-600">Ciclo: ${currentCycle.shortTitle}</span>
+          <span class="text-slate-500">${paused ? 'Reabre Segunda 00:00' : 'Compras abertas até Sábado 15:00'}</span>
+        </div>
+
+        ${paused ? `
+          <div class="bg-amber-50 border border-amber-300 text-amber-950 rounded-xl p-3.5 text-xs flex items-start gap-2.5">
+            <span class="text-base leading-none">🗓️</span>
+            <div>
+              <p class="font-bold">Novas compras pausadas (Sábado após 15:00 e Domingo)</p>
+              <p class="mt-0.5 opacity-90">
+                Seus itens ficam salvos aqui no carrinho e você poderá finalizar sua reserva assim que o <strong>${currentCycle.shortTitle}</strong> abrir na virada de Domingo para Segunda-feira às <strong>00:00</strong>. Caso já tenha pedido anterior para quitar, acesse <strong>"Meus Pedidos"</strong>.
+              </p>
+            </div>
+          </div>
+        ` : ''}
+
+        ${!paused && !summary.meetsMinPieces ? `
+          <div class="bg-amber-50 border border-amber-300 text-amber-950 rounded-xl p-3.5 text-xs flex items-start gap-2.5">
+            <span class="text-base leading-none">⚠️</span>
+            <div>
+              <p class="font-bold">Pedido mínimo de 3 peças não atingido!</p>
+              <p class="mt-0.5 opacity-90">
+                Você selecionou <strong>${summary.totalPieces} peça(s)</strong>. Adicione mais <strong>${summary.missingPieces} peça(s)</strong> (pode ser do mesmo produto ou de outros produtos) para liberar o pagamento dos sinais.
+              </p>
+            </div>
+          </div>
+        ` : ''}
+
+        <div class="space-y-2.5">
+          <div class="flex items-center justify-between text-xs text-slate-500 px-1">
+            <span>Itens selecionados (${summary.items.length} produto(s))</span>
+            <span>Total de peças: <strong class="text-slate-900">${summary.totalPieces} pç(s)</strong></span>
+          </div>
+
+          ${summary.items.map(({ product: p, qty, subtotalDeposit }) => {
+            const info = getBoxesInfo(p.id);
+            const isFree = isNoBoxLimitProduct(p.name);
+            return `
+              <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div class="space-y-0.5">
+                  <div class="flex items-center gap-2">
+                    <span class="text-[10px] font-bold px-2 py-0.5 rounded ${isFree ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-sky-100 text-sky-700'}">
+                      ${isFree ? '✓ Sem mínimo de Box (Liberação Imediata)' : `Box #${info.activeBoxNumber} (${info.activeBoxCount}/10)`}
+                    </span>
+                    ${p.category ? `<span class="text-[10px] font-semibold text-slate-500 uppercase">${p.category}</span>` : ''}
+                  </div>
+                  <h4 class="font-bold text-slate-900 text-sm">${p.name}</h4>
+                  <p class="text-xs text-slate-500">
+                    Sinal unit.: <strong class="text-sky-600">${formatBRL(p.depositPrice)}</strong> •
+                    Valor por peça: <strong class="text-slate-900">${formatBRL(p.fullPrice)}</strong> •
+                    Subtotal sinal (${qty}x): <strong class="text-sky-600">${formatBRL(subtotalDeposit)}</strong>
+                  </p>
+                </div>
+
+                <div class="flex items-center justify-between sm:justify-end gap-3">
+                  <div class="inline-flex items-center bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg overflow-hidden">
+                    <button type="button" onclick="updateCartItemQty('${p.id}', -1)" class="px-2.5 py-1 text-slate-500 font-bold text-sm">-</button>
+                    <span class="px-3 py-1 text-xs font-extrabold text-slate-900">${qty}</span>
+                    <button type="button" onclick="updateCartItemQty('${p.id}', 1)" ${paused ? 'disabled' : ''} class="px-2.5 py-1 ${paused ? 'opacity-30 cursor-not-allowed' : 'text-sky-600'} font-bold text-sm">+</button>
+                  </div>
+                  <button type="button" onclick="removeCartItem('${p.id}')" class="text-xs text-red-500 hover:text-red-400 font-semibold px-2 py-1">
+                    Remover
+                  </button>
+                </div>
+              </div>
+            `;
+          }).join("")}
+        </div>
+
+        <div class="bg-white border border-sky-200/80 shadow-sm border-2 border-sky-400/60 rounded-2xl p-4 space-y-2 text-xs sm:text-sm">
+          <div class="flex justify-between text-slate-500">
+            <span>Quantidade total de peças reservadas (${currentCycle.shortTitle}):</span>
+            <strong class="text-slate-900">${summary.totalPieces} peça(s)</strong>
+          </div>
+          <div class="flex justify-between text-slate-500">
+            <span>Valor cheio dos produtos (quitação até Segunda 22:00):</span>
+            <strong class="text-slate-900">${formatBRL(summary.totalFull)}</strong>
+          </div>
+          <div class="flex justify-between border-t border-sky-200 pt-2 items-center">
+            <span class="font-bold text-slate-900">VALOR TOTAL DOS SINAIS (AGORA):</span>
+            <span class="text-lg sm:text-xl font-extrabold text-emerald-600">${formatBRL(summary.totalDeposit)}</span>
+          </div>
+          <p class="text-[11px] text-slate-500 pt-0.5 leading-relaxed">
+            * Assim que seu Box completar 10/10 peças (ou imediatamente para <strong>Água Bacteriostática</strong>), será liberado o pagamento do restante + <strong>taxa de manuseio e embalo</strong> (R$ 69,99 de 1 a 9 peças ou R$ 98,99 acima de 10 peças — <strong>esta taxa NÃO se refere a frete/envio</strong>), com prazo limite até <strong>Segunda-feira às 22:00</strong>.
+          </p>
+        </div>
+
+        <!-- Aviso Pagamento no Cartão de Crédito -->
+        <div class="bg-indigo-50 border border-indigo-200 text-indigo-950 rounded-xl p-3.5 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+          <div>
+            <p class="font-bold">💳 Deseja pagar no Cartão de Crédito?</p>
+            <p class="opacity-90 mt-0.5">Caso opte pelo pagamento no <strong>Cartão de Crédito</strong>, entre em contato diretamente com o administrador do rateio antes de confirmar.</p>
+          </div>
+          ${creditCardWaUrl ? `
+            <a href="${creditCardWaUrl}" target="_blank"
+              class="px-3.5 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs shrink-0 text-center">
+              Falar c/ Adm (Cartão)
+            </a>
+          ` : ''}
+        </div>
+
+        ${canGeneratePix ? `
+          <div class="bg-sky-50 border border-sky-200 text-slate-800 rounded-xl p-4 text-xs space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-sky-600">❖ Pagamento PIX com Valor Exato (${summary.totalPieces} peças = ${formatBRL(summary.totalDeposit)})</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-200 font-bold">Valor Travado no QR</span>
+            </div>
+
+            <div class="space-y-2.5">
+              <div class="text-[11px] text-slate-500">
+                Favorecido: <strong class="text-slate-900">${receiverDisplay}</strong> • Chave (${storeConfig.pixType || "PIX"}): <code class="font-mono text-sky-600">${storeConfig.pixKey}</code>
+              </div>
+
+              <div class="pt-1 flex flex-col sm:flex-row items-center gap-3">
+                <img src="${qrUrl}" alt="QR Code PIX Total" class="w-32 h-32 rounded-lg bg-white p-1.5 shrink-0 border border-slate-300" />
+                <div class="flex-1 w-full space-y-1.5">
+                  <p class="text-[11px] text-slate-500">
+                    Ao escanear o QR Code ou usar o <strong>PIX Copia e Cola</strong> abaixo, o aplicativo do seu banco já abre preenchido com o valor exato de <strong class="text-slate-900">${formatBRL(summary.totalDeposit)}</strong>:
+                  </p>
+                  <textarea readonly rows="2" class="w-full font-mono text-[10px] bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 p-1.5 rounded resize-none">${payload}</textarea>
+                  <button type="button" onclick="copyTextToClipboard('${payload}', 'Código PIX Copia e Cola com o valor de ${formatBRL(summary.totalDeposit)} copiado!')"
+                    class="w-full py-2 rounded-lg bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs">
+                    Copiar PIX Copia e Cola (${formatBRL(summary.totalDeposit)})
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        ` : (!paused && summary.meetsMinPieces && !storeConfig.pixKey ? `
+          <div class="bg-amber-50 border border-amber-300 text-amber-950 rounded-lg p-2.5 text-[11px]">
+            ⚠️ A chave PIX oficial da ${BRAND_NAME} ainda não foi cadastrada pelo administrador.
+          </div>
+        ` : '')}
+
+        <button type="button" id="confirmCartCheckoutBtn" onclick="submitCartCheckout()" ${(!summary.meetsMinPieces || paused) ? 'disabled' : ''}
+          class="${(summary.meetsMinPieces && !paused)
+            ? 'w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm transition shadow-md cursor-pointer'
+            : 'w-full py-3 rounded-xl bg-slate-500/20 text-slate-400 font-bold text-sm cursor-not-allowed'
+          }">
+          ${paused
+            ? `Compras pausadas (Reabre Segunda 00:00 — ${currentCycle.shortTitle})`
+            : !summary.meetsMinPieces
+            ? `Adicione mais ${summary.missingPieces} peça(s) para atingir o mínimo de 3 peças`
+            : `Já fiz o pagamento de ${formatBRL(summary.totalDeposit)} / Confirmar no ${currentCycle.shortTitle}`
+          }
+        </button>
+      `;
+    };
+
+    window.submitCartCheckout = async function () {
+      if (isPurchasesPausedNow() && !currentAdmin) {
+        alert("Novas compras ficam pausadas após Sábado às 15:00 e no Domingo. Reabrem na virada de Domingo para Segunda-feira às 00:00!");
+        return;
+      }
+
+      const summary = getCartSummary();
+      if (summary.items.length === 0) return;
+
+      if (!summary.meetsMinPieces) {
+        alert(`O pedido mínimo é de ${MIN_PIECES} peças (você tem ${summary.totalPieces} no carrinho).`);
+        return;
+      }
+
+      if (!currentUser) {
+        alert("Crie seu cadastro ou entre na sua conta para confirmar o pedido.");
+        return;
+      }
+
+      const btn = document.getElementById("confirmCartCheckoutBtn");
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = `Registrando ${summary.totalPieces} peça(s)...`;
+      }
+
+      try {
+        const batchId = `PED-${Date.now()}`;
+        let baseMs = Date.now();
+        const currentCycle = getRateioCycleInfo(baseMs);
+        const completedAlerts = [];
+
+        for (const { product: p, qty } of summary.items) {
+          const infoBefore = getBoxesInfo(p.id);
+          let runningTotal = infoBefore.total;
+          const isFree = isNoBoxLimitProduct(p.name);
+
+          for (let q = 0; q < qty; q++) {
+            runningTotal += 1;
+            const itemMs = baseMs++;
+            const cycleInfo = getRateioCycleInfo(itemMs);
+
+            await addDoc(collection(db, COL.reservations), {
+              batchId,
+              productId: p.id,
+              productName: p.name,
+              userId: currentUser.id,
+              clientName: currentUser.name,
+              clientEmail: currentUser.email,
+              clientWhatsapp: currentUser.phone,
+              paymentMethod: "PIX",
+              pixKeyUsed: storeConfig.pixKey || "",
+              depositPrice: Number(p.depositPrice),
+              fullPrice: Number(p.fullPrice),
+              status: "ACTIVE",
+              paidFull: false,
+              paidMethod: "",
+              paidFullAtMs: null,
+              weekKey: cycleInfo.key,
+              cycleNumber: cycleInfo.cycleNumber,
+              cycleLabel: cycleInfo.shortTitle,
+              createdAtMs: itemMs,
+              createdAt: serverTimestamp()
+            });
+
+            if (isFree && q === 0) {
+              completedAlerts.push(`• ${p.name}: liberada imediatamente (não precisa fechar 10 peças)!`);
+            } else if (!isFree && runningTotal % 10 === 0) {
+              const closedBoxNum = runningTotal / 10;
+              completedAlerts.push(`• ${p.name}: completou o BOX #${closedBoxNum} (10/10)!`);
+            }
+          }
+        }
+
+        cart = {};
+        saveCartState();
+        closeCartModal();
+
+        let msg = `✅ Reserva de sinais confirmada na ${BRAND_NAME} (${currentCycle.shortTitle}), ${currentUser.name}!\n\n`;
+        msg += `• Total de peças reservadas: ${summary.totalPieces} peça(s)\n`;
+        msg += `• Total de sinais pagos: ${formatBRL(summary.totalDeposit)}\n\n`;
+        if (completedAlerts.length > 0) {
+          msg += `🎉 ITENS HABILITADOS PARA QUITAÇÃO:\n${completedAlerts.join("\n")}\n\n`;
+          msg += `O valor cheio + taxa de manuseio/embalo já está habilitado em "Meus Pedidos"! Prazo máximo: até Segunda-feira às 22:00.\n`;
+        } else {
+          msg += `Assim que o Box completar 10/10 peças, o valor cheio + taxa de manuseio/embalo ficará habilitado para pagamento (prazo até Segunda-feira às 22:00).`;
+        }
+        alert(msg);
+      } catch (err) {
+        alert("Erro ao registrar pedido do carrinho: " + err.message);
+      } finally {
+        if (btn) btn.disabled = false;
+      }
+    };
+
+    // --- ADMIN LOGIN ---
+    window.loginAdmin = async function () {
+      const email = document.getElementById("adminEmailInput").value.trim().toLowerCase();
+      const pass = document.getElementById("adminPasswordInput").value;
+
+      let found = admins.find(a => (a.email || "").toLowerCase() === email && a.password === pass);
+
+      if (!found && admins.length === 0 && email === "admin@rateio.com" && pass === "admin123") {
+        try {
+          const docRef = await addDoc(collection(db, COL.admins), {
+            name: "Admin Principal",
+            email: "admin@rateio.com",
+            password: "admin123",
+            isMaster: true,
+            createdAtMs: Date.now()
+          });
+          found = { id: docRef.id, name: "Admin Principal", email: "admin@rateio.com", password: "admin123" };
+        } catch (err) {
+          alert("Erro de permissão no Firestore! Verifique as Regras do Firebase.");
+          return;
+        }
+      }
+
+      if (!found) {
+        alert("E-mail ou senha de administrador inválidos!");
+        return;
+      }
+
+      currentAdmin = found;
+      localStorage.setItem(STORAGE_PREFIX + "_admin_id", found.id);
+      updateAdminHeaderState();
+      updateWeekendScheduleUI();
+      updateWelcomeGateVisibility();
+      renderCatalog();
+      renderAdminUnpaidList();
+      renderAdminTracking();
+      renderWeeklyRevenue();
+      renderAdminClients();
+      renderAdminsAndAudit();
+    };
+
+    window.logoutAdmin = function () {
+      currentAdmin = null;
+      localStorage.removeItem(STORAGE_PREFIX + "_admin_id");
+      updateAdminHeaderState();
+      updateWeekendScheduleUI();
+      updateWelcomeGateVisibility();
+      renderCatalog();
+    };
+
+    function updateAdminHeaderState() {
+      const loginView = document.getElementById("adminLoginView");
+      const dashView = document.getElementById("adminDashboardView");
+      const banner = document.getElementById("loggedAdminBanner");
+      const logoutBtn = document.getElementById("adminLogoutBtn");
+
+      if (!currentAdmin) {
+        loginView.classList.remove("hidden");
+        dashView.classList.add("hidden");
+        banner.classList.add("hidden");
+        logoutBtn.classList.add("hidden");
+        return;
+      }
+
+      loginView.classList.add("hidden");
+      dashView.classList.remove("hidden");
+      banner.classList.remove("hidden");
+      logoutBtn.classList.remove("hidden");
+      banner.textContent = `Admin ${BRAND_NAME} ativo: ${currentAdmin.name} (${currentAdmin.email})`;
+    }
+
+    window.switchAdminTab = function (tab) {
+      document.querySelectorAll(".admin-tab").forEach(el => {
+        el.className = "admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-sky-200 bg-white text-slate-600 hover:bg-sky-100 transition";
+      });
+      const activeTabEl = document.getElementById(`tab-${tab}`);
+      if (activeTabEl) {
+        activeTabEl.className = "admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-sky-500 bg-sky-500 text-white transition";
+      }
+
+      ["unpaid", "tracking", "settings", "weekly", "clients", "closings", "products", "bulk", "admins"].forEach(v => {
+        document.getElementById(`view-${v}`).classList.toggle("hidden", v !== tab);
+      });
+
+      if (tab === "unpaid") renderAdminUnpaidList();
+      if (tab === "tracking") renderAdminTracking();
+      if (tab === "weekly") renderWeeklyRevenue();
+      if (tab === "clients") renderAdminClients();
+      if (tab === "admins") renderAdminsAndAudit();
+    };
+
+    // --- LISTENERS FIRESTORE ---
+    onSnapshot(doc(db, COL.config, "store"), (snap) => {
+      if (snap.exists()) {
+        storeConfig = { ...storeConfig, ...snap.data() };
+      }
+      document.getElementById("settingPixType").value = storeConfig.pixType || "CPF";
+      document.getElementById("settingPixKey").value = storeConfig.pixKey || "";
+      document.getElementById("settingPixReceiverName").value = storeConfig.pixReceiverName || BRAND_NAME;
+      document.getElementById("settingPixCity").value = storeConfig.pixCity || "SAO PAULO";
+      document.getElementById("settingStoreWhatsapp").value = storeConfig.storeWhatsapp || "";
+      document.getElementById("settingEmailJsPublicKey").value = storeConfig.emailJsPublicKey || "";
+      document.getElementById("settingEmailJsServiceId").value = storeConfig.emailJsServiceId || "";
+      document.getElementById("settingEmailJsTemplateId").value = storeConfig.emailJsTemplateId || "";
+
+      const pixBadge = document.getElementById("pixActiveStatusBadge");
+      if (pixBadge) {
+        if (storeConfig.pixKey) {
+          pixBadge.className = "text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-200";
+          pixBadge.textContent = `Ativa (${storeConfig.pixType || "PIX"})`;
+        } else {
+          pixBadge.className = "text-[10px] font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800 border border-amber-300";
+          pixBadge.textContent = "Não cadastrada";
+        }
+      }
+
+      if (storeConfig.emailJsPublicKey && window.emailjs) {
+        window.emailjs.init({ publicKey: storeConfig.emailJsPublicKey });
+      }
+      renderMyOrders();
+      renderCartModal();
+      renderAdminUnpaidList();
+    });
+
+    onSnapshot(collection(db, COL.boxTrackings), (snapshot) => {
+      boxTrackings = {};
+      snapshot.docs.forEach(d => { boxTrackings[d.id] = d.data(); });
+      renderMyOrders();
+      renderPublicTrackingBoard();
+      renderAdminTracking();
+    });
+
+    onSnapshot(collection(db, COL.admins), async (snapshot) => {
+      if (snapshot.empty) {
+        try {
+          await addDoc(collection(db, COL.admins), {
+            name: "Admin Principal",
+            email: "admin@rateio.com",
+            password: "admin123",
+            isMaster: true,
+            createdAtMs: Date.now()
+          });
+        } catch (e) { console.error("Erro ao criar admin inicial:", e); }
+        return;
+      }
+      admins = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+      const savedAdminId = localStorage.getItem(STORAGE_PREFIX + "_admin_id");
+      if (savedAdminId) {
+        currentAdmin = admins.find(a => a.id === savedAdminId) || null;
+        updateAdminHeaderState();
+        updateWeekendScheduleUI();
+        updateWelcomeGateVisibility();
+      }
+      renderAdminsAndAudit();
+    });
+
+    onSnapshot(query(collection(db, COL.auditLogs), orderBy("createdAtMs", "desc")), (snapshot) => {
+      auditLogs = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+      renderAdminsAndAudit();
+    });
+
+    onSnapshot(collection(db, COL.weeklyReports), (snapshot) => {
+      weeklyReports = {};
+      snapshot.docs.forEach(d => { weeklyReports[d.id] = d.data(); });
+      renderWeeklyRevenue();
+      checkSaturday1500Closing();
+    });
+
+    onSnapshot(collection(db, COL.users), (snapshot) => {
+      users = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+      const savedUserId = localStorage.getItem(STORAGE_PREFIX + "_user_id");
+      if (savedUserId) {
+        currentUser = users.find(u => u.id === savedUserId) || null;
+      }
+      updateClientHeaderUI();
+      updateWelcomeGateVisibility();
+      renderAdminClients();
+      renderAdminUnpaidList();
+    });
+
+    onSnapshot(collection(db, COL.products), (snapshot) => {
+      const rawProducts = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+      products = sortProductsAlphabetically(rawProducts);
+      document.getElementById("loadingState").classList.add("hidden");
+      updateCategoryDropdown();
+      updateCartUI();
+      renderCatalog();
+      renderAdminProducts();
+      renderAdminClosings();
+      renderAdminTracking();
+      renderPublicTrackingBoard();
+      renderAdminUnpaidList();
+    }, (err) => {
+      console.error("Erro Firestore:", err);
+      document.getElementById("loadingState").innerHTML = `<p class="text-red-500 text-sm">Erro ao conectar ao banco de dados. Verifique as Regras do Firestore.</p>`;
+    });
+
+    onSnapshot(query(collection(db, COL.reservations), orderBy("createdAtMs", "asc")), (snapshot) => {
+      reservations = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+      updateClientHeaderUI();
+      renderCatalog();
+      renderMyOrders();
+      renderAdminProducts();
+      renderAdminClosings();
+      renderAdminClients();
+      renderWeeklyRevenue();
+      renderAdminTracking();
+      renderPublicTrackingBoard();
+      renderAdminUnpaidList();
+    });
+
+    function buildClosedBoxesReportText(cycleObj) {
+      const completedBoxesReport = [];
+      products.forEach(p => {
+        const info = getBoxesInfo(p.id);
+        info.boxes.forEach(box => {
+          if (!box.isComplete) return;
+          const closedCycle = getRateioCycleInfo(box.closedAtMs || Date.now());
+          if (closedCycle.key === cycleObj.key) {
+            completedBoxesReport.push({ product: p, box });
+          }
+        });
+      });
+
+      let body = `RELATÓRIO DE FECHAMENTO — ${BRAND_NAME.toUpperCase()} (${cycleObj.shortTitle.toUpperCase()})\n`;
+      body += `Período: ${cycleObj.label}\n`;
+      body += `Total de Boxes Fechados neste ciclo: ${completedBoxesReport.length}\n`;
+      body += `====================================================\n\n`;
+
+      if (completedBoxesReport.length === 0) {
+        body += `Nenhum Box completou neste ciclo.\n`;
+      } else {
+        completedBoxesReport.forEach(({ product: p, box }) => {
+          const remaining = Math.max(0, Number(p.fullPrice) - Number(p.depositPrice));
+          const titleBox = box.isNoBoxLimit ? `LIBERAÇÃO IMEDIATA (${box.members.length} pçs)` : `BOX #${box.boxNumber} (10/10 COMPLETO)`;
+          body += `PRODUTO: ${p.name} — ${titleBox} - Fechado em ${formatDateOnly(box.closedAtMs)}\n`;
+          body += `Sinal: ${formatBRL(p.depositPrice)} | Por Peça: ${formatBRL(p.fullPrice)} | Restante: ${formatBRL(remaining)}\n`;
+          box.members.forEach((m, idx) => {
+            body += `  #${idx + 1} - ${m.clientName} | Tel: ${m.clientWhatsapp} | E-mail: ${m.clientEmail || '-'}\n`;
+          });
+          body += `\n----------------------------------------------------\n\n`;
+        });
+      }
+
+      return { count: completedBoxesReport.length, text: body };
+    }
+
+    window.triggerWeeklyReportEmail = async function (isManual = false, targetCycleKey = null) {
+      const now = Date.now();
+      const targetCycle = targetCycleKey
+        ? getRateioCycleInfo(new Date(targetCycleKey + "T12:00:00").getTime())
+        : getRateioCycleInfo(now);
+
+      if (!isManual && weeklyReports[targetCycle.key]?.sent) return;
+
+      const adminEmails = admins.map(a => a.email).filter(Boolean);
+      if (adminEmails.length === 0) return;
+
+      const report = buildClosedBoxesReportText(targetCycle);
+
+      await setDoc(doc(db, COL.weeklyReports, targetCycle.key), {
+        weekKey: targetCycle.key,
+        cycleNumber: targetCycle.cycleNumber,
+        weekLabel: targetCycle.label,
+        closedBoxesCount: report.count,
+        recipients: adminEmails,
+        sent: true,
+        sentAtMs: Date.now()
+      }, { merge: true });
+
+      if (storeConfig.emailJsPublicKey && storeConfig.emailJsServiceId && storeConfig.emailJsTemplateId && window.emailjs) {
+        try {
+          for (const email of adminEmails) {
+            await window.emailjs.send(storeConfig.emailJsServiceId, storeConfig.emailJsTemplateId, {
+              to_email: email,
+              subject: `Fechamento ${targetCycle.shortTitle} ${BRAND_NAME} - ${report.count} Box(es) Fechado(s)`,
+              message: report.text
+            });
+          }
+          if (isManual) alert(`Relatório enviado com sucesso para: ${adminEmails.join(", ")}`);
+        } catch (err) {
+          console.error("Erro EmailJS:", err);
+          if (isManual) alert("Falha no envio via EmailJS. Abrindo cliente de e-mail padrão como alternativa...");
+        }
+      } else if (isManual) {
+        const mailto = `mailto:${adminEmails.join(",")}?subject=${encodeURIComponent(`Fechamento ${targetCycle.shortTitle} ${BRAND_NAME}`)}&body=${encodeURIComponent(report.text)}`;
+        window.open(mailto, "_blank");
+      }
+    };
+
+    function checkSaturday1500Closing() {
+      const brNow = getBrazilDate();
+      const currentCycle = getRateioCycleInfo(brNow.getTime());
+      if (brNow.getDay() === 6 && brNow.getHours() >= 15) {
+        if (!weeklyReports[currentCycle.key]?.sent) {
+          triggerWeeklyReportEmail(false, currentCycle.key);
+        }
+      }
+    }
+    setInterval(checkSaturday1500Closing, 30000);
+
+    window.logoutClient = function () {
+      currentUser = null;
+      localStorage.removeItem(STORAGE_PREFIX + "_user_id");
+      updateClientHeaderUI();
+      updateWelcomeGateVisibility();
+    };
+
+    function getClientFinancialSummary(user) {
+      if (!user) return {
+        activeRes: [], paidRes: [], readyToPayRes: [], waitingBoxRes: [], cancelledRes: [],
+        groupedByProduct: [], totalDepositsPaidActive: 0, totalShippingPaidActive: 0, totalFullActiveValue: 0,
+        totalPaidIntegralAmount: 0, totalRetainedCredit: 0, totalClosedRemaining: 0,
+        settlementHandlingFee: 0, netProductsRemaining: 0, netToPayWithHandling: 0
+      };
+
+      const userMatch = (r) =>
+        (r.userId && r.userId === user.id) ||
+        (r.clientEmail && r.clientEmail.toLowerCase() === (user.email || "").toLowerCase()) ||
+        (r.clientWhatsapp && r.clientWhatsapp === user.phone);
+
+      const userReservations = reservations.filter(userMatch);
+      const activeRes = userReservations.filter(r => r.status !== "CANCELLED");
+      const paidRes = activeRes.filter(r => !!r.paidFull);
+      const cancelledRes = userReservations.filter(r => r.status === "CANCELLED");
+
+      const readyToPayRes = [];
+      const waitingBoxRes = [];
+
+      const totalDepositsPaidActive = activeRes.reduce((acc, r) => acc + Number(r.depositPrice || 0), 0);
+      const totalShippingPaidActive = userReservations.reduce((acc, r) => acc + Number(r.shippingFeePaid || 0), 0);
+      const totalFullActiveValue = activeRes.reduce((acc, r) => acc + Number(r.fullPrice || 0), 0);
+      const totalPaidIntegralAmount = paidRes.reduce((acc, r) => acc + Number(r.fullPrice || 0), 0);
+      const totalRetainedCredit = cancelledRes.reduce((acc, r) => acc + Number(r.depositPrice || 0), 0);
+
+      const productMap = new Map();
+      let totalClosedRemaining = 0;
+
+      activeRes.forEach(r => {
+        const info = getBoxesInfo(r.productId);
+        const myBox = info.boxes.find(b => b.members.some(m => m.id === r.id));
+        const isFree = isNoBoxLimitProduct(r.productName);
+        const isBoxComplete = isFree ? true : (myBox ? myBox.isComplete : false);
+        const boxNum = myBox ? myBox.boxNumber : 1;
+        const closedDateStr = isFree
+          ? (myBox?.closedDateStr || formatDateOnly(r.createdAtMs))
+          : (myBox?.closedDateStr || null);
+        const remValue = Math.max(0, Number(r.fullPrice || 0) - Number(r.depositPrice || 0));
+
+        if (isBoxComplete && !r.paidFull) {
+          readyToPayRes.push({ ...r, boxNumber: boxNum, isNoBoxLimit: isFree, closedDateStr, remainingValue: remValue });
+          totalClosedRemaining += remValue;
+        } else if (!isBoxComplete && !r.paidFull) {
+          waitingBoxRes.push(r);
+        }
+
+        if (!productMap.has(r.productId)) {
+          productMap.set(r.productId, {
+            productId: r.productId,
+            productName: r.productName,
+            isNoBoxLimit: isFree,
+            qty: 0,
+            totalDepositPaid: 0,
+            totalFull: 0,
+            readyToPayQty: 0,
+            readyToPayRemaining: 0,
+            paidFullQty: 0,
+            paidFullTotal: 0,
+            waitingQty: 0,
+            boxesSet: new Set()
+          });
+        }
+        const entry = productMap.get(r.productId);
+        entry.qty += 1;
+        entry.totalDepositPaid += Number(r.depositPrice || 0);
+        entry.totalFull += Number(r.fullPrice || 0);
+
+        if (r.paidFull) {
+          entry.paidFullQty += 1;
+          entry.paidFullTotal += Number(r.fullPrice || 0);
+        } else if (isBoxComplete) {
+          entry.readyToPayQty += 1;
+          entry.readyToPayRemaining += remValue;
+        } else {
+          entry.waitingQty += 1;
+        }
+
+        const boxTag = isFree
+          ? `Liberação Direta (${r.paidFull ? `Quitado${r.paidMethod ? ' ' + r.paidMethod : ''}` : 'Habilitado'})`
+          : `Box #${boxNum} (${r.paidFull ? `Quitado${r.paidMethod ? ' ' + r.paidMethod : ''}` : isBoxComplete ? 'Habilitado' : 'Aberto'})`;
+        entry.boxesSet.add(boxTag);
+      });
+
+      const groupedByProduct = Array.from(productMap.values()).sort((a, b) =>
+        (a.productName || "").localeCompare((b.productName || ""), "pt-BR", { sensitivity: "base" })
+      );
+      const netProductsRemaining = Math.max(0, totalClosedRemaining - totalRetainedCredit);
+      const settlementHandlingFee = calculateHandlingFee(readyToPayRes.length);
+      const netToPayWithHandling = readyToPayRes.length > 0
+        ? Number((netProductsRemaining + settlementHandlingFee).toFixed(2))
+        : 0;
+
+      return {
+        activeRes, paidRes, readyToPayRes, waitingBoxRes, cancelledRes, groupedByProduct,
+        totalDepositsPaidActive, totalShippingPaidActive, totalFullActiveValue,
+        totalPaidIntegralAmount, totalRetainedCredit, totalClosedRemaining,
+        settlementHandlingFee, netProductsRemaining, netToPayWithHandling
+      };
+    }
+
+    function updateClientHeaderUI() {
+      const ordersBtn = document.getElementById("headerMyOrdersBtn");
+      const logoutBtn = document.getElementById("headerLogoutBtn");
+      const bar = document.getElementById("loggedClientBar");
+      const alertBanner = document.getElementById("clientReadyAlertBanner");
+
+      if (!currentUser) {
+        ordersBtn.classList.add("hidden");
+        logoutBtn.classList.add("hidden");
+        bar.classList.add("hidden");
+        if (alertBanner) alertBanner.classList.add("hidden");
+        return;
+      }
+
+      const summary = getClientFinancialSummary(currentUser);
+      ordersBtn.classList.remove("hidden");
+      logoutBtn.classList.remove("hidden");
+      bar.classList.remove("hidden");
+
+      document.getElementById("headerOrderCount").textContent = summary.activeRes.length;
+      document.getElementById("loggedClientName").textContent = currentUser.name;
+      document.getElementById("loggedClientTotalSignalsBadge").textContent =
+        `Sinais: ${summary.activeRes.length} pç(s) (${formatBRL(summary.totalDepositsPaidActive)})`;
+      document.getElementById("loggedClientPaidCount").textContent = summary.paidRes.length;
+
+      const readyBadge = document.getElementById("loggedClientReadyBadge");
+      if (summary.readyToPayRes.length > 0) {
+        readyBadge.classList.remove("hidden");
+        readyBadge.textContent = `🔓 Habilitado p/ Pagar (${summary.readyToPayRes.length} pçs): ${formatBRL(summary.netToPayWithHandling)} — Até Seg 22:00`;
+        if (alertBanner) {
+          alertBanner.classList.remove("hidden");
+          document.getElementById("bannerReadyCount").textContent = summary.readyToPayRes.length;
+        }
+      } else {
+        readyBadge.classList.add("hidden");
+        if (alertBanner) alertBanner.classList.add("hidden");
+      }
+
+      const creditBadge = document.getElementById("loggedClientCreditBadge");
+      if (summary.totalRetainedCredit > 0) {
+        creditBadge.classList.remove("hidden");
+        creditBadge.textContent = `Crédito Retido: ${formatBRL(summary.totalRetainedCredit)}`;
+      } else {
+        creditBadge.classList.add("hidden");
+      }
+    }
+
+    function getActiveProductReservations(productId) {
+      return reservations.filter(r => r.productId === productId && r.status !== "CANCELLED");
+    }
+
+    function getBoxesInfo(productId) {
+      const prodObj = products.find(item => item.id === productId);
+      const isFree = prodObj ? isNoBoxLimitProduct(prodObj.name) : false;
+      const allActive = getActiveProductReservations(productId);
+      const total = allActive.length;
+
+      if (isFree) {
+        const trackingKey = `${productId}_box_1`;
+        const trackingData = boxTrackings[trackingKey] || null;
+        const latestMs = total > 0 ? (allActive[total - 1]?.createdAtMs || null) : null;
+        const cycleInfo = latestMs ? getRateioCycleInfo(latestMs) : null;
+        const boxes = total > 0 ? [{
+          boxNumber: 1,
+          members: allActive,
+          isComplete: true,
+          isNoBoxLimit: true,
+          closedAtMs: latestMs,
+          closedDateStr: latestMs ? formatDateOnly(latestMs) : null,
+          cycleLabel: cycleInfo ? cycleInfo.shortTitle : "",
+          trackingKey,
+          trackingData
+        }] : [];
+
+        return {
+          allActive, total, isNoBoxLimit: true,
+          completedBoxesCount: total > 0 ? 1 : 0,
+          activeBoxNumber: 1, activeBoxCount: total,
+          activeBoxReservations: allActive, boxes
+        };
+      }
+
+      const completedBoxesCount = Math.floor(total / 10);
+      const activeBoxNumber = completedBoxesCount + 1;
+      const activeBoxStartIndex = completedBoxesCount * 10;
+      const activeBoxReservations = allActive.slice(activeBoxStartIndex, activeBoxStartIndex + 10);
+
+      const boxes = [];
+      for (let i = 0; i < total; i += 10) {
+        const boxNum = Math.floor(i / 10) + 1;
+        const members = allActive.slice(i, i + 10);
+        const isComplete = members.length === 10;
+        const closedAtMs = isComplete ? (members[9]?.createdAtMs || null) : null;
+        const trackingKey = `${productId}_box_${boxNum}`;
+        const trackingData = boxTrackings[trackingKey] || null;
+        const cycleInfo = closedAtMs ? getRateioCycleInfo(closedAtMs) : null;
+
+        boxes.push({
+          boxNumber: boxNum, members, isComplete, isNoBoxLimit: false,
+          closedAtMs, closedDateStr: closedAtMs ? formatDateOnly(closedAtMs) : null,
+          cycleLabel: cycleInfo ? cycleInfo.shortTitle : "", trackingKey, trackingData
+        });
+      }
+
+      return {
+        allActive, total, isNoBoxLimit: false, completedBoxesCount,
+        activeBoxNumber, activeBoxCount: activeBoxReservations.length,
+        activeBoxReservations, boxes
+      };
+    }
+
+    function updateCategoryDropdown() {
+      const select = document.getElementById("categoryFilter");
+      const current = select.value;
+      const cats = [...new Set(products.map(p => p.category).filter(Boolean))].sort((a, b) =>
+        a.localeCompare(b, "pt-BR", { sensitivity: "base" })
+      );
+      select.innerHTML = `<option value="ALL">Todas as Categorias (${products.length})</option>` +
+        cats.map(c => `<option value="${c}">${c}</option>`).join("");
+      if (cats.includes(current)) select.value = current;
+    }
+
+    window.renderCatalog = function () {
+      const search = document.getElementById("searchInput").value.toLowerCase().trim();
+      const cat = document.getElementById("categoryFilter").value;
+      const status = document.getElementById("statusFilter").value;
+      const grid = document.getElementById("productsGrid");
+      const empty = document.getElementById("emptyState");
+      const paused = isPurchasesPausedNow() && !currentAdmin;
+
+      const sortedList = sortProductsAlphabetically(products);
+      const filtered = sortedList.filter(p => {
+        const info = getBoxesInfo(p.id);
+        if (search && !p.name.toLowerCase().includes(search) && !(p.category || "").toLowerCase().includes(search)) return false;
+        if (cat !== "ALL" && p.category !== cat) return false;
+        if (status === "HAS_COMPLETED" && info.completedBoxesCount === 0 && !info.isNoBoxLimit) return false;
+        if (status === "ALMOST_FULL" && (info.isNoBoxLimit || info.activeBoxCount < 7)) return false;
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = "";
+        empty.classList.remove("hidden");
+        return;
+      }
+      empty.classList.add("hidden");
+
+      grid.innerHTML = filtered.map(p => {
+        const info = getBoxesInfo(p.id);
+        const isFree = info.isNoBoxLimit;
+        const pct = isFree ? 100 : (info.activeBoxCount / 10) * 100;
+        const selectedQty = cardSelectedQty[p.id] || 1;
+        const inCartQty = Number(cart[p.id] || 0);
+        const subtotalSignal = Number(p.depositPrice || 0) * selectedQty;
+        const boxTotalValue = p.boxPrice ? Number(p.boxPrice) : Number(p.fullPrice || 0) * 10;
+
+        return `
+          <div class="bg-white border border-sky-200/80 shadow-sm ${inCartQty > 0 ? 'ring-2 ring-sky-400' : ''} rounded-2xl p-5 flex flex-col justify-between space-y-4 transition">
+            <div>
+              <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-sky-200">
+                ${isFree ? `
+                  <span class="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 border border-emerald-200">
+                    ✓ Liberação Imediata
+                  </span>
+                  <span class="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 border border-emerald-200">
+                    Sem fechar 10 pçs
+                  </span>
+                ` : `
+                  <span class="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-sky-100 text-sky-700">
+                    Box #${info.activeBoxNumber} Aberto
+                  </span>
+                  <span class="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-sky-50/70 text-slate-900 border border-sky-200">
+                    ${info.activeBoxCount}/10 no Box
+                  </span>
+                `}
+              </div>
+
+              <div class="mt-2.5 flex flex-wrap gap-1.5">
+                ${!isFree && info.completedBoxesCount > 0 ? `
+                  <span class="inline-block text-[10px] font-bold px-2.5 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-200">
+                    ✓ ${info.completedBoxesCount} ${info.completedBoxesCount === 1 ? 'Box Fechado' : 'Boxes Fechados'}
+                  </span>
+                ` : ''}
+                ${inCartQty > 0 ? `
+                  <span class="inline-block text-[10px] font-bold px-2.5 py-0.5 rounded bg-sky-500 text-white">
+                    🛒 ${inCartQty} pç(s) no carrinho
+                  </span>
+                ` : ''}
+              </div>
+
+              <div class="mt-2.5">
+                ${p.category ? `<span class="text-[11px] text-sky-600 font-semibold uppercase tracking-wider">${p.category}</span>` : ''}
+                <h3 class="font-bold text-slate-900 text-base leading-snug mt-0.5">${p.name}</h3>
+              </div>
+
+              <div class="mt-3.5 bg-sky-50/70 p-3 rounded-xl border border-sky-200 space-y-2">
+                <div class="grid grid-cols-2 gap-2">
+                  <div>
+                    <p class="text-[10px] text-slate-500">Sinal (por pç)</p>
+                    <p class="font-extrabold text-sky-600 text-sm">${formatBRL(p.depositPrice)}</p>
+                  </div>
+                  <div>
+                    <p class="text-[10px] text-slate-500">Valor por Peça</p>
+                    <p class="font-extrabold text-slate-900 text-sm">${formatBRL(p.fullPrice)}</p>
+                  </div>
+                </div>
+                ${!isFree ? `
+                  <div class="pt-1.5 border-t border-sky-200 flex items-center justify-between text-[11px]">
+                    <span class="text-slate-500">Valor do Box (10 pçs):</span>
+                    <strong class="text-slate-700">${formatBRL(boxTotalValue)}</strong>
+                  </div>
+                ` : `
+                  <div class="pt-1.5 border-t border-sky-200 flex items-center justify-between text-[11px]">
+                    <span class="text-emerald-600 font-medium">Modalidade:</span>
+                    <strong class="text-emerald-600">Pedido individual livre</strong>
+                  </div>
+                `}
+              </div>
+            </div>
+
+            <div class="space-y-3">
+              <div>
+                <div class="flex justify-between text-xs mb-1.5">
+                  ${isFree ? `
+                    <span class="text-emerald-600 font-medium">Não precisa completar 10 peças</span>
+                    <span class="font-bold text-emerald-600">Livre ✓</span>
+                  ` : `
+                    <span class="text-slate-500">Faltam ${10 - info.activeBoxCount} p/ Box #${info.activeBoxNumber}</span>
+                    <span class="font-bold text-sky-600">${info.activeBoxCount}/10</span>
+                  `}
+                </div>
+                <div class="w-full h-2 bg-sky-100 rounded-full overflow-hidden">
+                  <div class="h-full ${isFree ? 'bg-emerald-500' : 'bg-sky-500'} transition-all duration-300" style="width: ${pct}%"></div>
+                </div>
+              </div>
+
+              <div class="bg-sky-50/70 border border-sky-200 rounded-xl p-2.5 flex items-center justify-between">
+                <span class="text-xs font-semibold text-slate-700">Qtd. peças:</span>
+                <div class="inline-flex items-center bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg overflow-hidden">
+                  <button type="button" onclick="changeCardQty('${p.id}', -1)" ${paused ? 'disabled' : ''}
+                    class="px-3 py-1 ${paused ? 'opacity-30 cursor-not-allowed' : 'text-slate-700'} font-extrabold text-sm transition">-</button>
+                  <span id="card-qty-${p.id}" class="px-3.5 py-1 text-xs font-extrabold text-slate-900 min-w-[2rem] text-center">${selectedQty}</span>
+                  <button type="button" onclick="changeCardQty('${p.id}', 1)" ${paused ? 'disabled' : ''}
+                    class="px-3 py-1 ${paused ? 'opacity-30 cursor-not-allowed' : 'text-sky-600'} font-extrabold text-sm transition">+</button>
+                </div>
+              </div>
+
+              <button type="button" onclick="addToCart('${p.id}')" ${paused ? 'disabled' : ''}
+                class="${paused
+                  ? 'w-full py-2.5 rounded-xl font-semibold text-xs bg-slate-500/20 text-slate-400 cursor-not-allowed'
+                  : 'w-full py-2.5 rounded-xl font-semibold text-xs sm:text-sm transition bg-sky-500 hover:bg-sky-600 text-white shadow-sm'
+                }">
+                ${paused
+                  ? '⏸ Novas compras na Segunda 00:00'
+                  : `+ Adicionar ao Carrinho (<span id="card-btn-total-${p.id}">${formatBRL(subtotalSignal)}</span>)`
+                }
+              </button>
+            </div>
+          </div>
+        `;
+      }).join("");
+    };
+
+    window.toggleSettlementTerm = function (checked) {
+      acceptedSettlementTerms = Boolean(checked);
+      const pixArea = document.getElementById("settlementPixActionsArea");
+      const warnArea = document.getElementById("settlementTermWarning");
+      if (pixArea) pixArea.classList.toggle("hidden", !acceptedSettlementTerms);
+      if (warnArea) warnArea.classList.toggle("hidden", acceptedSettlementTerms);
+    };
+
+    window.cancelClientReservation = async function (resId) {
+      const res = reservations.find(r => r.id === resId);
+      if (!res || res.status === "CANCELLED") return;
+
+      const isFree = isNoBoxLimitProduct(res.productName);
+      const info = getBoxesInfo(res.productId);
+      const myBox = info.boxes.find(b => b.members.some(m => m.id === resId));
+
+      if (!isFree && myBox && myBox.isComplete) {
+        alert("Este Box já completou 10/10 peças! Não é mais possível cancelar esta reserva.");
+        return;
+      }
+
+      const ok = confirm(
+        `Atenção: Ao cancelar "${res.productName}", o valor da reserva (${formatBRL(res.depositPrice)}) NÃO será devolvido, ` +
+        `mas ficará retido como CRÉDITO para ser abatido da sua conta total caso você tenha outros produtos.\n\nDeseja confirmar o cancelamento?`
+      );
+      if (!ok) return;
+
+      await updateDoc(doc(db, COL.reservations, resId), {
+        status: "CANCELLED",
+        cancelledAtMs: Date.now()
+      });
+    };
+
+    function buildGroupedTrackingHtml(filterText = "") {
+      const q = (filterText || "").toLowerCase().trim();
+      const completedBoxes = [];
+
+      products.forEach(p => {
+        const info = getBoxesInfo(p.id);
+        info.boxes.forEach(box => {
+          if (!box.isComplete) return;
+          const infoText = box.trackingData?.infoText || "";
+          const dateLabel = box.closedDateStr || "Sem data";
+          const cycleLbl = box.cycleLabel || "";
+
+          if (q && !p.name.toLowerCase().includes(q) && !dateLabel.includes(q) && !cycleLbl.toLowerCase().includes(q) && !infoText.toLowerCase().includes(q)) {
+            return;
+          }
+          completedBoxes.push({ product: p, box, dateLabel, cycleLbl, closedAtMs: box.closedAtMs || 0 });
+        });
+      });
+
+      if (completedBoxes.length === 0) {
+        return `<div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-6 text-center text-xs text-slate-500">
+          Nenhum rateio fechado ou liberado encontrado no momento.
+        </div>`;
+      }
+
+      completedBoxes.sort((a, b) => b.closedAtMs - a.closedAtMs);
+      const groupsByDate = new Map();
+      completedBoxes.forEach(item => {
+        const groupKey = `${item.cycleLbl ? item.cycleLbl + " — " : ""}${item.dateLabel}`;
+        if (!groupsByDate.has(groupKey)) groupsByDate.set(groupKey, []);
+        groupsByDate.get(groupKey).push(item);
+      });
+
+      return Array.from(groupsByDate.entries()).map(([groupTitle, items]) => `
+        <div class="bg-white border border-sky-200/80 shadow-sm rounded-2xl overflow-hidden">
+          <div class="px-4 py-3 bg-sky-50/70 border-b border-sky-200 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="text-sky-600 font-bold text-xs">📅 Ciclo / Data:</span>
+              <span class="px-2.5 py-0.5 rounded-md bg-sky-100 text-sky-700 font-bold text-xs">${groupTitle}</span>
+            </div>
+            <span class="text-[11px] text-slate-500">${items.length} ${items.length === 1 ? 'item liberado' : 'itens liberados'}</span>
+          </div>
+
+          <div class="divide-y border-sky-200">
+            ${items.map(({ product: p, box }) => {
+              const trk = box.trackingData;
+              const hasInfo = trk && trk.infoText;
+              const badgeTitle = box.isNoBoxLimit ? `Liberação Direta (${box.members.length} pçs)` : `Box #${box.boxNumber} (10/10)`;
+              return `
+                <div class="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-200 font-bold text-[10px]">${badgeTitle}</span>
+                      <span class="font-bold text-slate-900 text-sm">${p.name}</span>
+                    </div>
+                    <p class="text-slate-500 mt-1">
+                      Participantes: ${box.members.map((m, idx) => `#${idx + 1} ${m.clientName.split(' ')[0]}`).join(' • ')}
+                    </p>
+                  </div>
+
+                  <div class="sm:max-w-md w-full sm:text-right">
+                    ${hasInfo ? `
+                      <div class="inline-block text-left w-full bg-sky-50 border border-sky-200 text-slate-800 rounded-xl px-3.5 py-2.5 space-y-1">
+                        <span class="text-[10px] uppercase tracking-wider text-sky-600 font-bold block">📦 Rastreios e Envios</span>
+                        <p class="text-xs font-semibold text-slate-900 whitespace-pre-line leading-relaxed">${trk.infoText}</p>
+                        <span class="text-[10px] text-slate-500 block">Atualizado em ${formatDateOnly(trk.updatedAtMs)}</span>
+                      </div>
+                    ` : `
+                      <span class="inline-block px-3 py-1.5 rounded-lg bg-amber-100 text-amber-800 border border-amber-300 text-[11px] font-semibold">
+                        ⏳ Aguardando atualização de envio
+                      </span>
+                    `}
+                  </div>
+                </div>
+              `;
+            }).join("")}
+          </div>
+        </div>
+      `).join("");
+    }
+
+    window.renderPublicTrackingBoard = function () {
+      const body = document.getElementById("publicTrackingBody");
+      if (!body) return;
+      const q = document.getElementById("publicTrackingSearch")?.value || "";
+      body.innerHTML = buildGroupedTrackingHtml(q);
+    };
+
+    function renderMyOrders() {
+      const container = document.getElementById("myOrdersBody");
+      if (!container || !currentUser) return;
+
+      document.getElementById("myOrdersSubtitle").textContent = `${currentUser.name} • ${currentUser.email} • ${currentUser.phone}`;
+      const summary = getClientFinancialSummary(currentUser);
+      const readyCount = summary.readyToPayRes.length;
+      const handlingTierLabel = readyCount <= 9 ? "1 a 9 peças habilitadas" : "10 ou mais peças habilitadas";
+
+      if (activeClientPortalTab === "summary") {
+        const pixNetPayload = (storeConfig.pixKey && summary.netToPayWithHandling > 0)
+          ? generatePixPayload(storeConfig.pixKey, storeConfig.pixReceiverName, storeConfig.pixCity, summary.netToPayWithHandling, `QUIT${readyCount}PCS`)
+          : "";
+
+        const qrNetUrl = pixNetPayload ? `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(pixNetPayload)}` : "";
+        const creditCardSettlementUrl = getAdminWhatsappLink(
+          `Olá Admin da ${BRAND_NAME}! Gostaria de realizar o pagamento da quitação dos meus ${readyCount} produto(s) habilitado(s) (Total: ${formatBRL(summary.netToPayWithHandling)}) no *Cartão de Crédito*.`
+        );
+
+        container.innerHTML = `
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <div class="bg-sky-50 border border-sky-200 text-slate-800 rounded-xl p-3.5">
+              <p class="text-[11px] text-sky-600 font-semibold">1. Total de Peças & Sinais</p>
+              <p class="text-lg font-extrabold text-sky-600 mt-0.5">${formatBRL(summary.totalDepositsPaidActive)}</p>
+              <p class="text-[10px] text-slate-500 mt-0.5">${summary.activeRes.length} peça(s) reservada(s) no total</p>
+            </div>
+
+            <div class="bg-amber-50 border border-amber-300 text-amber-950 rounded-xl p-3.5">
+              <p class="text-[11px] font-semibold">2. Habilitados p/ Quitar</p>
+              <p class="text-lg font-extrabold mt-0.5">${formatBRL(summary.netToPayWithHandling)}</p>
+              <p class="text-[10px] opacity-85 mt-0.5">
+                ${readyCount > 0 ? `${readyCount} pç(s) + Manuseio ${formatBRL(summary.settlementHandlingFee)}` : 'Nenhum item pendente'}
+              </p>
+            </div>
+
+            <div class="bg-white border border-sky-200/80 shadow-sm border-emerald-500/40 rounded-xl p-3.5">
+              <p class="text-[11px] text-emerald-600 font-semibold">3. Pagos Integralmente (Quitados)</p>
+              <p class="text-lg font-extrabold text-emerald-600 mt-0.5">${formatBRL(summary.totalPaidIntegralAmount)}</p>
+              <p class="text-[10px] text-slate-500 mt-0.5">${summary.paidRes.length} peça(s) 100% quitada(s)</p>
+            </div>
+
+            <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-3.5">
+              <p class="text-[11px] text-slate-500 font-semibold">4. Aguardando Fechar Box (10/10)</p>
+              <p class="text-lg font-extrabold text-slate-900 mt-0.5">${summary.waitingBoxRes.length} peça(s)</p>
+              <p class="text-[10px] text-slate-500 mt-0.5">Ainda formando 10 peças no Box</p>
+            </div>
+          </div>
+
+          ${readyCount > 0 ? `
+            <div class="bg-amber-50 border border-amber-300 text-amber-950 border-2 rounded-2xl p-4 sm:p-5 space-y-4">
+              <div class="flex flex-wrap items-center justify-between gap-2 border-b border-sky-200 pb-3">
+                <div>
+                  <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-emerald-600 text-white">
+                    🔓 Liberado p/ Pagamento • Prazo até Segunda-feira às 22:00
+                  </span>
+                  <h4 class="font-bold text-slate-900 text-sm sm:text-base mt-1.5">
+                    Quitação dos Itens Habilitados (${readyCount} peça(s))
+                  </h4>
+                  <p class="text-xs opacity-90 mt-0.5">
+                    O valor cheio já está disponível para pagamento a qualquer hora (inclusive sábados e domingos), com prazo limite até <strong>Segunda-feira às 22:00</strong>.
+                  </p>
+                </div>
+                <div class="text-right">
+                  <p class="text-[11px] text-slate-500">Total c/ Manuseio:</p>
+                  <p class="text-xl font-extrabold text-emerald-600">${formatBRL(summary.netToPayWithHandling)}</p>
+                </div>
+              </div>
+
+              <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-3.5 space-y-1.5 text-xs">
+                <div class="flex justify-between text-slate-500">
+                  <span>Restante do valor cheio dos ${readyCount} produto(s) habilitado(s):</span>
+                  <strong class="text-slate-900">${formatBRL(summary.totalClosedRemaining)}</strong>
+                </div>
+                ${summary.totalRetainedCredit > 0 ? `
+                  <div class="flex justify-between text-purple-400">
+                    <span>Abatimento de crédito retido (reservas canceladas):</span>
+                    <strong>- ${formatBRL(summary.totalRetainedCredit)}</strong>
+                  </div>
+                ` : ''}
+                <div class="flex justify-between text-sky-600">
+                  <span>Taxa de Manuseio e Embalo (${handlingTierLabel} — <strong>NÃO referente a frete/envio</strong>):</span>
+                  <strong>+ ${formatBRL(summary.settlementHandlingFee)}</strong>
+                </div>
+                <div class="flex justify-between border-t border-sky-200 pt-1.5 font-bold text-slate-900 text-sm">
+                  <span>VALOR FINAL PARA QUITAÇÃO:</span>
+                  <span class="text-emerald-600">${formatBRL(summary.netToPayWithHandling)}</span>
+                </div>
+              </div>
+
+              <!-- Aviso de Pagamento no Cartão de Crédito -->
+              <div class="bg-indigo-50 border border-indigo-200 text-indigo-950 rounded-xl p-3.5 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+                <div>
+                  <p class="font-bold">💳 Pagamento no Cartão de Crédito</p>
+                  <p class="opacity-90 mt-0.5">Caso deseje realizar o pagamento no <strong>Cartão de Crédito</strong>, entre em contato diretamente com o administrador do rateio.</p>
+                </div>
+                ${creditCardSettlementUrl ? `
+                  <a href="${creditCardSettlementUrl}" target="_blank"
+                    class="px-3.5 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs shrink-0 text-center">
+                    Falar c/ Adm (Cartão)
+                  </a>
+                ` : ''}
+              </div>
+
+              <!-- Termo de Aceite Obrigatório da Taxa de Manuseio e Embalo -->
+              <label class="flex items-start gap-3 bg-white border border-sky-200/80 shadow-sm rounded-xl p-3.5 cursor-pointer select-none">
+                <input id="settlementTermCheckbox" type="checkbox" ${acceptedSettlementTerms ? 'checked' : ''} onchange="toggleSettlementTerm(this.checked)"
+                  class="mt-0.5 w-4 h-4 rounded text-sky-600 focus:ring-sky-500 shrink-0" />
+                <span class="text-xs text-slate-700 leading-relaxed">
+                  <strong>Termo de Aceite — Taxa de Manuseio e Embalo:</strong> Declaro que estou ciente e concordo com a cobrança da taxa de <strong>${formatBRL(summary.settlementHandlingFee)}</strong> (${handlingTierLabel}), ciente de que esta taxa refere-se <strong>exclusivamente aos custos de manuseio e embalo interno</strong> dos <strong>${readyCount} produto(s)</strong>, <strong>NÃO sendo referente a frete ou envio</strong>.
+                </span>
+              </label>
+
+              <div id="settlementTermWarning" class="${acceptedSettlementTerms ? 'hidden' : ''} text-center text-xs font-semibold py-2 px-3 rounded-lg bg-amber-500/15">
+                ☝️ Marque o Termo de Aceite acima para liberar a chave e o QR Code PIX de quitação.
+              </div>
+
+              <div id="settlementPixActionsArea" class="${acceptedSettlementTerms ? '' : 'hidden'} bg-white border border-sky-200/80 shadow-sm border-emerald-500/40 rounded-xl p-4 space-y-3">
+                ${storeConfig.pixKey ? `
+                  <div class="flex flex-col sm:flex-row items-center gap-4">
+                    <img src="${qrNetUrl}" alt="QR Code Quitação PIX" class="w-32 h-32 rounded-lg bg-white p-1.5 border border-slate-300 shrink-0" />
+                    <div class="flex-1 w-full space-y-2 text-xs">
+                      <div class="flex flex-wrap items-center justify-between gap-1">
+                        <p class="font-bold text-emerald-600">❖ Chave PIX Oficial (${storeConfig.pixType || "PIX"}) — Favorecido: ${storeConfig.pixReceiverName || BRAND_NAME}</p>
+                        <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-200 font-bold">Valor Travado: ${formatBRL(summary.netToPayWithHandling)}</span>
+                      </div>
+                      <p class="text-[11px] text-slate-500">
+                        Ao ler o QR Code ou colar o código abaixo no seu banco, o valor de <strong class="text-slate-900">${formatBRL(summary.netToPayWithHandling)}</strong> já entra automaticamente sem precisar digitar nada:
+                      </p>
+                      <div class="flex items-center gap-2">
+                        <code class="flex-1 font-mono bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 px-2.5 py-1.5 rounded truncate select-all">${storeConfig.pixKey}</code>
+                        <button type="button" onclick="copyTextToClipboard('${storeConfig.pixKey}', 'Chave PIX copiada!')"
+                          class="px-3 py-1.5 rounded-lg bg-sky-500 hover:bg-sky-600 text-white font-semibold shrink-0">
+                          Copiar Chave
+                        </button>
+                      </div>
+                      <button type="button" onclick="copyTextToClipboard('${pixNetPayload}', 'Código PIX Copia e Cola com valor exato de ${formatBRL(summary.netToPayWithHandling)} copiado!')"
+                        class="w-full py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold">
+                        Copiar PIX Copia e Cola (${formatBRL(summary.netToPayWithHandling)})
+                      </button>
+                    </div>
+                  </div>
+                ` : `
+                  <p class="text-xs">⚠️ A chave PIX oficial ainda não foi cadastrada pelo administrador.</p>
+                `}
+              </div>
+            </div>
+          ` : ''}
+
+          <div>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-700 mb-3">
+              📋 Demonstrativo Completo por Produto (Sinais Pagos, Habilitados p/ Quitação & Quitados)
+            </h3>
+
+            ${summary.groupedByProduct.length === 0 ? `
+              <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-6 text-center text-xs text-slate-500">
+                Você ainda não possui reservas registradas. Adicione no mínimo 3 peças ao carrinho para começar!
+              </div>
+            ` : `
+              <div class="overflow-x-auto border border-sky-200 rounded-xl bg-white border border-sky-200/80 shadow-sm">
+                <table class="w-full text-left text-xs">
+                  <thead class="bg-sky-50 text-slate-600 border-b border-sky-200">
+                    <tr>
+                      <th class="p-3">Produto</th>
+                      <th class="p-3 text-center">Qtd. Total</th>
+                      <th class="p-3 text-right">Sinal Pago</th>
+                      <th class="p-3 text-right">Habilitado p/ Quitar</th>
+                      <th class="p-3 text-right">Pago Integral (Quitado)</th>
+                      <th class="p-3">Situação / Boxes</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y border-sky-200">
+                    ${summary.groupedByProduct.map(item => {
+                      const badges = [];
+                      if (item.paidFullQty > 0) {
+                        badges.push(`<span class="inline-block px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-200 font-bold text-[10px]">✅ ${item.paidFullQty} Pago Integral</span>`);
+                      }
+                      if (item.readyToPayQty > 0) {
+                        badges.push(`<span class="inline-block px-2 py-0.5 rounded bg-amber-100 text-amber-800 border border-amber-300 font-bold text-[10px]">🔓 ${item.readyToPayQty} Habilitado (Até Seg 22h)</span>`);
+                      }
+                      if (item.waitingQty > 0) {
+                        badges.push(`<span class="inline-block px-2 py-0.5 rounded bg-sky-100 text-sky-700 font-semibold text-[10px]">⏳ ${item.waitingQty} Aguardando Box</span>`);
+                      }
+
+                      return `
+                        <tr>
+                          <td class="p-3 font-bold text-slate-900">${item.productName}</td>
+                          <td class="p-3 text-center">
+                            <span class="px-2.5 py-0.5 rounded-full bg-sky-50/70 text-slate-900 font-extrabold">
+                              ${item.qty} pç(s)
+                            </span>
+                          </td>
+                          <td class="p-3 text-right font-bold text-sky-600">${formatBRL(item.totalDepositPaid)}</td>
+                          <td class="p-3 text-right font-bold ${item.readyToPayQty > 0 ? 'text-amber-500' : 'text-slate-500'}">
+                            ${item.readyToPayQty > 0 ? `${formatBRL(item.readyToPayRemaining)} (${item.readyToPayQty} pç)` : 'R$ 0,00'}
+                          </td>
+                          <td class="p-3 text-right font-bold ${item.paidFullQty > 0 ? 'text-emerald-600' : 'text-slate-500'}">
+                            ${item.paidFullQty > 0 ? `${formatBRL(item.paidFullTotal)} (${item.paidFullQty} pç)` : 'R$ 0,00'}
+                          </td>
+                          <td class="p-3">
+                            <div class="flex flex-wrap gap-1">${badges.join("")}</div>
+                            <span class="text-[10px] text-slate-500 block mt-1">${Array.from(item.boxesSet).join(" • ")}</span>
+                          </td>
+                        </tr>
+                      `;
+                    }).join("")}
+                  </tbody>
+                  <tfoot class="bg-sky-50 text-slate-600 border-b border-sky-200 font-bold text-slate-900">
+                    <tr>
+                      <td class="p-3">TOTAIS GERAIS</td>
+                      <td class="p-3 text-center text-sky-600">${summary.activeRes.length} pç(s)</td>
+                      <td class="p-3 text-right text-sky-600">${formatBRL(summary.totalDepositsPaidActive)}</td>
+                      <td class="p-3 text-right text-amber-500">${formatBRL(summary.totalClosedRemaining)}</td>
+                      <td class="p-3 text-right text-emerald-600">${formatBRL(summary.totalPaidIntegralAmount)}</td>
+                      <td class="p-3 text-[11px] text-slate-500">
+                        ${readyCount > 0 ? `+ Manuseio (${readyCount} pçs): ${formatBRL(summary.settlementHandlingFee)}` : 'Sem taxa pendente'}
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            `}
+          </div>
+        `;
+        return;
+      }
+
+      if (activeClientPortalTab === "tracking") {
+        container.innerHTML = `
+          <div class="space-y-4">
+            <div class="bg-sky-50 border border-sky-200 text-slate-800 rounded-xl p-3.5 text-xs">
+              Consulte abaixo todos os rateios fechados separados por <strong>ciclo de rateio e data de fechamento</strong> com as informações atualizadas de rastreios e envios.
+            </div>
+            ${buildGroupedTrackingHtml("")}
+          </div>
+        `;
+        return;
+      }
+
+      if (activeClientPortalTab === "paid") {
+        container.innerHTML = `
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="bg-white border border-sky-200/80 shadow-sm border-emerald-500/40 rounded-xl p-4">
+              <p class="text-[11px] text-emerald-600 font-medium">Total de Produtos Pagos (Quitados)</p>
+              <p class="text-xl font-extrabold text-slate-900 mt-0.5">${summary.paidRes.length} ${summary.paidRes.length === 1 ? 'produto pago' : 'produtos pagos'}</p>
+            </div>
+            <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-4">
+              <p class="text-[11px] text-slate-500 font-medium">Valor Total em Compras Quitadas</p>
+              <p class="text-xl font-extrabold text-emerald-600 mt-0.5">${formatBRL(summary.totalPaidIntegralAmount)}</p>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-emerald-600 mb-3">✅ Minha Lista de Compras Pagas Integralmente</h3>
+            ${summary.paidRes.length === 0 ? `
+              <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-6 text-center text-xs text-slate-500">
+                Você ainda não possui compras com quitação integral confirmada. Assim que um item for quitado, ele aparecerá aqui.
+              </div>
+            ` : `
+              <div class="space-y-3">
+                ${summary.paidRes.map(r => {
+                  const isFree = isNoBoxLimitProduct(r.productName);
+                  const info = getBoxesInfo(r.productId);
+                  const myBox = info.boxes.find(b => b.members.some(m => m.id === r.id));
+                  const boxNum = myBox ? myBox.boxNumber : 1;
+                  const closedDate = myBox?.closedDateStr || formatDateOnly(r.createdAtMs);
+                  const trk = myBox?.trackingData;
+                  const methodLabel = r.paidMethod ? ` (${r.paidMethod})` : "";
+
+                  return `
+                    <div class="bg-white border border-sky-200/80 shadow-sm border-emerald-500/35 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                      <div class="space-y-1">
+                        <div class="flex flex-wrap items-center gap-2">
+                          <span class="px-2 py-0.5 rounded bg-emerald-600 text-white font-bold text-[10px]">PAGO INTEGRAL${methodLabel} ✓</span>
+                          <span class="px-2 py-0.5 rounded bg-sky-50/70 text-slate-900 font-semibold text-[10px]">${isFree ? 'Liberação Direta' : `Box #${boxNum}`}</span>
+                          <span class="px-2 py-0.5 rounded bg-sky-100 text-sky-700 font-semibold text-[10px]">
+                            Data: ${closedDate}
+                          </span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm pt-0.5">${r.productName}</h4>
+                        <p class="text-xs text-slate-500">
+                          Sinal: <strong>${formatBRL(r.depositPrice)}</strong> • Valor total pago: <strong class="text-emerald-600">${formatBRL(r.fullPrice)}</strong>
+                          ${r.paidFullAtMs ? ` • Quitado em ${formatDateOnly(r.paidFullAtMs)}` : ''}
+                        </p>
+                      </div>
+
+                      <div class="sm:max-w-sm w-full">
+                        ${trk && trk.infoText ? `
+                          <div class="bg-sky-50 border border-sky-200 text-slate-800 rounded-xl p-3 text-xs space-y-1">
+                            <p class="text-[10px] font-bold uppercase text-sky-600">📦 Rastreios e Envios</p>
+                            <p class="font-semibold text-slate-900 whitespace-pre-line leading-relaxed">${trk.infoText}</p>
+                          </div>
+                        ` : `
+                          <span class="inline-block px-3 py-2 rounded-lg bg-amber-100 text-amber-800 border border-amber-300 text-xs font-semibold">
+                            ⏳ Aguardando atualização de envio pelo Admin
+                          </span>
+                        `}
+                      </div>
+                    </div>
+                  `;
+                }).join("")}
+              </div>
+            `}
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = `
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-wider text-slate-700 mb-2.5">Detalhamento de Cada Peça Reservada (${summary.activeRes.length})</h3>
+          ${summary.activeRes.length === 0 ? `<p class="text-xs text-slate-500">Você não possui reservas ativas no momento.</p>` : `
+            <div class="space-y-2.5">
+              ${summary.activeRes.map(r => {
+                const isFree = isNoBoxLimitProduct(r.productName);
+                const info = getBoxesInfo(r.productId);
+                const myBox = info.boxes.find(b => b.members.some(m => m.id === r.id));
+                const boxNum = myBox ? myBox.boxNumber : 1;
+                const boxCount = myBox ? myBox.members.length : 1;
+                const isComplete = isFree ? true : (myBox ? myBox.isComplete : false);
+                const remaining = Math.max(0, Number(r.fullPrice) - Number(r.depositPrice));
+                const trk = myBox?.trackingData;
+                const resCycle = r.cycleLabel || getRateioCycleInfo(r.createdAtMs || Date.now()).shortTitle;
+                const methodLabel = r.paidMethod ? ` (${r.paidMethod})` : "";
+
+                return `
+                  <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-3.5 flex flex-wrap items-center justify-between gap-3">
+                    <div>
+                      <div class="flex flex-wrap items-center gap-2">
+                        <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-sky-50/70 text-slate-900 border border-sky-200">
+                          ${resCycle}
+                        </span>
+                        <span class="text-[11px] font-bold px-2 py-0.5 rounded ${r.paidFull ? 'bg-emerald-600 text-white' : isComplete ? 'bg-amber-500 text-slate-950' : 'bg-sky-100 text-sky-700'}">
+                          ${isFree ? 'Liberação Direta' : `Box #${boxNum} (${boxCount}/10)`}
+                        </span>
+                        <span class="text-xs font-semibold ${r.paidFull ? 'text-emerald-600' : isComplete ? 'text-amber-500' : 'text-sky-600'}">
+                          ${r.paidFull
+                            ? `✅ Pago Integralmente${methodLabel}`
+                            : isFree
+                            ? `🔓 Habilitado p/ Pagamento (Sem fechar 10 pçs • Prazo: Seg 22:00)`
+                            : isComplete
+                            ? `🔓 Habilitado p/ Pagamento (Prazo: Seg 22:00 • Fechado em ${myBox.closedDateStr})`
+                            : '⏳ Aguardando completar 10 peças'}
+                        </span>
+                      </div>
+                      <h4 class="font-bold text-slate-900 text-sm mt-1">${r.productName}</h4>
+                      <p class="text-xs text-slate-500 mt-0.5">
+                        Sinal pago: <strong class="text-sky-600">${formatBRL(r.depositPrice)}</strong> •
+                        Valor por peça: <strong class="text-slate-900">${formatBRL(r.fullPrice)}</strong> •
+                        Restante: <strong class="text-emerald-600">${formatBRL(remaining)}</strong>
+                      </p>
+                      ${trk && trk.infoText ? `
+                        <p class="text-xs text-sky-600 mt-1.5 font-semibold">
+                          📦 Rastreios e Envios: <span class="text-slate-900 font-normal">${trk.infoText}</span>
+                        </p>
+                      ` : ''}
+                    </div>
+
+                    <div>
+                      ${isComplete ? `
+                        <span class="inline-block px-3 py-1.5 rounded-lg ${r.paidFull ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-amber-100 text-amber-800 border border-amber-300'} text-xs font-semibold">
+                          ${r.paidFull ? `Quitado${methodLabel} ✓` : 'Habilitado (Até Seg 22:00)'}
+                        </span>
+                      ` : `
+                        <button type="button" onclick="cancelClientReservation('${r.id}')"
+                          class="px-3 py-1.5 rounded-lg bg-red-500/15 hover:bg-red-500/25 border border-red-500/30 text-red-400 text-xs font-semibold transition">
+                          Cancelar Peça (Reter Sinal)
+                        </button>
+                      `}
+                    </div>
+                  </div>
+                `;
+              }).join("")}
+            </div>
+          `}
+        </div>
+      `;
+    }
+
+    // --- ADMIN PENDENTES ---
+    window.renderAdminUnpaidList = function () {
+      const container = document.getElementById("adminUnpaidList");
+      const badgeEl = document.getElementById("adminUnpaidBadgeCount");
+      if (!container) return;
+
+      const q = (document.getElementById("adminUnpaidSearch")?.value || "").toLowerCase().trim();
+      const debtors = [];
+      users.forEach(u => {
+        const summary = getClientFinancialSummary(u);
+        if (summary.readyToPayRes.length === 0) return;
+
+        const itemsText = summary.readyToPayRes.map(r => `${r.productName} (Box #${r.boxNumber})`).join(", ");
+        if (q && !(u.name || "").toLowerCase().includes(q) && !(u.email || "").toLowerCase().includes(q) && !(u.phone || "").includes(q) && !itemsText.toLowerCase().includes(q)) {
+          return;
+        }
+        debtors.push({ user: u, summary });
+      });
+
+      if (badgeEl) badgeEl.textContent = debtors.length;
+
+      if (debtors.length === 0) {
+        container.innerHTML = `
+          <div class="bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-xl p-6 text-center text-xs font-semibold">
+            ✅ Nenhum cliente pendente de quitação encontrado no momento! Todos os itens habilitados estão quitados.
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = debtors.map(({ user: u, summary }) => {
+        const readyCount = summary.readyToPayRes.length;
+        const cleanPhone = (u.phone || "").replace(/\D/g, "");
+        const waPhone = cleanPhone.startsWith("55") ? cleanPhone : `55${cleanPhone}`;
+
+        const itemsBulletList = summary.readyToPayRes
+          .map(r => `• ${r.productName} (${r.isNoBoxLimit ? 'Liberação Direta' : `Box #${r.boxNumber}`} - ${r.closedDateStr}): ${formatBRL(r.remainingValue)}`)
+          .join("\n");
+
+        const wppMessage = encodeURIComponent(
+          `Olá ${u.name}!\n\n` +
+          `O seu pedido na *${BRAND_NAME}* está habilitado para pagamento. Em caso de não pagamento até as 23:59, você será excluído do grupo e não poderá comprar novamente conosco.\n\n` +
+          `*Resumo das peças habilitadas (${readyCount} pç(s)):*\n` +
+          `${itemsBulletList}\n` +
+          (summary.totalRetainedCredit > 0 ? `• Crédito retido abatido: -${formatBRL(summary.totalRetainedCredit)}\n` : '') +
+          `• Taxa de manuseio e embalo (não referente a frete/envio): +${formatBRL(summary.settlementHandlingFee)}\n` +
+          `• *Valor Total a Quitar: ${formatBRL(summary.netToPayWithHandling)}*\n` +
+          (storeConfig.pixKey ? `\n❖ Chave PIX (${storeConfig.pixType || "PIX"}): ${storeConfig.pixKey}\nFavorecido: ${storeConfig.pixReceiverName || BRAND_NAME}\n💳 Para Cartão de Crédito, responda esta mensagem para solicitar o link.` : '')
+        );
+
+        return `
+          <div class="bg-white border border-sky-200/80 shadow-sm border-amber-500/50 rounded-xl p-4 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+            <div class="space-y-1.5 flex-1">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-300 font-extrabold text-[11px]">
+                  ⏳ ${readyCount} peça(s) pendente(s)
+                </span>
+                <h4 class="font-bold text-slate-900 text-sm">${u.name}</h4>
+                <span class="text-xs text-slate-500">• WhatsApp: <strong>${u.phone}</strong> • ${u.email}</span>
+              </div>
+
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                ${summary.readyToPayRes.map(r => `
+                  <span class="text-[11px] px-2.5 py-1 rounded-lg bg-sky-50/70 border border-sky-200 text-slate-900">
+                    <strong>${r.productName}</strong> (${r.isNoBoxLimit ? 'Direto' : `Box #${r.boxNumber}`} • ${r.closedDateStr}) — Restante: <strong class="text-sky-600">${formatBRL(r.remainingValue)}</strong>
+                  </span>
+                `).join("")}
+              </div>
+
+              <div class="text-xs text-slate-500 pt-1 flex flex-wrap gap-x-4 gap-y-1">
+                <span>Restante peças: <strong class="text-slate-900">${formatBRL(summary.totalClosedRemaining)}</strong></span>
+                ${summary.totalRetainedCredit > 0 ? `<span class="text-purple-400">Crédito abatido: <strong>- ${formatBRL(summary.totalRetainedCredit)}</strong></span>` : ''}
+                <span>Taxa Manuseio/Embalo: <strong>+ ${formatBRL(summary.settlementHandlingFee)}</strong></span>
+                <span class="text-emerald-600 font-extrabold">Total Devido: ${formatBRL(summary.netToPayWithHandling)}</span>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2 shrink-0">
+              <a href="https://wa.me/${waPhone}?text=${wppMessage}" target="_blank"
+                class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition">
+                Cobrar no WhatsApp
+              </a>
+            </div>
+          </div>
+        `;
+      }).join("");
+    };
+
+    // --- ADMIN RASTREIOS ---
+    window.saveBoxTracking = async function (productId, boxNumber, productName, closedDateStr) {
+      if (!verifyCurrentAdminPassword()) return;
+      const trackingKey = `${productId}_box_${boxNumber}`;
+      const infoInput = document.getElementById(`trk-info-${trackingKey}`);
+      const infoText = (infoInput?.value || "").trim();
+      if (!infoText) { alert("Digite a informação de rastreios e envios antes de salvar."); return; }
+
+      await setDoc(doc(db, COL.boxTrackings, trackingKey), {
+        productId, productName, boxNumber, closedDateStr, infoText,
+        updatedByAdmin: currentAdmin.name, updatedByEmail: currentAdmin.email, updatedAtMs: Date.now()
+      }, { merge: true });
+
+      await logAdminAudit("Atualizou Rastreios e Envios", `Produto: ${productName} | Box #${boxNumber} (Data: ${closedDateStr}) | Info: ${infoText}`);
+      alert(`Informação salva para ${productName}!`);
+    };
+
+    window.saveBulkTrackingForDate = async function (dateStr, safeDateId) {
+      if (!verifyCurrentAdminPassword()) return;
+      const bulkInput = document.getElementById(`bulk-trk-${safeDateId}`);
+      const infoText = (bulkInput?.value || "").trim();
+      if (!infoText) { alert("Digite a informação que deseja aplicar para todos os produtos desta data."); return; }
+
+      let updatedCount = 0;
+      for (const p of products) {
+        const info = getBoxesInfo(p.id);
+        for (const box of info.boxes) {
+          if (box.isComplete && box.closedDateStr === dateStr) {
+            await setDoc(doc(db, COL.boxTrackings, box.trackingKey), {
+              productId: p.id, productName: p.name, boxNumber: box.boxNumber, closedDateStr: dateStr, infoText,
+              updatedByAdmin: currentAdmin.name, updatedByEmail: currentAdmin.email, updatedAtMs: Date.now()
+            }, { merge: true });
+            updatedCount++;
+          }
+        }
+      }
+      await logAdminAudit("Atualizou Rastreios e Envios em lote por data", `Data: ${dateStr} (${updatedCount} itens atualizados) | Info: ${infoText}`);
+      alert(`Informação aplicada com sucesso para todos os ${updatedCount} produto(s)/box(es) fechados em ${dateStr}!`);
+    };
+
+    window.renderAdminTracking = function () {
+      const container = document.getElementById("adminTrackingList");
+      if (!container) return;
+      const q = (document.getElementById("adminTrackingSearch")?.value || "").toLowerCase().trim();
+      const completedBoxes = [];
+
+      products.forEach(p => {
+        const info = getBoxesInfo(p.id);
+        info.boxes.forEach(box => {
+          if (!box.isComplete) return;
+          const dateLabel = box.closedDateStr || "Sem data";
+          const infoText = box.trackingData?.infoText || "";
+          if (q && !p.name.toLowerCase().includes(q) && !dateLabel.includes(q) && !infoText.toLowerCase().includes(q)) return;
+          completedBoxes.push({ product: p, box, dateLabel, closedAtMs: box.closedAtMs || 0 });
+        });
+      });
+
+      if (completedBoxes.length === 0) {
+        container.innerHTML = `<p class="text-xs text-slate-500">Nenhum Box fechado ou liberado encontrado para lançar informação de rastreios e envios.</p>`;
+        return;
+      }
+
+      completedBoxes.sort((a, b) => b.closedAtMs - a.closedAtMs);
+      const groupsByDate = new Map();
+      completedBoxes.forEach(item => {
+        if (!groupsByDate.has(item.dateLabel)) groupsByDate.set(item.dateLabel, []);
+        groupsByDate.get(item.dateLabel).push(item);
+      });
+
+      container.innerHTML = Array.from(groupsByDate.entries()).map(([dateStr, items]) => {
+        const safeDateId = dateStr.replace(/\//g, "-");
+        return `
+          <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl overflow-hidden">
+            <div class="px-4 py-3 bg-sky-50/70 border-b border-sky-200 space-y-2.5">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span class="text-xs font-bold text-sky-600">📅 Data de Fechamento / Liberação: <strong class="text-slate-900">${dateStr}</strong></span>
+                <span class="text-[11px] text-slate-500">${items.length} produto(s)/box(es) nesta data</span>
+              </div>
+
+              <div class="flex flex-col sm:flex-row gap-2">
+                <input id="bulk-trk-${safeDateId}" type="text" placeholder="Escreva a informação para aplicar a TODOS os produtos fechados em ${dateStr}..."
+                  class="flex-1 bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs outline-none" />
+                <button type="button" onclick="saveBulkTrackingForDate('${dateStr}', '${safeDateId}')"
+                  class="px-4 py-2 rounded-lg bg-sky-500 hover:bg-sky-600 text-white font-semibold text-xs shrink-0">
+                  Aplicar a Todos desta Data
+                </button>
+              </div>
+            </div>
+
+            <div class="divide-y border-sky-200">
+              ${items.map(({ product: p, box }) => {
+                const trk = box.trackingData || {};
+                const paidCount = box.members.filter(m => m.paidFull).length;
+                const badgeTitle = box.isNoBoxLimit ? `Liberação Direta (${box.members.length} pçs)` : `Box #${box.boxNumber} (10/10)`;
+
+                return `
+                  <div class="p-4 space-y-2.5">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                      <div>
+                        <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-200 font-bold text-[10px]">${badgeTitle}</span>
+                        <span class="font-bold text-slate-900 text-sm ml-1.5">${p.name}</span>
+                        <span class="text-xs text-slate-500 ml-2">(${paidCount}/${box.members.length} quitados)</span>
+                      </div>
+                      ${trk.infoText
+                        ? `<span class="text-[11px] text-emerald-600 font-semibold">✓ Informação publicada</span>`
+                        : `<span class="text-[11px] text-amber-500">Aguardando informação</span>`
+                      }
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-2.5">
+                      <input id="trk-info-${box.trackingKey}" type="text" value="${trk.infoText || ''}" placeholder="Informação de rastreios e envios para ${p.name}..."
+                        class="flex-1 bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs outline-none" />
+                      <button type="button" onclick="saveBoxTracking('${p.id}', ${box.boxNumber}, '${p.name.replace(/'/g, "")}', '${dateStr}')"
+                        class="px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 font-semibold text-xs transition shrink-0">
+                        Salvar Individual
+                      </button>
+                    </div>
+                  </div>
+                `;
+              }).join("")}
+            </div>
+          </div>
+        `;
+      }).join("");
+    };
+
+    // --- ADMIN RATEIOS ---
+    window.renderWeeklyRevenue = function () {
+      const selector = document.getElementById("weeklySelector");
+      const cardsEl = document.getElementById("weeklySummaryCards");
+      const tableEl = document.getElementById("weeklyHistoryTable");
+      if (!selector || !cardsEl || !tableEl) return;
+
+      const cyclesMap = new Map();
+      const currentCycle = getRateioCycleInfo(Date.now());
+      cyclesMap.set(currentCycle.key, { ...currentCycle, reservationsCount: 0, depositsTotal: 0, fullPaymentsTotal: 0, grandTotal: 0 });
+
+      reservations.forEach(r => {
+        const cRes = getRateioCycleInfo(r.createdAtMs || Date.now());
+        if (!cyclesMap.has(cRes.key)) cyclesMap.set(cRes.key, { ...cRes, reservationsCount: 0, depositsTotal: 0, fullPaymentsTotal: 0, grandTotal: 0 });
+        const entry = cyclesMap.get(cRes.key);
+        entry.reservationsCount += 1;
+        entry.depositsTotal += Number(r.depositPrice || 0);
+        entry.grandTotal += Number(r.depositPrice || 0);
+
+        if (r.paidFull && r.status !== "CANCELLED") {
+          const cPaid = getRateioCycleInfo(r.paidFullAtMs || r.createdAtMs || Date.now());
+          if (!cyclesMap.has(cPaid.key)) cyclesMap.set(cPaid.key, { ...cPaid, reservationsCount: 0, depositsTotal: 0, fullPaymentsTotal: 0, grandTotal: 0 });
+          const paidEntry = cyclesMap.get(cPaid.key);
+          const rem = Math.max(0, Number(r.fullPrice || 0) - Number(r.depositPrice || 0));
+          paidEntry.fullPaymentsTotal += rem;
+          paidEntry.grandTotal += rem;
+        }
+      });
+
+      const sortedCycles = Array.from(cyclesMap.values()).sort((a, b) => b.startMs - a.startMs);
+      const prevSelected = selector.value;
+      selector.innerHTML = sortedCycles.map(w => `<option value="${w.key}">${w.key === currentCycle.key ? 'ATUAL: ' : ''}${w.label}</option>`).join("");
+      if (prevSelected && cyclesMap.has(prevSelected)) selector.value = prevSelected;
+      const selectedCycle = cyclesMap.get(selector.value) || sortedCycles[0];
+
+      cardsEl.innerHTML = `
+        <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-4">
+          <p class="text-xs text-slate-500">Sinais Arrecadados (${selectedCycle.reservationsCount} reservas)</p>
+          <p class="text-xl font-extrabold text-sky-600 mt-1">${formatBRL(selectedCycle.depositsTotal)}</p>
+        </div>
+        <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-4">
+          <p class="text-xs text-slate-500">Restantes Quitados no Ciclo (PIX / Cartão)</p>
+          <p class="text-xl font-extrabold text-indigo-400 mt-1">${formatBRL(selectedCycle.fullPaymentsTotal)}</p>
+        </div>
+        <div class="bg-white border border-sky-200/80 shadow-sm border-emerald-500/40 rounded-xl p-4">
+          <p class="text-xs text-emerald-600 font-semibold">Total Geral (${selectedCycle.shortTitle})</p>
+          <p class="text-2xl font-extrabold text-emerald-600 mt-1">${formatBRL(selectedCycle.grandTotal)}</p>
+        </div>
+      `;
+
+      tableEl.innerHTML = sortedCycles.map(w => {
+        const rep = weeklyReports[w.key];
+        return `
+          <tr>
+            <td class="p-3 font-medium text-slate-900">
+              ${w.label}
+              ${w.key === currentCycle.key ? '<span class="ml-2 text-[10px] px-2 py-0.5 rounded bg-sky-500 text-white font-bold">Atual</span>' : ''}
+            </td>
+            <td class="p-3 text-slate-500">${w.reservationsCount}</td>
+            <td class="p-3 text-sky-600 font-medium">${formatBRL(w.depositsTotal)}</td>
+            <td class="p-3 text-indigo-400 font-medium">${formatBRL(w.fullPaymentsTotal)}</td>
+            <td class="p-3 text-right font-extrabold text-emerald-600">${formatBRL(w.grandTotal)}</td>
+            <td class="p-3 text-center">
+              ${rep?.sent
+                ? `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">Enviado ✓</span>`
+                : `<button type="button" onclick="triggerWeeklyReportEmail(true, '${w.key}')" class="px-2 py-0.5 rounded text-[10px] bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200">Enviar E-mail</button>`
+              }
+            </td>
+          </tr>
+        `;
+      }).join("");
+    };
+
+    window.setReservationPaymentStatus = async function (resId, method) {
+      const res = reservations.find(r => r.id === resId);
+      const isClearing = !method;
+      await updateDoc(doc(db, COL.reservations, resId), {
+        paidFull: !isClearing,
+        paidMethod: isClearing ? "" : method,
+        paidFullAtMs: isClearing ? null : Date.now()
+      });
+      if (res) {
+        await logAdminAudit(isClearing ? "Desmarcou quitação" : `Confirmou quitação via ${method}`, `Cliente: ${res.clientName} | Produto: ${res.productName} | Forma: ${isClearing ? 'Pendente' : method}`);
+      }
+    };
+
+    window.adminAddProductToClient = async function (userId) {
+      const selectEl = document.getElementById(`admin-add-prod-${userId}`);
+      if (!selectEl || !selectEl.value) { alert("Selecione um produto para adicionar ao cliente."); return; }
+      if (!verifyCurrentAdminPassword()) return;
+
+      const user = users.find(u => u.id === userId);
+      const prod = products.find(p => p.id === selectEl.value);
+      if (!user || !prod) return;
+
+      const nowMs = Date.now();
+      const cycleInfo = getRateioCycleInfo(nowMs);
+
+      await addDoc(collection(db, COL.reservations), {
+        productId: prod.id, productName: prod.name, userId: user.id,
+        clientName: user.name, clientEmail: user.email, clientWhatsapp: user.phone,
+        paymentMethod: "PIX", pixKeyUsed: storeConfig.pixKey || "",
+        depositPrice: Number(prod.depositPrice), fullPrice: Number(prod.fullPrice),
+        status: "ACTIVE", paidFull: false, paidMethod: "", paidFullAtMs: null,
+        weekKey: cycleInfo.key, cycleNumber: cycleInfo.cycleNumber, cycleLabel: cycleInfo.shortTitle,
+        createdAtMs: nowMs, createdAt: serverTimestamp()
+      });
+
+      await logAdminAudit("Acrescentou produto ao cliente", `Cliente: ${user.name} (${user.email}) | Produto: ${prod.name}`);
+      alert(`Produto "${prod.name}" adicionado ao pedido de ${user.name}!`);
+    };
+
+    window.adminDeleteClientReservation = async function (resId, productName, clientName) {
+      if (!verifyCurrentAdminPassword()) return;
+      await deleteDoc(doc(db, COL.reservations, resId));
+      await logAdminAudit("Excluiu reserva de cliente", `Cliente: ${clientName} | Produto: ${productName}`);
+      alert(`Reserva de "${productName}" excluída com sucesso.`);
+    };
+
+    window.renderAdminClients = function () {
+      const container = document.getElementById("adminClientsList");
+      if (!container) return;
+
+      const q = (document.getElementById("adminClientSearch")?.value || "").toLowerCase().trim();
+      const filteredUsers = users.filter(u =>
+        !q || (u.name || "").toLowerCase().includes(q) || (u.email || "").toLowerCase().includes(q) || (u.phone || "").includes(q)
+      );
+
+      if (filteredUsers.length === 0) {
+        container.innerHTML = `<p class="text-xs text-slate-500">Nenhum cliente cadastrado encontrado.</p>`;
+        return;
+      }
+
+      const productOptions = sortProductsAlphabetically(products)
+        .map(p => `<option value="${p.id}">${p.name} (Sinal: ${formatBRL(p.depositPrice)} | Peça: ${formatBRL(p.fullPrice)})</option>`)
+        .join("");
+
+      container.innerHTML = filteredUsers.map(u => {
+        const summary = getClientFinancialSummary(u);
+        return `
+          <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-4 space-y-3">
+            <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-sky-200">
+              <div>
+                <h4 class="font-bold text-slate-900 text-sm">${u.name}</h4>
+                <p class="text-xs text-slate-500">E-mail: ${u.email} • Tel/WhatsApp: ${u.phone}</p>
+              </div>
+              <div class="text-right text-xs space-y-0.5">
+                <p class="text-slate-500">Sinais Pagos: <strong class="text-sky-600">${formatBRL(summary.totalDepositsPaidActive)}</strong></p>
+                <p class="text-slate-500">Restante Habilitado (${summary.readyToPayRes.length} pçs) + Manuseio (${formatBRL(summary.settlementHandlingFee)}): <strong class="text-slate-900">${formatBRL(summary.totalClosedRemaining + summary.settlementHandlingFee)}</strong></p>
+                <p class="text-amber-500">Crédito Retido (Cancelados): <strong>- ${formatBRL(summary.totalRetainedCredit)}</strong></p>
+                <p class="text-emerald-600 font-bold">Total Líquido a Cobrar (Até Seg 22:00): ${formatBRL(summary.netToPayWithHandling)}</p>
+              </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-2">
+              <select id="admin-add-prod-${u.id}" class="flex-1 bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-1.5 text-xs">
+                <option value="">-- Selecione um produto para acrescentar ao cliente --</option>
+                ${productOptions}
+              </select>
+              <button type="button" onclick="adminAddProductToClient('${u.id}')" class="px-3.5 py-1.5 rounded-lg bg-sky-500 hover:bg-sky-600 text-white font-semibold text-xs shrink-0">
+                + Acrescentar Produto (Senha)
+              </button>
+            </div>
+
+            ${summary.activeRes.length === 0 ? `<p class="text-xs text-slate-500">Nenhuma reserva ativa para este cliente.</p>` : `
+              <div class="divide-y border-sky-200">
+                ${summary.activeRes.map(r => {
+                  const isFree = isNoBoxLimitProduct(r.productName);
+                  const info = getBoxesInfo(r.productId);
+                  const myBox = info.boxes.find(b => b.members.some(m => m.id === r.id));
+                  const boxNum = myBox ? myBox.boxNumber : 1;
+                  const boxCount = myBox ? myBox.members.length : 1;
+                  const isComplete = isFree ? true : (myBox ? myBox.isComplete : false);
+
+                  return `
+                    <div class="py-2 flex flex-wrap items-center justify-between gap-2 text-xs">
+                      <div>
+                        <span class="px-2 py-0.5 rounded text-[10px] font-bold ${isComplete ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-sky-100 text-sky-700'}">
+                          ${isFree ? 'Liberação Direta' : `Box #${boxNum} (${boxCount}/10)`}
+                        </span>
+                        <span class="font-semibold text-slate-900 ml-1.5">${r.productName}</span>
+                        <span class="text-slate-500 ml-2">Sinal: ${formatBRL(r.depositPrice)} | Peça: ${formatBRL(r.fullPrice)}</span>
+                      </div>
+                      <div class="flex flex-wrap items-center gap-1.5">
+                        ${r.paidFull ? `
+                          <span class="px-2.5 py-1 rounded font-bold ${r.paidMethod === 'Cartão de Crédito' ? 'bg-purple-100 text-purple-800 border border-purple-300' : 'bg-emerald-100 text-emerald-800 border border-emerald-200'}">
+                            Pago (${r.paidMethod || 'PIX'}) ✓
+                          </span>
+                          <button type="button" onclick="setReservationPaymentStatus('${r.id}', '')" class="px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 text-[11px]">
+                            Desmarcar
+                          </button>
+                        ` : `
+                          <button type="button" onclick="setReservationPaymentStatus('${r.id}', 'PIX')" class="px-2.5 py-1 rounded font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200">
+                            Quitar PIX
+                          </button>
+                          <button type="button" onclick="setReservationPaymentStatus('${r.id}', 'Cartão de Crédito')" class="px-2.5 py-1 rounded font-semibold bg-purple-100 text-purple-800 border border-purple-300">
+                            Quitar Cartão
+                          </button>
+                        `}
+                        <button type="button" onclick="adminDeleteClientReservation('${r.id}', '${r.productName.replace(/'/g, "")}', '${u.name.replace(/'/g, "")}')"
+                          class="px-2.5 py-1 rounded bg-red-500/15 hover:bg-red-500/25 text-red-400 border border-red-500/30 font-semibold">
+                          Excluir
+                        </button>
+                      </div>
+                    </div>
+                  `;
+                }).join("")}
+              </div>
+            `}
+          </div>
+        `;
+      }).join("");
+    };
+
+    window.renderAdminClosings = function () {
+      const container = document.getElementById("adminClosingsList");
+      if (!container) return;
+      const filter = document.getElementById("adminClosingFilter").value;
+
+      const allBoxCards = [];
+      sortProductsAlphabetically(products).forEach(p => {
+        const info = getBoxesInfo(p.id);
+        const remaining = Math.max(0, Number(p.fullPrice) - Number(p.depositPrice));
+        info.boxes.forEach(box => {
+          if (filter === "COMPLETED" && !box.isComplete) return;
+          if (filter === "IN_PROGRESS" && box.isComplete) return;
+          allBoxCards.push({ product: p, box, remaining });
+        });
+      });
+
+      allBoxCards.sort((a, b) => (b.box.isComplete ? 1 : 0) - (a.box.isComplete ? 1 : 0));
+
+      if (allBoxCards.length === 0) {
+        container.innerHTML = `<p class="text-xs text-slate-500">Nenhum box encontrado neste filtro.</p>`;
+        return;
+      }
+
+      container.innerHTML = allBoxCards.map(({ product: p, box, remaining }) => {
+        const titleBanner = box.isNoBoxLimit
+          ? `✅ LIBERAÇÃO DIRETA (${box.members.length} peça(s) — Não precisa fechar 10)`
+          : box.isComplete
+          ? `✅ BOX #${box.boxNumber} COMPLETO (10/10) — FECHADO EM ${box.closedDateStr}`
+          : `⏳ BOX #${box.boxNumber} EM ANDAMENTO (${box.members.length}/10)`;
+
+        return `
+          <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-4">
+            <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-sky-200">
+              <div>
+                <span class="text-xs font-bold ${box.isComplete ? 'text-emerald-600' : 'text-sky-600'}">${titleBanner}</span>
+                <h4 class="font-bold text-slate-900 text-sm">${p.name}</h4>
+              </div>
+              <div class="text-right text-xs">
+                <span class="text-slate-500">Peça: <strong class="text-slate-900">${formatBRL(p.fullPrice)}</strong></span> |
+                <span class="text-slate-500">Sinal: <strong class="text-sky-600">${formatBRL(p.depositPrice)}</strong></span> |
+                <span class="text-slate-500">Restante base: <strong class="text-emerald-600">${formatBRL(remaining)}</strong></span>
+              </div>
+            </div>
+
+            <div class="mt-3 divide-y border-sky-200">
+              ${box.members.map((r, idx) => {
+                const clientObj = users.find(u => u.id === r.userId || (u.email && u.email === r.clientEmail));
+                const clientSummary = clientObj ? getClientFinancialSummary(clientObj) : { totalRetainedCredit: 0, readyToPayRes: [], settlementHandlingFee: 0 };
+                const creditAvailable = clientSummary.totalRetainedCredit;
+                const finalToCharge = Math.max(0, remaining - creditAvailable);
+                const slotLabel = box.isNoBoxLimit ? `Pedido #${idx + 1}` : `Box #${box.boxNumber} • Vaga #${idx + 1}/10`;
+
+                const msg = encodeURIComponent(
+                  `Olá ${r.clientName}!\n\n` +
+                  `O seu pedido na *${BRAND_NAME}* está habilitado para pagamento. Em caso de não pagamento até as 23:59, você será excluído do grupo e não poderá comprar novamente conosco.\n\n` +
+                  `• Produto: *${p.name}* (${slotLabel})\n` +
+                  `• Valor por Peça: ${formatBRL(p.fullPrice)}\n` +
+                  `• Sinal já pago: -${formatBRL(p.depositPrice)}\n` +
+                  (creditAvailable > 0 ? `• Crédito retido abatido: -${formatBRL(creditAvailable)}\n` : '') +
+                  `• Restante desta peça: ${formatBRL(finalToCharge)}\n` +
+                  `• Taxa de manuseio e embalo (${clientSummary.readyToPayRes.length} pç(s) habilitada(s) — não referente a frete/envio): ${formatBRL(clientSummary.settlementHandlingFee)}\n` +
+                  (storeConfig.pixKey ? `\n❖ Chave PIX (${storeConfig.pixType || "PIX"}): ${storeConfig.pixKey}\nFavorecido: ${storeConfig.pixReceiverName || BRAND_NAME}\n💳 Para Cartão de Crédito, responda esta mensagem.` : '')
+                );
+
+                return `
+                  <div class="py-2 flex flex-wrap items-center justify-between gap-2 text-xs">
+                    <div class="flex items-center gap-2">
+                      <span class="w-6 h-6 rounded-full font-bold flex items-center justify-center ${box.isComplete ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-sky-100 text-sky-700'}">
+                        #${idx + 1}
+                      </span>
+                      <div>
+                        <p class="font-semibold text-slate-900">${r.clientName}</p>
+                        <p class="text-slate-500">WhatsApp: ${r.clientWhatsapp}</p>
+                      </div>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-1.5">
+                      ${r.paidFull ? `
+                        <span class="px-2.5 py-1 rounded font-bold ${r.paidMethod === 'Cartão de Crédito' ? 'bg-purple-100 text-purple-800 border border-purple-300' : 'bg-emerald-100 text-emerald-800 border border-emerald-200'}">
+                          Pago (${r.paidMethod || 'PIX'}) ✓
+                        </span>
+                        <button type="button" onclick="setReservationPaymentStatus('${r.id}', '')" class="px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 text-[11px]">
+                          Desmarcar
+                        </button>
+                      ` : `
+                        <button type="button" onclick="setReservationPaymentStatus('${r.id}', 'PIX')" class="px-2.5 py-1 rounded font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200">
+                          PIX Pago
+                        </button>
+                        <button type="button" onclick="setReservationPaymentStatus('${r.id}', 'Cartão de Crédito')" class="px-2.5 py-1 rounded font-semibold bg-purple-100 text-purple-800 border border-purple-300">
+                          Cartão Pago
+                        </button>
+                      `}
+                      <a href="https://wa.me/55${r.clientWhatsapp}?text=${msg}" target="_blank"
+                        class="px-3 py-1 rounded ${box.isComplete ? 'bg-sky-500 hover:bg-sky-600 text-white' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200'} font-semibold">
+                        ${box.isComplete ? `Cobrar ${formatBRL(finalToCharge)}` : 'WhatsApp'}
+                      </a>
+                    </div>
+                  </div>
+                `;
+              }).join("")}
+            </div>
+          </div>
+        `;
+      }).join("");
+    };
+
+    window.addSingleProduct = async function (e) {
+      e.preventDefault();
+      const name = document.getElementById("prodName").value.trim();
+      const depositPrice = Number(document.getElementById("prodDeposit").value);
+      let fullPrice = Number(document.getElementById("prodFull").value);
+      let boxPrice = Number(document.getElementById("prodBoxPrice").value);
+
+      if (!fullPrice && boxPrice > 0) fullPrice = Number((boxPrice / 10).toFixed(2));
+      if (!boxPrice && fullPrice > 0) boxPrice = Number((fullPrice * 10).toFixed(2));
+
+      await addDoc(collection(db, COL.products), {
+        name, depositPrice, fullPrice, boxPrice,
+        category: document.getElementById("prodCategory").value.trim() || "Geral",
+        createdAt: serverTimestamp()
+      });
+      await logAdminAudit("Cadastrou produto individual", `Produto: ${name} | Sinal: ${formatBRL(depositPrice)} | Peça: ${formatBRL(fullPrice)}`);
+      e.target.reset();
+      document.getElementById("prodDeposit").value = "20";
+      alert(`Produto cadastrado na ${BRAND_NAME} com sucesso!`);
+    };
+
+    window.editProductPrice = async function (productId, prodName, currentFullPrice) {
+      if (!verifyCurrentAdminPassword()) return;
+      const input = prompt(`Editar valor de "${prodName}"\n\nDigite o novo VALOR POR PEÇA (use ponto para centavos, ex: 380.00):`, Number(currentFullPrice || 0).toFixed(2));
+      if (input === null) return;
+      const newPiecePrice = Number(input.replace(",", ".").trim());
+      if (isNaN(newPiecePrice) || newPiecePrice <= 0) { alert("Valor inválido! Digite um número maior que zero."); return; }
+      const newBoxPrice = Number((newPiecePrice * 10).toFixed(2));
+      await updateDoc(doc(db, COL.products, productId), { fullPrice: newPiecePrice, boxPrice: newBoxPrice });
+      await logAdminAudit("Alterou valor do produto", `Produto: ${prodName} | Novo valor: ${formatBRL(newPiecePrice)}`);
+      alert(`Valor de "${prodName}" atualizado para ${formatBRL(newPiecePrice)} por peça!`);
+    };
+
+    window.importBulkProducts = async function () {
+      const raw = document.getElementById("bulkInput").value.trim();
+      if (!raw) return;
+      const lines = raw.split("\n").filter(l => l.trim());
+      let count = 0;
+
+      for (const line of lines) {
+        const parts = line.split(";").map(s => s.trim());
+        const name = parts[0];
+        const dep = Number(parts[1]);
+        let boxVal = Number(parts[2]);
+        let pieceVal = Number(parts[3]);
+        const cat = parts[4] || "Geral";
+
+        if (!name || isNaN(dep)) continue;
+        if (isNaN(pieceVal) || pieceVal <= 0) {
+          if (!isNaN(boxVal) && boxVal > 0) pieceVal = Number((boxVal / 10).toFixed(2));
+          else continue;
+        }
+        if (isNaN(boxVal) || boxVal <= 0) boxVal = Number((pieceVal * 10).toFixed(2));
+
+        await addDoc(collection(db, COL.products), {
+          name, depositPrice: dep, fullPrice: pieceVal, boxPrice: boxVal, category: cat, createdAt: serverTimestamp()
+        });
+        count++;
+      }
+      await logAdminAudit("Importação em lote de produtos", `${count} produtos importados`);
+      document.getElementById("bulkInput").value = "";
+      alert(`${count} produtos importados na ${BRAND_NAME} com sucesso!`);
+    };
+
+    window.deleteProduct = async function (productId, prodName) {
+      if (!verifyCurrentAdminPassword()) return;
+      await deleteDoc(doc(db, COL.products, productId));
+      await logAdminAudit("Excluiu produto do catálogo", `Produto: ${prodName}`);
+    };
+
+    window.renderAdminProducts = function () {
+      const tbody = document.getElementById("adminProductsTable");
+      if (!tbody) return;
+      const sortedList = sortProductsAlphabetically(products);
+
+      tbody.innerHTML = sortedList.map(p => {
+        const info = getBoxesInfo(p.id);
+        const isFree = info.isNoBoxLimit;
+        const boxTotalValue = p.boxPrice ? Number(p.boxPrice) : Number(p.fullPrice || 0) * 10;
+        return `
+          <tr>
+            <td class="p-3 font-medium text-slate-900">${p.name}</td>
+            <td class="p-3 text-slate-500">${p.category || '-'}</td>
+            <td class="p-3 text-sky-600 font-semibold">${formatBRL(p.depositPrice)}</td>
+            <td class="p-3 text-slate-900 font-semibold">${formatBRL(p.fullPrice)}</td>
+            <td class="p-3 text-slate-700 font-medium">${formatBRL(boxTotalValue)}</td>
+            <td class="p-3">
+              ${isFree ? `
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">
+                  Liberação Imediata (Ativas: ${info.total})
+                </span>
+              ` : `
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">
+                  ${info.completedBoxesCount} Box(es) Fechado(s)
+                </span>
+                <span class="ml-1 px-2 py-0.5 rounded text-[11px] bg-sky-100 text-sky-700">
+                  Box #${info.activeBoxNumber}: ${info.activeBoxCount}/10 (Ativas: ${info.total})
+                </span>
+              `}
+            </td>
+            <td class="p-3 text-right space-x-1.5 whitespace-nowrap">
+              <button type="button" onclick="editProductPrice('${p.id}', '${p.name.replace(/'/g, "")}', ${Number(p.fullPrice || 0)})"
+                class="px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 text-[11px] font-medium">
+                Editar Valor
+              </button>
+              <button type="button" onclick="deleteProduct('${p.id}', '${p.name.replace(/'/g, "")}')"
+                class="px-2.5 py-1 rounded bg-red-500/15 hover:bg-red-500/25 text-red-400 border border-red-500/30 text-[11px] font-medium">
+                Excluir
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join("");
+    };
+
+    window.addNewAdmin = async function (e) {
+      e.preventDefault();
+      if (!verifyCurrentAdminPassword()) return;
+
+      const name = document.getElementById("newAdminName").value.trim();
+      const email = document.getElementById("newAdminEmail").value.trim().toLowerCase();
+      const password = document.getElementById("newAdminPass").value;
+
+      if (admins.some(a => (a.email || "").toLowerCase() === email)) {
+        alert("Já existe um administrador cadastrado com este e-mail.");
+        return;
+      }
+
+      await addDoc(collection(db, COL.admins), { name, email, password, isMaster: false, createdAtMs: Date.now() });
+      await logAdminAudit("Cadastrou novo administrador", `Novo Admin: ${name} (${email})`);
+      e.target.reset();
+      alert(`Administrador ${name} cadastrado com sucesso!`);
+    };
+
+    window.deleteAdminAccount = async function (adminId, adminName) {
+      if (admins.length <= 1) { alert("Não é possível excluir o único administrador do sistema."); return; }
+      if (!verifyCurrentAdminPassword()) return;
+      await deleteDoc(doc(db, COL.admins, adminId));
+      await logAdminAudit("Removeu administrador", `Admin removido: ${adminName}`);
+    };
+
+    function renderAdminsAndAudit() {
+      const adminsTbody = document.getElementById("adminsTableBody");
+      const logsTbody = document.getElementById("auditLogsTableBody");
+
+      if (adminsTbody) {
+        adminsTbody.innerHTML = admins.map(a => `
+          <tr>
+            <td class="p-3 font-semibold text-slate-900">
+              ${a.name}
+              ${currentAdmin && currentAdmin.id === a.id ? '<span class="ml-1.5 text-[10px] px-1.5 py-0.5 rounded bg-sky-500 text-white">Você</span>' : ''}
+            </td>
+            <td class="p-3 text-slate-500">${a.email}</td>
+            <td class="p-3 text-slate-500">${formatDateTime(a.createdAtMs)}</td>
+            <td class="p-3 text-right">
+              <button type="button" onclick="deleteAdminAccount('${a.id}', '${a.name.replace(/'/g, "")}')" class="px-2.5 py-1 rounded bg-red-500/15 text-red-400 text-[11px]">
+                Remover
+              </button>
+            </td>
+          </tr>
+        `).join("");
+      }
+
+      if (logsTbody) {
+        logsTbody.innerHTML = auditLogs.length === 0
+          ? `<tr><td colspan="4" class="p-4 text-center text-slate-500">Nenhuma alteração registrada ainda.</td></tr>`
+          : auditLogs.map(log => `
+            <tr>
+              <td class="p-3 text-slate-500 whitespace-nowrap">${formatDateTime(log.createdAtMs)}</td>
+              <td class="p-3 font-semibold text-sky-600">${log.adminName} <span class="opacity-70 font-normal">(${log.adminEmail})</span></td>
+              <td class="p-3 font-medium text-slate-900">${log.action}</td>
+              <td class="p-3 text-slate-500">${log.details}</td>
+            </tr>
+          `).join("");
+      }
+    }
+
+    window.saveSettings = async function () {
+      if (!verifyCurrentAdminPassword()) return;
+      const pixType = document.getElementById("settingPixType").value;
+      const pixKey = document.getElementById("settingPixKey").value.trim();
+      const pixReceiverName = document.getElementById("settingPixReceiverName").value.trim() || BRAND_NAME;
+      const pixCity = document.getElementById("settingPixCity").value.trim() || "SAO PAULO";
+      const storeWhatsapp = document.getElementById("settingStoreWhatsapp").value.trim();
+
+      if (!pixKey) { alert("Informe a Chave PIX que será responsável pelo recebimento."); return; }
+
+      await setDoc(doc(db, COL.config, "store"), { pixType, pixKey, pixReceiverName, pixCity, storeWhatsapp }, { merge: true });
+      await logAdminAudit("Cadastrou/Alterou Chave PIX Recebedora", `Tipo: ${pixType} | Chave: ${pixKey} | Titular: ${pixReceiverName}`);
+      alert(`Chave PIX recebedora e WhatsApp da ${BRAND_NAME} salvos com sucesso!`);
+    };
+
+    window.saveEmailJsSettings = async function () {
+      if (!verifyCurrentAdminPassword()) return;
+      const emailJsPublicKey = document.getElementById("settingEmailJsPublicKey").value.trim();
+      const emailJsServiceId = document.getElementById("settingEmailJsServiceId").value.trim();
+      const emailJsTemplateId = document.getElementById("settingEmailJsTemplateId").value.trim();
+
+      await setDoc(doc(db, COL.config, "store"), { emailJsPublicKey, emailJsServiceId, emailJsTemplateId }, { merge: true });
+      if (emailJsPublicKey && window.emailjs) window.emailjs.init({ publicKey: emailJsPublicKey });
+      await logAdminAudit("Configurou disparo de e-mail EmailJS", "Integração de relatório semanal atualizada");
+      alert("Configurações de envio de e-mail salvas!");
+    };
+  </script>
+</body>
+</html>
