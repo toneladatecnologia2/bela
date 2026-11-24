@@ -3,44 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nuoan Labs — Rateio & Compra Coletiva</title>
-  <link rel="icon" type="image/jpeg" href="logo-nuoan.jpg" />
+  <title>Bella — Rateio & Compra Coletiva</title>
+  <link rel="icon" type="image/jpeg" href="logo-bella.jpg" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Inter', sans-serif; }
     .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
-    .custom-scrollbar::-webkit-scrollbar-track { background: #f0f9ff; }
-    .custom-scrollbar::-webkit-scrollbar-thumb { background: #bae6fd; border-radius: 3px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: #fdf2f8; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #fbcfe8; border-radius: 3px; }
   </style>
 </head>
-<body class="bg-sky-50/40 text-slate-800 min-h-screen flex flex-col">
+<body class="bg-pink-50/40 text-slate-800 min-h-screen flex flex-col">
 
   <!-- TELA / BANNER DE BOAS-VINDAS -->
-  <section id="welcomeGateScreen" class="flex-1 flex flex-col items-center justify-center p-4 sm:p-6 bg-gradient-to-br from-sky-100 via-white to-sky-50">
-    <div class="max-w-4xl w-full bg-white border border-sky-200 shadow-sky-900/10 rounded-3xl shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12">
+  <section id="welcomeGateScreen" class="flex-1 flex flex-col items-center justify-center p-4 sm:p-6 bg-gradient-to-br from-pink-100 via-white to-pink-50">
+    <div class="max-w-4xl w-full bg-white border border-pink-200 shadow-pink-900/10 rounded-3xl shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12">
       <!-- Banner Esquerdo -->
-      <div class="lg:col-span-6 bg-gradient-to-br from-sky-500 to-sky-600 text-white p-8 sm:p-10 flex flex-col justify-between space-y-6">
+      <div class="lg:col-span-6 bg-gradient-to-br from-pink-400 to-rose-400 text-white p-8 sm:p-10 flex flex-col justify-between space-y-6">
         <div class="space-y-4">
           <div class="flex items-center gap-3">
-            <img src="logo-nuoan.jpg" alt="Nuoan Labs" class="w-16 h-16 rounded-full object-cover border-2 border-white shadow-lg" />
+            <img src="logo-bella.jpg" alt="Bella" class="w-16 h-16 rounded-full object-cover border-2 border-white shadow-lg" />
             <div>
               <span id="gateCycleBadge" class="text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-white/20 text-white">
                 Rateio #01 • Acesso Exclusivo
               </span>
-              <h1 class="text-xl font-extrabold tracking-tight mt-1">Nuoan Labs</h1>
+              <h1 class="text-xl font-extrabold tracking-tight mt-1">Bella</h1>
             </div>
           </div>
 
           <div class="pt-2">
             <h2 class="text-2xl sm:text-3xl font-extrabold leading-tight">Sejam bem-vindos!</h2>
-            <p class="text-sm text-sky-100 mt-3 leading-relaxed">
-              Bem-vindos ao portal oficial de rateio e compra coletiva da <strong>Nuoan Labs</strong>. Para visualizar nosso catálogo exclusivo de produtos, valores, acompanhar seus pedidos e realizar pagamentos, crie seu cadastro gratuito ou entre com sua conta.
+            <p class="text-sm text-pink-50 mt-3 leading-relaxed">
+              Bem-vindos ao portal oficial de rateio e compra coletiva da <strong>Bella</strong>. Para visualizar nosso catálogo exclusivo de produtos, valores, acompanhar seus pedidos e realizar pagamentos, crie seu cadastro gratuito ou entre com sua conta.
             </p>
           </div>
 
-          <div class="space-y-2 pt-2 text-xs text-sky-50">
+          <div class="space-y-2 pt-2 text-xs text-pink-50">
             <div class="flex items-center gap-2">
               <span class="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center font-bold">✓</span>
               <span>Catálogo fechado exclusivo para clientes cadastrados</span>
@@ -56,7 +56,7 @@
           </div>
         </div>
 
-        <div class="pt-4 border-t border-white/20 flex items-center justify-between text-[11px] text-sky-100">
+        <div class="pt-4 border-t border-white/20 flex items-center justify-between text-[11px] text-pink-50">
           <span>Quitação até Segunda-feira às 22:00</span>
           <button type="button" onclick="openAdminModal()" class="underline hover:text-white font-semibold">
             Área Admin
@@ -66,8 +66,8 @@
 
       <!-- Formulário Direito -->
       <div class="lg:col-span-6 p-6 sm:p-8 flex flex-col justify-center bg-white">
-        <div class="flex gap-4 border-b border-sky-200 pb-3">
-          <button type="button" id="gateTabRegister" onclick="switchGateAuthMode('register')" class="text-sm font-bold text-sky-600 border-b-2 border-sky-500 pb-1">
+        <div class="flex gap-4 border-b border-pink-200 pb-3">
+          <button type="button" id="gateTabRegister" onclick="switchGateAuthMode('register')" class="text-sm font-bold text-pink-600 border-b-2 border-pink-400 pb-1">
             Criar Cadastro
           </button>
           <button type="button" id="gateTabLogin" onclick="switchGateAuthMode('login')" class="text-sm font-bold text-slate-400 hover:text-slate-700 pb-1">
@@ -79,24 +79,24 @@
           <div>
             <label class="block text-xs font-semibold text-slate-700 mb-1">Nome Completo *</label>
             <input id="gateRegName" type="text" required placeholder="Digite seu nome completo"
-              class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-xl px-3.5 py-2.5 text-sm outline-none" />
+              class="w-full bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-xl px-3.5 py-2.5 text-sm outline-none" />
           </div>
           <div>
             <label class="block text-xs font-semibold text-slate-700 mb-1">E-mail *</label>
             <input id="gateRegEmail" type="email" required placeholder="seuemail@exemplo.com"
-              class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-xl px-3.5 py-2.5 text-sm outline-none" />
+              class="w-full bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-xl px-3.5 py-2.5 text-sm outline-none" />
           </div>
           <div>
             <label class="block text-xs font-semibold text-slate-700 mb-1">Telefone / WhatsApp (com DDD) *</label>
             <input id="gateRegPhone" type="tel" required placeholder="Ex: 11999998888"
-              class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-xl px-3.5 py-2.5 text-sm outline-none" />
+              class="w-full bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-xl px-3.5 py-2.5 text-sm outline-none" />
           </div>
           <div>
             <label class="block text-xs font-semibold text-slate-700 mb-1">Crie uma Senha *</label>
             <input id="gateRegPassword" type="password" required minlength="4" placeholder="Mínimo 4 caracteres"
-              class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-xl px-3.5 py-2.5 text-sm outline-none" />
+              class="w-full bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-xl px-3.5 py-2.5 text-sm outline-none" />
           </div>
-          <button type="submit" class="w-full py-3 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-bold text-sm transition shadow-md">
+          <button type="submit" class="w-full py-3 rounded-xl bg-pink-400 hover:bg-pink-500 text-white font-bold text-sm transition shadow-md">
             Cadastrar e Acessar Portal &rarr;
           </button>
         </form>
@@ -105,38 +105,38 @@
           <div>
             <label class="block text-xs font-semibold text-slate-700 mb-1">E-mail cadastrado *</label>
             <input id="gateLoginEmail" type="email" required placeholder="seuemail@exemplo.com"
-              class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-xl px-3.5 py-2.5 text-sm outline-none" />
+              class="w-full bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-xl px-3.5 py-2.5 text-sm outline-none" />
           </div>
           <div>
             <label class="block text-xs font-semibold text-slate-700 mb-1">Senha *</label>
             <input id="gateLoginPassword" type="password" required placeholder="Sua senha"
-              class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-xl px-3.5 py-2.5 text-sm outline-none" />
+              class="w-full bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-xl px-3.5 py-2.5 text-sm outline-none" />
           </div>
-          <button type="submit" class="w-full py-3 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-bold text-sm transition shadow-md">
+          <button type="submit" class="w-full py-3 rounded-xl bg-pink-400 hover:bg-pink-500 text-white font-bold text-sm transition shadow-md">
             Entrar e Acessar Portal &rarr;
           </button>
           <p class="text-center text-xs text-slate-500 pt-1">
-            Primeiro acesso? <button type="button" onclick="switchGateAuthMode('register')" class="text-sky-600 font-semibold underline">Crie seu cadastro agora</button>
+            Primeiro acesso? <button type="button" onclick="switchGateAuthMode('register')" class="text-pink-600 font-semibold underline">Crie seu cadastro agora</button>
           </p>
         </form>
       </div>
     </div>
 
     <footer class="mt-6 text-center text-xs text-slate-500">
-      Desenvolvido pela <strong class="text-sky-700 font-bold">Tonelada Tecnologia</strong> — <span class="italic">uma tecnologia de peso</span>.
+      Desenvolvido pela <strong class="text-pink-700 font-bold">Tonelada Tecnologia</strong> — <span class="italic">uma tecnologia de peso</span>.
     </footer>
   </section>
 
   <!-- CONTEÚDO PRINCIPAL DA LOJA -->
   <div id="mainAppContainer" class="hidden flex-1 flex flex-col">
-    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-sky-200/80 shadow-sm">
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-pink-200/80 shadow-sm">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2 sm:gap-3">
         <div class="flex items-center gap-2.5 sm:gap-3">
-          <img src="logo-nuoan.jpg" alt="Nuoan Labs" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover border-2 border-sky-400 shadow-md shrink-0" />
+          <img src="logo-bella.jpg" alt="Bella" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover border-2 border-pink-300 shadow-md shrink-0" />
           <div>
             <div class="flex items-center gap-2">
-              <h1 class="font-bold text-sm sm:text-lg leading-tight text-slate-900">Nuoan Labs</h1>
-              <span id="headerCycleBadge" class="inline-flex items-center gap-1 text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full bg-sky-500 text-white">
+              <h1 class="font-bold text-sm sm:text-lg leading-tight text-slate-900">Bella</h1>
+              <span id="headerCycleBadge" class="inline-flex items-center gap-1 text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full bg-pink-400 text-white">
                 Rateio #01
               </span>
               <span id="weekendStatusBadge" class="hidden md:inline-flex items-center gap-1 text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-300">
@@ -152,12 +152,12 @@
             Modo Admin
           </span>
 
-          <button type="button" onclick="openCartModal()" class="relative inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-sky-500 hover:bg-sky-600 text-white text-xs sm:text-sm font-bold transition shadow-sm">
+          <button type="button" onclick="openCartModal()" class="relative inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-pink-400 hover:bg-pink-500 text-white text-xs sm:text-sm font-bold transition shadow-sm">
             🛒 <span class="hidden sm:inline">Carrinho</span>
-            <span id="headerCartCount" class="px-1.5 py-0.5 text-[10px] font-extrabold rounded-full bg-white text-sky-600">0</span>
+            <span id="headerCartCount" class="px-1.5 py-0.5 text-[10px] font-extrabold rounded-full bg-white text-pink-600">0</span>
           </button>
 
-          <button type="button" onclick="openTrackingBoardModal()" class="hidden lg:inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-sky-100 hover:bg-sky-200 text-sky-700 border border-sky-200 text-xs font-semibold transition">
+          <button type="button" onclick="openTrackingBoardModal()" class="hidden lg:inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-pink-100 hover:bg-pink-200 text-pink-700 border border-pink-200 text-xs font-semibold transition">
             📦 Rastreios
           </button>
 
@@ -176,12 +176,12 @@
     </header>
 
     <!-- Barra Cliente Logado -->
-    <div id="loggedClientBar" class="hidden bg-sky-100/80 border-b border-sky-200">
+    <div id="loggedClientBar" class="hidden bg-pink-100/80 border-b border-pink-200">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex flex-wrap items-center justify-between gap-2 text-xs">
         <div class="flex flex-wrap items-center gap-2">
           <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
           <span class="text-slate-500">Logado: <strong id="loggedClientName" class="text-slate-900"></strong></span>
-          <span id="loggedClientTotalSignalsBadge" class="px-2.5 py-0.5 rounded-full bg-white text-sky-700 border border-sky-200 font-bold">
+          <span id="loggedClientTotalSignalsBadge" class="px-2.5 py-0.5 rounded-full bg-white text-pink-700 border border-pink-200 font-bold">
             Sinais: 0 pçs (R$ 0,00)
           </span>
           <span id="loggedClientReadyBadge" class="hidden px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-300 font-bold">
@@ -192,7 +192,7 @@
           <span id="loggedClientCreditBadge" class="hidden px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-800 border border-purple-300 font-semibold">
             Crédito: R$ 0,00
           </span>
-          <button type="button" onclick="openMyOrdersModal('summary')" class="text-sky-600 hover:underline font-bold">
+          <button type="button" onclick="openMyOrdersModal('summary')" class="text-pink-600 hover:underline font-bold">
             📊 Extrato & Quitação (Até Seg 22:00) &rarr;
           </button>
           <button type="button" onclick="openMyOrdersModal('paid')" class="text-emerald-600 hover:underline font-semibold">
@@ -203,7 +203,7 @@
     </div>
 
     <!-- Banner Pausa Sábado 15h e Domingo -->
-    <div id="weekendPurchasesPausedBanner" class="hidden bg-sky-900 text-white border-b border-sky-700">
+    <div id="weekendPurchasesPausedBanner" class="hidden bg-rose-900 text-white border-b border-rose-700">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-3 text-xs">
         <div class="flex items-center gap-2.5">
           <span class="text-lg">🗓️</span>
@@ -211,7 +211,7 @@
             <strong>Encerramento semanal (Sábado após 15:00 e Domingo):</strong> Novas reservas estão pausadas até <strong id="weekendReopenCountdown" class="font-mono underline">--d --h --m --s</strong> (virada de Domingo para Segunda às 00:00). Você pode consultar seus pedidos e realizar o pagamento normalmente!
           </p>
         </div>
-        <button type="button" onclick="openMyOrdersModal('summary')" class="px-4 py-1.5 rounded-lg bg-sky-500 hover:bg-sky-600 text-white font-bold shrink-0">
+        <button type="button" onclick="openMyOrdersModal('summary')" class="px-4 py-1.5 rounded-lg bg-pink-400 hover:bg-pink-500 text-white font-bold shrink-0">
           Ver Meus Pedidos / Pagar &rarr;
         </button>
       </div>
@@ -234,25 +234,25 @@
     </div>
 
     <!-- Hero / Regras -->
-    <section class="bg-gradient-to-b from-sky-100/70 via-sky-50/40 to-white border-b border-sky-200/70 py-6">
+    <section class="bg-gradient-to-b from-pink-100/70 via-pink-50/40 to-white border-b border-pink-200/70 py-6">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-4 flex items-start gap-3">
-            <span id="heroCycleTag" class="px-2 h-7 rounded-lg bg-sky-100 text-sky-700 font-extrabold text-xs flex items-center justify-center shrink-0">#01</span>
+          <div class="bg-white border border-pink-200/80 shadow-sm rounded-xl p-4 flex items-start gap-3">
+            <span id="heroCycleTag" class="px-2 h-7 rounded-lg bg-pink-100 text-pink-700 font-extrabold text-xs flex items-center justify-center shrink-0">#01</span>
             <div>
               <h3 class="font-semibold text-sm text-slate-900">Ciclo Semanal (Seg 00:00 a Sáb 15:00)</h3>
               <p class="text-xs text-slate-500 mt-0.5">Pedido mínimo de <strong>3 peças</strong> (sinal). Produtos em ordem alfabética (A–Z). Após Sábado 15:00 e Domingo fica aberto para consulta e quitação.</p>
             </div>
           </div>
-          <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-4 flex items-start gap-3">
+          <div class="bg-white border border-pink-200/80 shadow-sm rounded-xl p-4 flex items-start gap-3">
             <span class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-600 font-bold text-sm flex items-center justify-center shrink-0">10</span>
             <div>
               <h3 class="font-semibold text-sm text-slate-900">Boxes de 10 Peças (Água Bacteriostática Livre)</h3>
               <p class="text-xs text-slate-500 mt-0.5">Completou 10 peças, habilita quitação (prazo até <strong>Segunda 22:00</strong>). <strong>Água Bacteriostática</strong> não precisa fechar 10 peças — já libera na hora!</p>
             </div>
           </div>
-          <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-4 flex items-start gap-3">
-            <span class="w-7 h-7 rounded-lg bg-sky-100 text-sky-600 font-bold text-sm flex items-center justify-center shrink-0">📦</span>
+          <div class="bg-white border border-pink-200/80 shadow-sm rounded-xl p-4 flex items-start gap-3">
+            <span class="w-7 h-7 rounded-lg bg-pink-100 text-pink-600 font-bold text-sm flex items-center justify-center shrink-0">📦</span>
             <div>
               <h3 class="font-semibold text-sm text-slate-900">Taxa de Manuseio e Embalo (Não é Frete)</h3>
               <p class="text-xs text-slate-500 mt-0.5">Cobrada na quitação sobre os itens fechados: 1 a 9 peças <strong>R$ 69,99</strong> • 10+ peças <strong>R$ 98,99</strong>. <em>Refere-se apenas a manuseio/embalo e não inclui envio/frete.</em></p>
@@ -264,19 +264,19 @@
         <div class="mt-6 flex flex-col sm:flex-row gap-3">
           <div class="relative flex-1">
             <input id="searchInput" type="text" placeholder="Buscar produto por nome ou categoria (ordem alfabética A-Z)..." oninput="renderCatalog()"
-              class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-xl px-4 py-2.5 text-sm outline-none" />
+              class="w-full bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-xl px-4 py-2.5 text-sm outline-none" />
           </div>
           <select id="categoryFilter" onchange="renderCatalog()"
-            class="bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-xl px-4 py-2.5 text-sm outline-none">
+            class="bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-xl px-4 py-2.5 text-sm outline-none">
             <option value="ALL">Todas as Categorias</option>
           </select>
           <select id="statusFilter" onchange="renderCatalog()"
-            class="bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-xl px-4 py-2.5 text-sm outline-none">
+            class="bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-xl px-4 py-2.5 text-sm outline-none">
             <option value="ALL">Todos os Produtos (A–Z)</option>
             <option value="HAS_COMPLETED">Com Box já Fechado / Liberado</option>
             <option value="ALMOST_FULL">Quase Fechando Box (7 a 9/10)</option>
           </select>
-          <button type="button" onclick="openTrackingBoardModal()" class="lg:hidden px-4 py-2.5 rounded-xl bg-sky-100 hover:bg-sky-200 text-sky-700 border border-sky-200 text-xs font-semibold">
+          <button type="button" onclick="openTrackingBoardModal()" class="lg:hidden px-4 py-2.5 rounded-xl bg-pink-100 hover:bg-pink-200 text-pink-700 border border-pink-200 text-xs font-semibold">
             📦 Consultar Rastreios e Envios
           </button>
         </div>
@@ -286,11 +286,11 @@
     <!-- Catálogo -->
     <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-16">
       <div id="loadingState" class="text-center py-16">
-        <div class="inline-block w-8 h-8 border-4 border-sky-500 border-t-transparent rounded-full animate-spin"></div>
+        <div class="inline-block w-8 h-8 border-4 border-pink-400 border-t-transparent rounded-full animate-spin"></div>
         <p class="text-slate-500 text-sm mt-3">Sincronizando produtos, clientes e boxes em tempo real...</p>
       </div>
 
-      <div id="emptyState" class="hidden text-center py-16 bg-white border border-sky-200/80 shadow-sm rounded-2xl">
+      <div id="emptyState" class="hidden text-center py-16 bg-white border border-pink-200/80 shadow-sm rounded-2xl">
         <p class="text-slate-900 font-semibold">Nenhum produto encontrado</p>
         <p class="text-slate-500 text-sm mt-1">Aguarde o cadastro de produtos ou ajuste os filtros de busca.</p>
       </div>
@@ -299,24 +299,24 @@
     </main>
 
     <!-- Rodapé Oficial Tonelada Tecnologia -->
-    <footer class="bg-white border-t border-sky-200/80 text-slate-500 py-5 px-4 text-center text-xs mt-auto">
+    <footer class="bg-white border-t border-pink-200/80 text-slate-500 py-5 px-4 text-center text-xs mt-auto">
       <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
-        <span>© Nuoan Labs — Todos os direitos reservados</span>
+        <span>© Bella — Todos os direitos reservados</span>
         <span>
-          Desenvolvido pela <strong class="text-sky-700 font-bold">Tonelada Tecnologia</strong> — <span class="italic">uma tecnologia de peso</span>.
+          Desenvolvido pela <strong class="text-pink-700 font-bold">Tonelada Tecnologia</strong> — <span class="italic">uma tecnologia de peso</span>.
         </span>
       </div>
     </footer>
 
     <!-- BARRA FLUTUANTE DO CARRINHO -->
     <div id="floatingCartBar" class="hidden fixed bottom-4 inset-x-4 z-40 max-w-3xl mx-auto">
-      <div class="bg-slate-900 text-white rounded-2xl p-3.5 sm:px-5 shadow-2xl border border-sky-400/40 flex flex-wrap items-center justify-between gap-3">
+      <div class="bg-slate-900 text-white rounded-2xl p-3.5 sm:px-5 shadow-2xl border border-pink-300/40 flex flex-wrap items-center justify-between gap-3">
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-sky-500 hover:bg-sky-600 text-white flex items-center justify-center font-extrabold text-base shrink-0">
+          <div class="w-10 h-10 rounded-xl bg-pink-400 hover:bg-pink-500 text-white flex items-center justify-center font-extrabold text-base shrink-0">
             🛒
           </div>
           <div>
-            <p class="text-xs text-sky-300 font-semibold">
+            <p class="text-xs text-pink-300 font-semibold">
               <span id="floatingCartPieces">0</span> peça(s) • <span id="floatingCartMinInfo">Mínimo 3 peças</span>
             </p>
             <p class="text-sm sm:text-base font-extrabold text-white">
@@ -324,7 +324,7 @@
             </p>
           </div>
         </div>
-        <button type="button" onclick="openCartModal()" class="px-4 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs sm:text-sm transition shadow-md">
+        <button type="button" onclick="openCartModal()" class="px-4 py-2.5 rounded-xl bg-pink-400 hover:bg-pink-500 text-white font-bold text-xs sm:text-sm transition shadow-md">
           Abrir Carrinho &rarr;
         </button>
       </div>
@@ -333,12 +333,12 @@
 
   <!-- MODAL CARRINHO -->
   <div id="cartModal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4">
-    <div class="bg-white border border-sky-200 rounded-2xl max-w-2xl w-full p-5 sm:p-6 shadow-2xl max-h-[92vh] flex flex-col overflow-hidden">
-      <div class="flex justify-between items-start gap-3 border-b border-sky-200 pb-3.5 shrink-0">
+    <div class="bg-white border border-pink-200 rounded-2xl max-w-2xl w-full p-5 sm:p-6 shadow-2xl max-h-[92vh] flex flex-col overflow-hidden">
+      <div class="flex justify-between items-start gap-3 border-b border-pink-200 pb-3.5 shrink-0">
         <div>
           <div class="flex items-center gap-2">
-            <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded bg-sky-100 text-sky-700">🛒 Carrinho de Reservas</span>
-            <span id="cartCycleTag" class="text-[11px] font-bold px-2 py-0.5 rounded bg-sky-500 text-white">Rateio #01</span>
+            <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded bg-pink-100 text-pink-700">🛒 Carrinho de Reservas</span>
+            <span id="cartCycleTag" class="text-[11px] font-bold px-2 py-0.5 rounded bg-pink-400 text-white">Rateio #01</span>
           </div>
           <h2 class="text-lg font-bold text-slate-900 mt-1">Finalizar Reservas & Pagar Sinais</h2>
         </div>
@@ -350,17 +350,17 @@
 
   <!-- MODAL ÁREA DO CLIENTE -->
   <div id="myOrdersModal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4">
-    <div class="bg-white border border-sky-200 rounded-2xl max-w-5xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden">
-      <div class="px-6 py-4 border-b border-sky-200 flex items-center justify-between shrink-0">
+    <div class="bg-white border border-pink-200 rounded-2xl max-w-5xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden">
+      <div class="px-6 py-4 border-b border-pink-200 flex items-center justify-between shrink-0">
         <div>
-          <h2 class="text-lg font-bold text-slate-900">Minha Conta — Nuoan Labs</h2>
+          <h2 class="text-lg font-bold text-slate-900">Minha Conta — Bella</h2>
           <p id="myOrdersSubtitle" class="text-xs text-slate-500"></p>
         </div>
         <button type="button" onclick="closeMyOrdersModal()" class="text-slate-500 hover:opacity-75 text-2xl leading-none">&times;</button>
       </div>
 
-      <div class="flex flex-wrap border-b border-sky-200 px-6 gap-x-5 gap-y-1 bg-sky-50/70 shrink-0">
-        <button type="button" onclick="switchClientPortalTab('summary')" id="clientTab-summary" class="client-portal-tab py-3 text-xs sm:text-sm font-semibold border-b-2 text-sky-600 border-sky-500 whitespace-nowrap">
+      <div class="flex flex-wrap border-b border-pink-200 px-6 gap-x-5 gap-y-1 bg-pink-50/70 shrink-0">
+        <button type="button" onclick="switchClientPortalTab('summary')" id="clientTab-summary" class="client-portal-tab py-3 text-xs sm:text-sm font-semibold border-b-2 text-pink-600 border-pink-400 whitespace-nowrap">
           📊 Extrato & Quitação (Prazo Seg 22:00)
         </button>
         <button type="button" onclick="switchClientPortalTab('active')" id="clientTab-active" class="client-portal-tab py-3 text-xs sm:text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-slate-700 whitespace-nowrap">
@@ -380,8 +380,8 @@
 
   <!-- MODAL MURAL DE RASTREIOS -->
   <div id="trackingBoardModal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4">
-    <div class="bg-white border border-sky-200 rounded-2xl max-w-4xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
-      <div class="px-6 py-4 border-b border-sky-200 flex items-center justify-between shrink-0">
+    <div class="bg-white border border-pink-200 rounded-2xl max-w-4xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+      <div class="px-6 py-4 border-b border-pink-200 flex items-center justify-between shrink-0">
         <div>
           <h2 class="text-lg font-bold text-slate-900">📦 Rastreios e Envios por Rateio / Data de Fechamento</h2>
           <p class="text-xs text-slate-500">Consulte as informações de envio atualizadas pelos administradores separadas por ciclo de rateio e data de fechamento.</p>
@@ -389,9 +389,9 @@
         <button type="button" onclick="closeTrackingBoardModal()" class="text-slate-500 hover:opacity-75 text-2xl leading-none">&times;</button>
       </div>
 
-      <div class="px-6 py-3 bg-sky-50/70 border-b border-sky-200 flex flex-col sm:flex-row gap-3 shrink-0">
+      <div class="px-6 py-3 bg-pink-50/70 border-b border-pink-200 flex flex-col sm:flex-row gap-3 shrink-0">
         <input id="publicTrackingSearch" type="text" oninput="renderPublicTrackingBoard()" placeholder="Filtrar por nome do produto, número do rateio ou data..."
-          class="flex-1 bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3.5 py-2 text-xs outline-none" />
+          class="flex-1 bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-lg px-3.5 py-2 text-xs outline-none" />
       </div>
 
       <div id="publicTrackingBody" class="flex-1 min-h-0 overflow-y-auto p-6 custom-scrollbar space-y-5"></div>
@@ -400,10 +400,10 @@
 
   <!-- MODAL PAINEL ADMINISTRATIVO -->
   <div id="adminModal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4">
-    <div class="bg-white border border-sky-200 rounded-2xl max-w-6xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden">
-      <div class="px-6 py-4 border-b border-sky-200 flex items-center justify-between gap-2 shrink-0">
+    <div class="bg-white border border-pink-200 rounded-2xl max-w-6xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden">
+      <div class="px-6 py-4 border-b border-pink-200 flex items-center justify-between gap-2 shrink-0">
         <div>
-          <h2 class="text-lg font-bold text-slate-900">Painel Administrativo — Nuoan Labs (<span id="adminHeaderCycleLabel">Rateio #01</span>)</h2>
+          <h2 class="text-lg font-bold text-slate-900">Painel Administrativo — Bella (<span id="adminHeaderCycleLabel">Rateio #01</span>)</h2>
           <p id="loggedAdminBanner" class="hidden text-xs text-emerald-600 font-medium"></p>
         </div>
         <div class="flex items-center gap-3">
@@ -420,46 +420,46 @@
         <div>
           <label class="block text-xs text-slate-700 mb-1">E-mail do Administrador</label>
           <input id="adminEmailInput" type="email" value="admin@rateio.com" placeholder="admin@rateio.com"
-            class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-xl px-4 py-2.5 text-sm outline-none" />
+            class="w-full bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-xl px-4 py-2.5 text-sm outline-none" />
         </div>
         <div>
           <label class="block text-xs text-slate-700 mb-1">Senha Individual</label>
           <input id="adminPasswordInput" type="password" placeholder="Senha (inicial: admin123)"
-            class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-xl px-4 py-2.5 text-sm outline-none" />
+            class="w-full bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-xl px-4 py-2.5 text-sm outline-none" />
         </div>
-        <button type="button" onclick="loginAdmin()" class="w-full py-2.5 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-semibold text-sm">
+        <button type="button" onclick="loginAdmin()" class="w-full py-2.5 rounded-xl bg-pink-400 hover:bg-pink-500 text-white font-semibold text-sm">
           Acessar Painel
         </button>
       </div>
 
       <!-- Conteúdo Admin Logado -->
       <div id="adminDashboardView" class="hidden flex-1 min-h-0 flex flex-col overflow-hidden">
-        <div class="flex flex-wrap items-center border-b border-sky-200 px-4 sm:px-6 py-2 gap-1.5 sm:gap-2 bg-sky-50/70 shrink-0">
-          <button type="button" onclick="switchAdminTab('unpaid')" id="tab-unpaid" class="admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-sky-500 bg-sky-500 text-white transition">
+        <div class="flex flex-wrap items-center border-b border-pink-200 px-4 sm:px-6 py-2 gap-1.5 sm:gap-2 bg-pink-50/70 shrink-0">
+          <button type="button" onclick="switchAdminTab('unpaid')" id="tab-unpaid" class="admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-pink-400 bg-pink-400 text-white transition">
             ⚠️ Pendentes Quitação (<span id="adminUnpaidBadgeCount">0</span>)
           </button>
-          <button type="button" onclick="switchAdminTab('tracking')" id="tab-tracking" class="admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-sky-200 bg-white text-slate-600 hover:bg-sky-100 transition">
+          <button type="button" onclick="switchAdminTab('tracking')" id="tab-tracking" class="admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-pink-200 bg-white text-slate-600 hover:bg-pink-100 transition">
             📦 Rastreios e Envios
           </button>
-          <button type="button" onclick="switchAdminTab('closings')" id="tab-closings" class="admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-sky-200 bg-white text-slate-600 hover:bg-sky-100 transition">
+          <button type="button" onclick="switchAdminTab('closings')" id="tab-closings" class="admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-pink-200 bg-white text-slate-600 hover:bg-pink-100 transition">
             Boxes & Quitação (PIX / Cartão)
           </button>
-          <button type="button" onclick="switchAdminTab('clients')" id="tab-clients" class="admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-sky-200 bg-white text-slate-600 hover:bg-sky-100 transition">
+          <button type="button" onclick="switchAdminTab('clients')" id="tab-clients" class="admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-pink-200 bg-white text-slate-600 hover:bg-pink-100 transition">
             Pedidos por Cliente
           </button>
-          <button type="button" onclick="switchAdminTab('weekly')" id="tab-weekly" class="admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-sky-200 bg-white text-slate-600 hover:bg-sky-100 transition">
+          <button type="button" onclick="switchAdminTab('weekly')" id="tab-weekly" class="admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-pink-200 bg-white text-slate-600 hover:bg-pink-100 transition">
             Rateios & Arrecadação (Seg–Sáb 15h)
           </button>
-          <button type="button" onclick="switchAdminTab('products')" id="tab-products" class="admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-sky-200 bg-white text-slate-600 hover:bg-sky-100 transition">
+          <button type="button" onclick="switchAdminTab('products')" id="tab-products" class="admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-pink-200 bg-white text-slate-600 hover:bg-pink-100 transition">
             Cadastrar Produto (1 a 1)
           </button>
-          <button type="button" onclick="switchAdminTab('bulk')" id="tab-bulk" class="admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-sky-200 bg-white text-slate-600 hover:bg-sky-100 transition">
+          <button type="button" onclick="switchAdminTab('bulk')" id="tab-bulk" class="admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-pink-200 bg-white text-slate-600 hover:bg-pink-100 transition">
             Cadastro em Lote (+100)
           </button>
-          <button type="button" onclick="switchAdminTab('settings')" id="tab-settings" class="admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-sky-200 bg-white text-slate-600 hover:bg-sky-100 transition">
+          <button type="button" onclick="switchAdminTab('settings')" id="tab-settings" class="admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-pink-200 bg-white text-slate-600 hover:bg-pink-100 transition">
             ❖ Chave PIX & Config
           </button>
-          <button type="button" onclick="switchAdminTab('admins')" id="tab-admins" class="admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-sky-200 bg-white text-slate-600 hover:bg-sky-100 transition">
+          <button type="button" onclick="switchAdminTab('admins')" id="tab-admins" class="admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-pink-200 bg-white text-slate-600 hover:bg-pink-100 transition">
             Admins & Auditoria
           </button>
         </div>
@@ -475,14 +475,14 @@
                 </p>
               </div>
               <input id="adminUnpaidSearch" type="text" oninput="renderAdminUnpaidList()" placeholder="Pesquisar cliente, telefone, e-mail ou produto..."
-                class="bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3.5 py-2 text-xs w-full sm:w-72 outline-none" />
+                class="bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-lg px-3.5 py-2 text-xs w-full sm:w-72 outline-none" />
             </div>
             <div id="adminUnpaidList" class="space-y-3"></div>
           </div>
 
           <!-- ABA RASTREIOS -->
           <div id="view-tracking" class="hidden space-y-5">
-            <div class="bg-sky-50 border border-sky-200 text-slate-800 rounded-xl p-4 flex flex-wrap items-center justify-between gap-3">
+            <div class="bg-pink-50 border border-pink-200 text-slate-800 rounded-xl p-4 flex flex-wrap items-center justify-between gap-3">
               <div>
                 <h3 class="font-bold text-slate-900 text-sm">📦 Rastreios e Envios (Agrupados por Data de Fechamento do Rateio)</h3>
                 <p class="text-xs text-slate-500 mt-0.5">
@@ -490,14 +490,14 @@
                 </p>
               </div>
               <input id="adminTrackingSearch" type="text" oninput="renderAdminTracking()" placeholder="Buscar produto, data ou status..."
-                class="bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-1.5 text-xs w-full sm:w-64 outline-none" />
+                class="bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-lg px-3 py-1.5 text-xs w-full sm:w-64 outline-none" />
             </div>
             <div id="adminTrackingList" class="space-y-5"></div>
           </div>
 
           <!-- ABA CHAVE PIX & CONFIG -->
           <div id="view-settings" class="hidden grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-5 space-y-3.5">
+            <div class="bg-white border border-pink-200/80 shadow-sm rounded-xl p-5 space-y-3.5">
               <div class="flex items-center justify-between">
                 <h3 class="font-bold text-sm text-slate-900">❖ Cadastro da Chave PIX Recebedora & WhatsApp do Admin</h3>
                 <span id="pixActiveStatusBadge" class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800 border border-amber-300">Verificando...</span>
@@ -509,7 +509,7 @@
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
                   <label class="block text-xs text-slate-700 mb-1">Tipo da Chave PIX *</label>
-                  <select id="settingPixType" class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs">
+                  <select id="settingPixType" class="w-full bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-lg px-3 py-2 text-xs">
                     <option value="CPF">CPF</option>
                     <option value="CNPJ">CNPJ</option>
                     <option value="EMAIL">E-mail</option>
@@ -519,49 +519,49 @@
                 </div>
                 <div class="sm:col-span-2">
                   <label class="block text-xs text-slate-700 mb-1">Chave PIX Recebedora *</label>
-                  <input id="settingPixKey" type="text" placeholder="Ex: 12.345.678/0001-99 ou seuemail@pix.com" class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs font-mono outline-none" />
+                  <input id="settingPixKey" type="text" placeholder="Ex: 12.345.678/0001-99 ou seuemail@pix.com" class="w-full bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-lg px-3 py-2 text-xs font-mono outline-none" />
                 </div>
               </div>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label class="block text-xs text-slate-700 mb-1">Nome do Titular / Recebedor *</label>
-                  <input id="settingPixReceiverName" type="text" placeholder="Ex: Nuoan Labs" class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs" />
+                  <input id="settingPixReceiverName" type="text" placeholder="Ex: Bella" class="w-full bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-lg px-3 py-2 text-xs" />
                 </div>
                 <div>
                   <label class="block text-xs text-slate-700 mb-1">Cidade do Titular *</label>
-                  <input id="settingPixCity" type="text" value="SAO PAULO" placeholder="Ex: SAO PAULO" class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs" />
+                  <input id="settingPixCity" type="text" value="SAO PAULO" placeholder="Ex: SAO PAULO" class="w-full bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-lg px-3 py-2 text-xs" />
                 </div>
               </div>
 
               <div>
                 <label class="block text-xs text-slate-700 mb-1">WhatsApp do Admin (para Cartão de Crédito / Suporte)</label>
-                <input id="settingStoreWhatsapp" type="text" placeholder="Ex: 5511999998888" class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs" />
+                <input id="settingStoreWhatsapp" type="text" placeholder="Ex: 5511999998888" class="w-full bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-lg px-3 py-2 text-xs" />
               </div>
 
-              <button type="button" onclick="saveSettings()" class="w-full py-2.5 rounded-lg bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs transition">
+              <button type="button" onclick="saveSettings()" class="w-full py-2.5 rounded-lg bg-pink-400 hover:bg-pink-500 text-white font-bold text-xs transition">
                 Salvar Chave PIX e Contato (Exige Senha Admin)
               </button>
             </div>
 
-            <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-5 space-y-3">
+            <div class="bg-white border border-pink-200/80 shadow-sm rounded-xl p-5 space-y-3">
               <h3 class="font-bold text-sm text-slate-900">Envio de E-mail Automático (Fechamento Sábado 15:00)</h3>
               <p class="text-[11px] text-slate-500 leading-relaxed">
-                Crie uma conta grátis em <strong>emailjs.com</strong>, crie um template com <code class="text-sky-600">{{to_email}}</code>, <code class="text-sky-600">{{subject}}</code> e <code class="text-sky-600">{{message}}</code> e cole os 3 códigos abaixo:
+                Crie uma conta grátis em <strong>emailjs.com</strong>, crie um template com <code class="text-pink-600">{{to_email}}</code>, <code class="text-pink-600">{{subject}}</code> e <code class="text-pink-600">{{message}}</code> e cole os 3 códigos abaixo:
               </p>
               <div>
                 <label class="block text-xs text-slate-700 mb-1">EmailJS Public Key</label>
-                <input id="settingEmailJsPublicKey" type="text" placeholder="Ex: user_xxxxxxxxxxxx" class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs font-mono" />
+                <input id="settingEmailJsPublicKey" type="text" placeholder="Ex: user_xxxxxxxxxxxx" class="w-full bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-lg px-3 py-2 text-xs font-mono" />
               </div>
               <div>
                 <label class="block text-xs text-slate-700 mb-1">EmailJS Service ID</label>
-                <input id="settingEmailJsServiceId" type="text" placeholder="Ex: service_xxxxxxx" class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs font-mono" />
+                <input id="settingEmailJsServiceId" type="text" placeholder="Ex: service_xxxxxxx" class="w-full bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-lg px-3 py-2 text-xs font-mono" />
               </div>
               <div>
                 <label class="block text-xs text-slate-700 mb-1">EmailJS Template ID</label>
-                <input id="settingEmailJsTemplateId" type="text" placeholder="Ex: template_xxxxxxx" class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs font-mono" />
+                <input id="settingEmailJsTemplateId" type="text" placeholder="Ex: template_xxxxxxx" class="w-full bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-lg px-3 py-2 text-xs font-mono" />
               </div>
-              <button type="button" onclick="saveEmailJsSettings()" class="px-4 py-2 rounded-lg bg-sky-500 hover:bg-sky-600 text-white font-semibold text-xs">
+              <button type="button" onclick="saveEmailJsSettings()" class="px-4 py-2 rounded-lg bg-pink-400 hover:bg-pink-500 text-white font-semibold text-xs">
                 Salvar Configuração de E-mail
               </button>
             </div>
@@ -569,13 +569,13 @@
 
           <!-- ABA RATEIOS & ARRECADAÇÃO -->
           <div id="view-weekly" class="hidden space-y-5">
-            <div class="flex flex-wrap items-center justify-between gap-3 bg-white border border-sky-200/80 shadow-sm rounded-xl p-4">
+            <div class="flex flex-wrap items-center justify-between gap-3 bg-white border border-pink-200/80 shadow-sm rounded-xl p-4">
               <div>
                 <h3 class="font-bold text-slate-900 text-base">Ciclos de Rateio Numerados (Segunda 00:00 até Sábado 15:00)</h3>
                 <p class="text-xs text-slate-500">Cada semana é numerada sequencialmente a partir do Rateio #01. Fecha sábado às 15:00 e abre novo ciclo na segunda às 00:00.</p>
               </div>
               <div class="flex flex-wrap items-center gap-2">
-                <select id="weeklySelector" onchange="renderWeeklyRevenue()" class="bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs font-semibold"></select>
+                <select id="weeklySelector" onchange="renderWeeklyRevenue()" class="bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-lg px-3 py-2 text-xs font-semibold"></select>
                 <button type="button" onclick="triggerWeeklyReportEmail(true)" class="px-3.5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs">
                   Enviar Lista de Boxes Fechados Agora
                 </button>
@@ -584,13 +584,13 @@
 
             <div id="weeklySummaryCards" class="grid grid-cols-1 sm:grid-cols-3 gap-4"></div>
 
-            <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl overflow-hidden">
-              <div class="px-4 py-3 border-b border-sky-200 bg-sky-50/70 flex justify-between items-center">
+            <div class="bg-white border border-pink-200/80 shadow-sm rounded-xl overflow-hidden">
+              <div class="px-4 py-3 border-b border-pink-200 bg-pink-50/70 flex justify-between items-center">
                 <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700">Histórico de Todos os Rateios Numerados</h4>
               </div>
               <div class="overflow-x-auto">
                 <table class="w-full text-left text-xs">
-                  <thead class="bg-sky-50 text-slate-600 border-b border-sky-200">
+                  <thead class="bg-pink-50 text-slate-600 border-b border-pink-200">
                     <tr>
                       <th class="p-3">Rateio / Período (Seg 00:00 a Sáb 15:00)</th>
                       <th class="p-3">Reservas no Ciclo</th>
@@ -600,7 +600,7 @@
                       <th class="p-3 text-center">Relatório E-mail</th>
                     </tr>
                   </thead>
-                  <tbody id="weeklyHistoryTable" class="divide-y border-sky-200"></tbody>
+                  <tbody id="weeklyHistoryTable" class="divide-y border-pink-200"></tbody>
                 </table>
               </div>
             </div>
@@ -608,13 +608,13 @@
 
           <!-- ABA CLIENTES -->
           <div id="view-clients" class="hidden space-y-5">
-            <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-4 space-y-3">
+            <div class="bg-white border border-pink-200/80 shadow-sm rounded-xl p-4 space-y-3">
               <div>
                 <h3 class="font-bold text-slate-900 text-sm">Gerenciar Pedidos e Forma de Pagamento de Qualquer Cliente</h3>
                 <p class="text-xs text-slate-500">Busque pelo nome, e-mail ou telefone para ver pedidos, confirmar quitação via <strong>PIX</strong> ou <strong>Cartão de Crédito</strong>, adicionar ou excluir produtos.</p>
               </div>
               <input id="adminClientSearch" type="text" oninput="renderAdminClients()" placeholder="Buscar cliente por nome, e-mail ou telefone..."
-                class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3.5 py-2 text-xs outline-none" />
+                class="w-full bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-lg px-3.5 py-2 text-xs outline-none" />
             </div>
             <div id="adminClientsList" class="space-y-4"></div>
           </div>
@@ -626,7 +626,7 @@
                 <h3 class="font-bold text-slate-900">Controle de Boxes (10 peças por Box • Água Bacteriostática Livre)</h3>
                 <p class="text-xs text-slate-500">Boxes completos (10/10) ou Água Bacteriostática já ficam habilitados para cobrar o restante + taxa de manuseio/embalo até Segunda-feira às 22:00. Marque se foi pago via <strong>PIX</strong> ou <strong>Cartão de Crédito</strong>.</p>
               </div>
-              <select id="adminClosingFilter" onchange="renderAdminClosings()" class="bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-1.5 text-xs">
+              <select id="adminClosingFilter" onchange="renderAdminClosings()" class="bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-lg px-3 py-1.5 text-xs">
                 <option value="ALL">Todos os Boxes</option>
                 <option value="COMPLETED">Somente Boxes Liberados (10/10 ou Livre)</option>
                 <option value="IN_PROGRESS">Boxes em Andamento (&lt; 10)</option>
@@ -637,9 +637,9 @@
 
           <!-- ABA PRODUTOS -->
           <div id="view-products" class="hidden space-y-6">
-            <div class="bg-sky-50 border border-sky-200 text-slate-800 rounded-xl p-4 space-y-2 text-xs">
-              <div class="flex items-center gap-2 text-sky-600 font-bold">
-                <span>📘 Instruções para Cadastro Manual e Correção de Valores — Nuoan Labs (Ordem Alfabética A–Z)</span>
+            <div class="bg-pink-50 border border-pink-200 text-slate-800 rounded-xl p-4 space-y-2 text-xs">
+              <div class="flex items-center gap-2 text-pink-600 font-bold">
+                <span>📘 Instruções para Cadastro Manual e Correção de Valores — Bella (Ordem Alfabética A–Z)</span>
               </div>
               <ol class="list-decimal list-inside space-y-1 text-slate-700 leading-relaxed">
                 <li><strong>Nome do Produto:</strong> Digite o título completo do item (a lista do site é organizada automaticamente em <strong>ordem alfabética A–Z</strong>).</li>
@@ -650,33 +650,33 @@
               </ol>
             </div>
 
-            <form onsubmit="addSingleProduct(event)" class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-4 space-y-3">
+            <form onsubmit="addSingleProduct(event)" class="bg-white border border-pink-200/80 shadow-sm rounded-xl p-4 space-y-3">
               <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
                 <div class="lg:col-span-2">
                   <label class="block text-[11px] font-semibold text-slate-700 mb-1">Nome do Produto *</label>
                   <input id="prodName" type="text" required placeholder="Ex: Água Bacteriostática 30ml"
-                    class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs outline-none" />
+                    class="w-full bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-lg px-3 py-2 text-xs outline-none" />
                 </div>
                 <div>
-                  <label class="block text-[11px] font-semibold text-sky-600 mb-1">Valor do Box (10 pçs) (R$) *</label>
+                  <label class="block text-[11px] font-semibold text-pink-600 mb-1">Valor do Box (10 pçs) (R$) *</label>
                   <input id="prodBoxPrice" type="number" step="0.01" required placeholder="Ex: 3500.00" oninput="syncPriceFromBox()"
-                    class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs outline-none" />
+                    class="w-full bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-lg px-3 py-2 text-xs outline-none" />
                 </div>
                 <div>
-                  <label class="block text-[11px] font-semibold text-sky-600 mb-1">Valor por Peça (R$) *</label>
+                  <label class="block text-[11px] font-semibold text-pink-600 mb-1">Valor por Peça (R$) *</label>
                   <input id="prodFull" type="number" step="0.01" required placeholder="Ex: 350.00" oninput="syncPriceFromPiece()"
-                    class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs outline-none" />
+                    class="w-full bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-lg px-3 py-2 text-xs outline-none" />
                 </div>
                 <div>
                   <label class="block text-[11px] font-semibold text-emerald-600 mb-1">Valor do Sinal (R$) *</label>
                   <input id="prodDeposit" type="number" step="0.01" value="20" required placeholder="20.00"
-                    class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs outline-none" />
+                    class="w-full bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-lg px-3 py-2 text-xs outline-none" />
                 </div>
                 <div>
                   <label class="block text-[11px] font-semibold text-slate-700 mb-1">Categoria & Ação</label>
                   <div class="flex gap-2">
                     <input id="prodCategory" type="text" placeholder="Ex: Geral"
-                      class="w-full bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs outline-none" />
+                      class="w-full bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-lg px-3 py-2 text-xs outline-none" />
                     <button type="submit" class="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs shrink-0">
                       Salvar
                     </button>
@@ -685,9 +685,9 @@
               </div>
             </form>
 
-            <div class="overflow-x-auto border border-sky-200 rounded-xl">
+            <div class="overflow-x-auto border border-pink-200 rounded-xl">
               <table class="w-full text-left text-xs">
-                <thead class="bg-sky-50 text-slate-600 border-b border-sky-200">
+                <thead class="bg-pink-50 text-slate-600 border-b border-pink-200">
                   <tr>
                     <th class="p-3">Produto (A–Z)</th>
                     <th class="p-3">Categoria</th>
@@ -698,16 +698,16 @@
                     <th class="p-3 text-right">Ações</th>
                   </tr>
                 </thead>
-                <tbody id="adminProductsTable" class="divide-y border-sky-200"></tbody>
+                <tbody id="adminProductsTable" class="divide-y border-pink-200"></tbody>
               </table>
             </div>
           </div>
 
           <!-- ABA LOTE -->
           <div id="view-bulk" class="hidden space-y-4">
-            <div class="bg-sky-50 border border-sky-200 text-slate-800 rounded-xl p-4 space-y-2 text-xs">
-              <div class="flex items-center gap-2 text-sky-600 font-bold">
-                <span>📗 Instruções para Cadastro em Lote (+100 Produtos) — Nuoan Labs</span>
+            <div class="bg-pink-50 border border-pink-200 text-slate-800 rounded-xl p-4 space-y-2 text-xs">
+              <div class="flex items-center gap-2 text-pink-600 font-bold">
+                <span>📗 Instruções para Cadastro em Lote (+100 Produtos) — Bella</span>
               </div>
               <p class="text-slate-700">Para cadastrar dezenas ou centenas de produtos de uma só vez, siga este padrão:</p>
               <ul class="list-disc list-inside space-y-1 text-slate-700 leading-relaxed">
@@ -717,11 +717,11 @@
               </ul>
             </div>
 
-            <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-4">
+            <div class="bg-white border border-pink-200/80 shadow-sm rounded-xl p-4">
               <h3 class="font-bold text-sm text-slate-900">Cole sua lista de produtos abaixo:</h3>
               <textarea id="bulkInput" rows="9" placeholder="Água Bacteriostática 30ml; 20.00; 800.00; 80.00; Insumos&#10;Peptídeo BPC-157 5mg; 20.00; 3500.00; 350.00; Peptídeos"
-                class="w-full mt-3 bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-xl p-3 text-xs font-mono outline-none"></textarea>
-              <button type="button" onclick="importBulkProducts()" class="mt-3 px-5 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-semibold text-xs">
+                class="w-full mt-3 bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-xl p-3 text-xs font-mono outline-none"></textarea>
+              <button type="button" onclick="importBulkProducts()" class="mt-3 px-5 py-2.5 rounded-xl bg-pink-400 hover:bg-pink-500 text-white font-semibold text-xs">
                 Importar Todos os Produtos em Lote Agora
               </button>
             </div>
@@ -729,23 +729,23 @@
 
           <!-- ABA ADMINS & AUDITORIA -->
           <div id="view-admins" class="hidden space-y-6">
-            <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-4 space-y-3">
+            <div class="bg-white border border-pink-200/80 shadow-sm rounded-xl p-4 space-y-3">
               <div>
-                <h3 class="font-bold text-sm text-slate-900">Cadastrar Novo Administrador (Nuoan Labs)</h3>
+                <h3 class="font-bold text-sm text-slate-900">Cadastrar Novo Administrador (Bella)</h3>
                 <p class="text-xs text-slate-500">Cada administrador cadastrado terá login individual e receberá a lista de boxes fechados no sábado às 15:00.</p>
               </div>
               <form onsubmit="addNewAdmin(event)" class="grid grid-cols-1 sm:grid-cols-4 gap-3">
-                <input id="newAdminName" type="text" required placeholder="Nome do Admin" class="bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs" />
-                <input id="newAdminEmail" type="email" required placeholder="E-mail do Admin (receberá relatórios)" class="bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs" />
-                <input id="newAdminPass" type="password" required minlength="4" placeholder="Senha individual" class="bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs" />
-                <button type="submit" class="px-4 py-2 rounded-lg bg-sky-500 hover:bg-sky-600 text-white font-semibold text-xs">
+                <input id="newAdminName" type="text" required placeholder="Nome do Admin" class="bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-lg px-3 py-2 text-xs" />
+                <input id="newAdminEmail" type="email" required placeholder="E-mail do Admin (receberá relatórios)" class="bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-lg px-3 py-2 text-xs" />
+                <input id="newAdminPass" type="password" required minlength="4" placeholder="Senha individual" class="bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-lg px-3 py-2 text-xs" />
+                <button type="submit" class="px-4 py-2 rounded-lg bg-pink-400 hover:bg-pink-500 text-white font-semibold text-xs">
                   + Cadastrar Admin
                 </button>
               </form>
 
-              <div class="overflow-x-auto border border-sky-200 rounded-xl mt-3">
+              <div class="overflow-x-auto border border-pink-200 rounded-xl mt-3">
                 <table class="w-full text-left text-xs">
-                  <thead class="bg-sky-50 text-slate-600 border-b border-sky-200">
+                  <thead class="bg-pink-50 text-slate-600 border-b border-pink-200">
                     <tr>
                       <th class="p-3">Nome</th>
                       <th class="p-3">E-mail (Destino Relatório)</th>
@@ -753,19 +753,19 @@
                       <th class="p-3 text-right">Ações</th>
                     </tr>
                   </thead>
-                  <tbody id="adminsTableBody" class="divide-y border-sky-200"></tbody>
+                  <tbody id="adminsTableBody" class="divide-y border-pink-200"></tbody>
                 </table>
               </div>
             </div>
 
-            <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl overflow-hidden">
-              <div class="px-4 py-3 border-b border-sky-200 bg-sky-50/70">
+            <div class="bg-white border border-pink-200/80 shadow-sm rounded-xl overflow-hidden">
+              <div class="px-4 py-3 border-b border-pink-200 bg-pink-50/70">
                 <h3 class="font-bold text-sm text-slate-900">Registro de Auditoria (Alterações por Administrador)</h3>
                 <p class="text-xs text-slate-500">Histórico completo de quem adicionou, alterou ou excluiu registros no painel.</p>
               </div>
               <div class="overflow-x-auto max-h-80 custom-scrollbar">
                 <table class="w-full text-left text-xs">
-                  <thead class="bg-sky-50 text-slate-600 border-b border-sky-200 sticky top-0">
+                  <thead class="bg-pink-50 text-slate-600 border-b border-pink-200 sticky top-0">
                     <tr>
                       <th class="p-3">Data / Hora</th>
                       <th class="p-3">Administrador</th>
@@ -773,7 +773,7 @@
                       <th class="p-3">Detalhes</th>
                     </tr>
                   </thead>
-                  <tbody id="auditLogsTableBody" class="divide-y border-sky-200"></tbody>
+                  <tbody id="auditLogsTableBody" class="divide-y border-pink-200"></tbody>
                 </table>
               </div>
             </div>
@@ -815,7 +815,7 @@
       config: "nuoan_config"
     };
 
-    const BRAND_NAME = "Nuoan Labs";
+    const BRAND_NAME = "Bella";
     const STORAGE_PREFIX = "nuoan";
     const IS_DARK = false;
     const MIN_PIECES = 3;
@@ -1118,7 +1118,7 @@
       document.getElementById("gateRegisterForm").classList.toggle("hidden", !isRegister);
       document.getElementById("gateLoginForm").classList.toggle("hidden", isRegister);
 
-      const activeCls = "text-sm font-bold text-sky-600 border-b-2 border-sky-500 pb-1";
+      const activeCls = "text-sm font-bold text-pink-600 border-b-2 border-pink-400 pb-1";
       const inactiveCls = "text-sm font-bold text-slate-400 hover:text-slate-700 pb-1";
 
       document.getElementById("gateTabRegister").className = isRegister ? activeCls : inactiveCls;
@@ -1230,7 +1230,7 @@
       });
       const activeEl = document.getElementById(`clientTab-${tab}`);
       if (activeEl) {
-        activeEl.className = "client-portal-tab py-3 text-xs sm:text-sm font-semibold border-b-2 text-sky-600 border-sky-500 whitespace-nowrap";
+        activeEl.className = "client-portal-tab py-3 text-xs sm:text-sm font-semibold border-b-2 text-pink-600 border-pink-400 whitespace-nowrap";
       }
       renderMyOrders();
     };
@@ -1372,7 +1372,7 @@
               }
             </p>
             <div class="flex flex-wrap justify-center gap-2 pt-2">
-              <button type="button" onclick="closeCartModal()" class="px-5 py-2 rounded-xl bg-sky-500 hover:bg-sky-600 text-white text-xs font-semibold">
+              <button type="button" onclick="closeCartModal()" class="px-5 py-2 rounded-xl bg-pink-400 hover:bg-pink-500 text-white text-xs font-semibold">
                 Voltar ao Catálogo
               </button>
               <button type="button" onclick="closeCartModal(); openMyOrdersModal('summary');" class="px-5 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 text-xs font-semibold">
@@ -1396,8 +1396,8 @@
       );
 
       body.innerHTML = `
-        <div class="bg-sky-50 border border-sky-200 text-slate-800 rounded-xl px-3.5 py-2 flex items-center justify-between text-xs">
-          <span class="font-bold text-sky-600">Ciclo: ${currentCycle.shortTitle}</span>
+        <div class="bg-pink-50 border border-pink-200 text-slate-800 rounded-xl px-3.5 py-2 flex items-center justify-between text-xs">
+          <span class="font-bold text-pink-600">Ciclo: ${currentCycle.shortTitle}</span>
           <span class="text-slate-500">${paused ? 'Reabre Segunda 00:00' : 'Compras abertas até Sábado 15:00'}</span>
         </div>
 
@@ -1435,27 +1435,27 @@
             const info = getBoxesInfo(p.id);
             const isFree = isNoBoxLimitProduct(p.name);
             return `
-              <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div class="bg-white border border-pink-200/80 shadow-sm rounded-xl p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div class="space-y-0.5">
                   <div class="flex items-center gap-2">
-                    <span class="text-[10px] font-bold px-2 py-0.5 rounded ${isFree ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-sky-100 text-sky-700'}">
+                    <span class="text-[10px] font-bold px-2 py-0.5 rounded ${isFree ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-pink-100 text-pink-700'}">
                       ${isFree ? '✓ Sem mínimo de Box (Liberação Imediata)' : `Box #${info.activeBoxNumber} (${info.activeBoxCount}/10)`}
                     </span>
                     ${p.category ? `<span class="text-[10px] font-semibold text-slate-500 uppercase">${p.category}</span>` : ''}
                   </div>
                   <h4 class="font-bold text-slate-900 text-sm">${p.name}</h4>
                   <p class="text-xs text-slate-500">
-                    Sinal unit.: <strong class="text-sky-600">${formatBRL(p.depositPrice)}</strong> •
+                    Sinal unit.: <strong class="text-pink-600">${formatBRL(p.depositPrice)}</strong> •
                     Valor por peça: <strong class="text-slate-900">${formatBRL(p.fullPrice)}</strong> •
-                    Subtotal sinal (${qty}x): <strong class="text-sky-600">${formatBRL(subtotalDeposit)}</strong>
+                    Subtotal sinal (${qty}x): <strong class="text-pink-600">${formatBRL(subtotalDeposit)}</strong>
                   </p>
                 </div>
 
                 <div class="flex items-center justify-between sm:justify-end gap-3">
-                  <div class="inline-flex items-center bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg overflow-hidden">
+                  <div class="inline-flex items-center bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-lg overflow-hidden">
                     <button type="button" onclick="updateCartItemQty('${p.id}', -1)" class="px-2.5 py-1 text-slate-500 font-bold text-sm">-</button>
                     <span class="px-3 py-1 text-xs font-extrabold text-slate-900">${qty}</span>
-                    <button type="button" onclick="updateCartItemQty('${p.id}', 1)" ${paused ? 'disabled' : ''} class="px-2.5 py-1 ${paused ? 'opacity-30 cursor-not-allowed' : 'text-sky-600'} font-bold text-sm">+</button>
+                    <button type="button" onclick="updateCartItemQty('${p.id}', 1)" ${paused ? 'disabled' : ''} class="px-2.5 py-1 ${paused ? 'opacity-30 cursor-not-allowed' : 'text-pink-600'} font-bold text-sm">+</button>
                   </div>
                   <button type="button" onclick="removeCartItem('${p.id}')" class="text-xs text-red-500 hover:text-red-400 font-semibold px-2 py-1">
                     Remover
@@ -1466,7 +1466,7 @@
           }).join("")}
         </div>
 
-        <div class="bg-white border border-sky-200/80 shadow-sm border-2 border-sky-400/60 rounded-2xl p-4 space-y-2 text-xs sm:text-sm">
+        <div class="bg-white border border-pink-200/80 shadow-sm border-2 border-pink-300/60 rounded-2xl p-4 space-y-2 text-xs sm:text-sm">
           <div class="flex justify-between text-slate-500">
             <span>Quantidade total de peças reservadas (${currentCycle.shortTitle}):</span>
             <strong class="text-slate-900">${summary.totalPieces} peça(s)</strong>
@@ -1475,7 +1475,7 @@
             <span>Valor cheio dos produtos (quitação até Segunda 22:00):</span>
             <strong class="text-slate-900">${formatBRL(summary.totalFull)}</strong>
           </div>
-          <div class="flex justify-between border-t border-sky-200 pt-2 items-center">
+          <div class="flex justify-between border-t border-pink-200 pt-2 items-center">
             <span class="font-bold text-slate-900">VALOR TOTAL DOS SINAIS (AGORA):</span>
             <span class="text-lg sm:text-xl font-extrabold text-emerald-600">${formatBRL(summary.totalDeposit)}</span>
           </div>
@@ -1499,15 +1499,15 @@
         </div>
 
         ${canGeneratePix ? `
-          <div class="bg-sky-50 border border-sky-200 text-slate-800 rounded-xl p-4 text-xs space-y-3">
+          <div class="bg-pink-50 border border-pink-200 text-slate-800 rounded-xl p-4 text-xs space-y-3">
             <div class="flex items-center justify-between">
-              <span class="font-bold text-sky-600">❖ Pagamento PIX com Valor Exato (${summary.totalPieces} peças = ${formatBRL(summary.totalDeposit)})</span>
+              <span class="font-bold text-pink-600">❖ Pagamento PIX com Valor Exato (${summary.totalPieces} peças = ${formatBRL(summary.totalDeposit)})</span>
               <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-200 font-bold">Valor Travado no QR</span>
             </div>
 
             <div class="space-y-2.5">
               <div class="text-[11px] text-slate-500">
-                Favorecido: <strong class="text-slate-900">${receiverDisplay}</strong> • Chave (${storeConfig.pixType || "PIX"}): <code class="font-mono text-sky-600">${storeConfig.pixKey}</code>
+                Favorecido: <strong class="text-slate-900">${receiverDisplay}</strong> • Chave (${storeConfig.pixType || "PIX"}): <code class="font-mono text-pink-600">${storeConfig.pixKey}</code>
               </div>
 
               <div class="pt-1 flex flex-col sm:flex-row items-center gap-3">
@@ -1516,9 +1516,9 @@
                   <p class="text-[11px] text-slate-500">
                     Ao escanear o QR Code ou usar o <strong>PIX Copia e Cola</strong> abaixo, o aplicativo do seu banco já abre preenchido com o valor exato de <strong class="text-slate-900">${formatBRL(summary.totalDeposit)}</strong>:
                   </p>
-                  <textarea readonly rows="2" class="w-full font-mono text-[10px] bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 p-1.5 rounded resize-none">${payload}</textarea>
+                  <textarea readonly rows="2" class="w-full font-mono text-[10px] bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 p-1.5 rounded resize-none">${payload}</textarea>
                   <button type="button" onclick="copyTextToClipboard('${payload}', 'Código PIX Copia e Cola com o valor de ${formatBRL(summary.totalDeposit)} copiado!')"
-                    class="w-full py-2 rounded-lg bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs">
+                    class="w-full py-2 rounded-lg bg-pink-400 hover:bg-pink-500 text-white font-bold text-xs">
                     Copiar PIX Copia e Cola (${formatBRL(summary.totalDeposit)})
                   </button>
                 </div>
@@ -1713,11 +1713,11 @@
 
     window.switchAdminTab = function (tab) {
       document.querySelectorAll(".admin-tab").forEach(el => {
-        el.className = "admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-sky-200 bg-white text-slate-600 hover:bg-sky-100 transition";
+        el.className = "admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-pink-200 bg-white text-slate-600 hover:bg-pink-100 transition";
       });
       const activeTabEl = document.getElementById(`tab-${tab}`);
       if (activeTabEl) {
-        activeTabEl.className = "admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-sky-500 bg-sky-500 text-white transition";
+        activeTabEl.className = "admin-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border border-pink-400 bg-pink-400 text-white transition";
       }
 
       ["unpaid", "tracking", "settings", "weekly", "clients", "closings", "products", "bulk", "admins"].forEach(v => {
@@ -2207,9 +2207,9 @@
         const boxTotalValue = p.boxPrice ? Number(p.boxPrice) : Number(p.fullPrice || 0) * 10;
 
         return `
-          <div class="bg-white border border-sky-200/80 shadow-sm ${inCartQty > 0 ? 'ring-2 ring-sky-400' : ''} rounded-2xl p-5 flex flex-col justify-between space-y-4 transition">
+          <div class="bg-white border border-pink-200/80 shadow-sm ${inCartQty > 0 ? 'ring-2 ring-pink-300' : ''} rounded-2xl p-5 flex flex-col justify-between space-y-4 transition">
             <div>
-              <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-sky-200">
+              <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-pink-200">
                 ${isFree ? `
                   <span class="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 border border-emerald-200">
                     ✓ Liberação Imediata
@@ -2218,10 +2218,10 @@
                     Sem fechar 10 pçs
                   </span>
                 ` : `
-                  <span class="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-sky-100 text-sky-700">
+                  <span class="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-pink-100 text-pink-700">
                     Box #${info.activeBoxNumber} Aberto
                   </span>
-                  <span class="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-sky-50/70 text-slate-900 border border-sky-200">
+                  <span class="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-pink-50/70 text-slate-900 border border-pink-200">
                     ${info.activeBoxCount}/10 no Box
                   </span>
                 `}
@@ -2234,22 +2234,22 @@
                   </span>
                 ` : ''}
                 ${inCartQty > 0 ? `
-                  <span class="inline-block text-[10px] font-bold px-2.5 py-0.5 rounded bg-sky-500 text-white">
+                  <span class="inline-block text-[10px] font-bold px-2.5 py-0.5 rounded bg-pink-400 text-white">
                     🛒 ${inCartQty} pç(s) no carrinho
                   </span>
                 ` : ''}
               </div>
 
               <div class="mt-2.5">
-                ${p.category ? `<span class="text-[11px] text-sky-600 font-semibold uppercase tracking-wider">${p.category}</span>` : ''}
+                ${p.category ? `<span class="text-[11px] text-pink-600 font-semibold uppercase tracking-wider">${p.category}</span>` : ''}
                 <h3 class="font-bold text-slate-900 text-base leading-snug mt-0.5">${p.name}</h3>
               </div>
 
-              <div class="mt-3.5 bg-sky-50/70 p-3 rounded-xl border border-sky-200 space-y-2">
+              <div class="mt-3.5 bg-pink-50/70 p-3 rounded-xl border border-pink-200 space-y-2">
                 <div class="grid grid-cols-2 gap-2">
                   <div>
                     <p class="text-[10px] text-slate-500">Sinal (por pç)</p>
-                    <p class="font-extrabold text-sky-600 text-sm">${formatBRL(p.depositPrice)}</p>
+                    <p class="font-extrabold text-pink-600 text-sm">${formatBRL(p.depositPrice)}</p>
                   </div>
                   <div>
                     <p class="text-[10px] text-slate-500">Valor por Peça</p>
@@ -2257,12 +2257,12 @@
                   </div>
                 </div>
                 ${!isFree ? `
-                  <div class="pt-1.5 border-t border-sky-200 flex items-center justify-between text-[11px]">
+                  <div class="pt-1.5 border-t border-pink-200 flex items-center justify-between text-[11px]">
                     <span class="text-slate-500">Valor do Box (10 pçs):</span>
                     <strong class="text-slate-700">${formatBRL(boxTotalValue)}</strong>
                   </div>
                 ` : `
-                  <div class="pt-1.5 border-t border-sky-200 flex items-center justify-between text-[11px]">
+                  <div class="pt-1.5 border-t border-pink-200 flex items-center justify-between text-[11px]">
                     <span class="text-emerald-600 font-medium">Modalidade:</span>
                     <strong class="text-emerald-600">Pedido individual livre</strong>
                   </div>
@@ -2278,29 +2278,29 @@
                     <span class="font-bold text-emerald-600">Livre ✓</span>
                   ` : `
                     <span class="text-slate-500">Faltam ${10 - info.activeBoxCount} p/ Box #${info.activeBoxNumber}</span>
-                    <span class="font-bold text-sky-600">${info.activeBoxCount}/10</span>
+                    <span class="font-bold text-pink-600">${info.activeBoxCount}/10</span>
                   `}
                 </div>
-                <div class="w-full h-2 bg-sky-100 rounded-full overflow-hidden">
-                  <div class="h-full ${isFree ? 'bg-emerald-500' : 'bg-sky-500'} transition-all duration-300" style="width: ${pct}%"></div>
+                <div class="w-full h-2 bg-pink-100 rounded-full overflow-hidden">
+                  <div class="h-full ${isFree ? 'bg-emerald-500' : 'bg-pink-400'} transition-all duration-300" style="width: ${pct}%"></div>
                 </div>
               </div>
 
-              <div class="bg-sky-50/70 border border-sky-200 rounded-xl p-2.5 flex items-center justify-between">
+              <div class="bg-pink-50/70 border border-pink-200 rounded-xl p-2.5 flex items-center justify-between">
                 <span class="text-xs font-semibold text-slate-700">Qtd. peças:</span>
-                <div class="inline-flex items-center bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg overflow-hidden">
+                <div class="inline-flex items-center bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-lg overflow-hidden">
                   <button type="button" onclick="changeCardQty('${p.id}', -1)" ${paused ? 'disabled' : ''}
                     class="px-3 py-1 ${paused ? 'opacity-30 cursor-not-allowed' : 'text-slate-700'} font-extrabold text-sm transition">-</button>
                   <span id="card-qty-${p.id}" class="px-3.5 py-1 text-xs font-extrabold text-slate-900 min-w-[2rem] text-center">${selectedQty}</span>
                   <button type="button" onclick="changeCardQty('${p.id}', 1)" ${paused ? 'disabled' : ''}
-                    class="px-3 py-1 ${paused ? 'opacity-30 cursor-not-allowed' : 'text-sky-600'} font-extrabold text-sm transition">+</button>
+                    class="px-3 py-1 ${paused ? 'opacity-30 cursor-not-allowed' : 'text-pink-600'} font-extrabold text-sm transition">+</button>
                 </div>
               </div>
 
               <button type="button" onclick="addToCart('${p.id}')" ${paused ? 'disabled' : ''}
                 class="${paused
                   ? 'w-full py-2.5 rounded-xl font-semibold text-xs bg-slate-500/20 text-slate-400 cursor-not-allowed'
-                  : 'w-full py-2.5 rounded-xl font-semibold text-xs sm:text-sm transition bg-sky-500 hover:bg-sky-600 text-white shadow-sm'
+                  : 'w-full py-2.5 rounded-xl font-semibold text-xs sm:text-sm transition bg-pink-400 hover:bg-pink-500 text-white shadow-sm'
                 }">
                 ${paused
                   ? '⏸ Novas compras na Segunda 00:00'
@@ -2366,7 +2366,7 @@
       });
 
       if (completedBoxes.length === 0) {
-        return `<div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-6 text-center text-xs text-slate-500">
+        return `<div class="bg-white border border-pink-200/80 shadow-sm rounded-xl p-6 text-center text-xs text-slate-500">
           Nenhum rateio fechado ou liberado encontrado no momento.
         </div>`;
       }
@@ -2380,16 +2380,16 @@
       });
 
       return Array.from(groupsByDate.entries()).map(([groupTitle, items]) => `
-        <div class="bg-white border border-sky-200/80 shadow-sm rounded-2xl overflow-hidden">
-          <div class="px-4 py-3 bg-sky-50/70 border-b border-sky-200 flex items-center justify-between">
+        <div class="bg-white border border-pink-200/80 shadow-sm rounded-2xl overflow-hidden">
+          <div class="px-4 py-3 bg-pink-50/70 border-b border-pink-200 flex items-center justify-between">
             <div class="flex items-center gap-2">
-              <span class="text-sky-600 font-bold text-xs">📅 Ciclo / Data:</span>
-              <span class="px-2.5 py-0.5 rounded-md bg-sky-100 text-sky-700 font-bold text-xs">${groupTitle}</span>
+              <span class="text-pink-600 font-bold text-xs">📅 Ciclo / Data:</span>
+              <span class="px-2.5 py-0.5 rounded-md bg-pink-100 text-pink-700 font-bold text-xs">${groupTitle}</span>
             </div>
             <span class="text-[11px] text-slate-500">${items.length} ${items.length === 1 ? 'item liberado' : 'itens liberados'}</span>
           </div>
 
-          <div class="divide-y border-sky-200">
+          <div class="divide-y border-pink-200">
             ${items.map(({ product: p, box }) => {
               const trk = box.trackingData;
               const hasInfo = trk && trk.infoText;
@@ -2408,8 +2408,8 @@
 
                   <div class="sm:max-w-md w-full sm:text-right">
                     ${hasInfo ? `
-                      <div class="inline-block text-left w-full bg-sky-50 border border-sky-200 text-slate-800 rounded-xl px-3.5 py-2.5 space-y-1">
-                        <span class="text-[10px] uppercase tracking-wider text-sky-600 font-bold block">📦 Rastreios e Envios</span>
+                      <div class="inline-block text-left w-full bg-pink-50 border border-pink-200 text-slate-800 rounded-xl px-3.5 py-2.5 space-y-1">
+                        <span class="text-[10px] uppercase tracking-wider text-pink-600 font-bold block">📦 Rastreios e Envios</span>
                         <p class="text-xs font-semibold text-slate-900 whitespace-pre-line leading-relaxed">${trk.infoText}</p>
                         <span class="text-[10px] text-slate-500 block">Atualizado em ${formatDateOnly(trk.updatedAtMs)}</span>
                       </div>
@@ -2455,9 +2455,9 @@
 
         container.innerHTML = `
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            <div class="bg-sky-50 border border-sky-200 text-slate-800 rounded-xl p-3.5">
-              <p class="text-[11px] text-sky-600 font-semibold">1. Total de Peças & Sinais</p>
-              <p class="text-lg font-extrabold text-sky-600 mt-0.5">${formatBRL(summary.totalDepositsPaidActive)}</p>
+            <div class="bg-pink-50 border border-pink-200 text-slate-800 rounded-xl p-3.5">
+              <p class="text-[11px] text-pink-600 font-semibold">1. Total de Peças & Sinais</p>
+              <p class="text-lg font-extrabold text-pink-600 mt-0.5">${formatBRL(summary.totalDepositsPaidActive)}</p>
               <p class="text-[10px] text-slate-500 mt-0.5">${summary.activeRes.length} peça(s) reservada(s) no total</p>
             </div>
 
@@ -2469,13 +2469,13 @@
               </p>
             </div>
 
-            <div class="bg-white border border-sky-200/80 shadow-sm border-emerald-500/40 rounded-xl p-3.5">
+            <div class="bg-white border border-pink-200/80 shadow-sm border-emerald-500/40 rounded-xl p-3.5">
               <p class="text-[11px] text-emerald-600 font-semibold">3. Pagos Integralmente (Quitados)</p>
               <p class="text-lg font-extrabold text-emerald-600 mt-0.5">${formatBRL(summary.totalPaidIntegralAmount)}</p>
               <p class="text-[10px] text-slate-500 mt-0.5">${summary.paidRes.length} peça(s) 100% quitada(s)</p>
             </div>
 
-            <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-3.5">
+            <div class="bg-white border border-pink-200/80 shadow-sm rounded-xl p-3.5">
               <p class="text-[11px] text-slate-500 font-semibold">4. Aguardando Fechar Box (10/10)</p>
               <p class="text-lg font-extrabold text-slate-900 mt-0.5">${summary.waitingBoxRes.length} peça(s)</p>
               <p class="text-[10px] text-slate-500 mt-0.5">Ainda formando 10 peças no Box</p>
@@ -2484,7 +2484,7 @@
 
           ${readyCount > 0 ? `
             <div class="bg-amber-50 border border-amber-300 text-amber-950 border-2 rounded-2xl p-4 sm:p-5 space-y-4">
-              <div class="flex flex-wrap items-center justify-between gap-2 border-b border-sky-200 pb-3">
+              <div class="flex flex-wrap items-center justify-between gap-2 border-b border-pink-200 pb-3">
                 <div>
                   <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-emerald-600 text-white">
                     🔓 Liberado p/ Pagamento • Prazo até Segunda-feira às 22:00
@@ -2502,7 +2502,7 @@
                 </div>
               </div>
 
-              <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-3.5 space-y-1.5 text-xs">
+              <div class="bg-white border border-pink-200/80 shadow-sm rounded-xl p-3.5 space-y-1.5 text-xs">
                 <div class="flex justify-between text-slate-500">
                   <span>Restante do valor cheio dos ${readyCount} produto(s) habilitado(s):</span>
                   <strong class="text-slate-900">${formatBRL(summary.totalClosedRemaining)}</strong>
@@ -2513,11 +2513,11 @@
                     <strong>- ${formatBRL(summary.totalRetainedCredit)}</strong>
                   </div>
                 ` : ''}
-                <div class="flex justify-between text-sky-600">
+                <div class="flex justify-between text-pink-600">
                   <span>Taxa de Manuseio e Embalo (${handlingTierLabel} — <strong>NÃO referente a frete/envio</strong>):</span>
                   <strong>+ ${formatBRL(summary.settlementHandlingFee)}</strong>
                 </div>
-                <div class="flex justify-between border-t border-sky-200 pt-1.5 font-bold text-slate-900 text-sm">
+                <div class="flex justify-between border-t border-pink-200 pt-1.5 font-bold text-slate-900 text-sm">
                   <span>VALOR FINAL PARA QUITAÇÃO:</span>
                   <span class="text-emerald-600">${formatBRL(summary.netToPayWithHandling)}</span>
                 </div>
@@ -2538,9 +2538,9 @@
               </div>
 
               <!-- Termo de Aceite Obrigatório da Taxa de Manuseio e Embalo -->
-              <label class="flex items-start gap-3 bg-white border border-sky-200/80 shadow-sm rounded-xl p-3.5 cursor-pointer select-none">
+              <label class="flex items-start gap-3 bg-white border border-pink-200/80 shadow-sm rounded-xl p-3.5 cursor-pointer select-none">
                 <input id="settlementTermCheckbox" type="checkbox" ${acceptedSettlementTerms ? 'checked' : ''} onchange="toggleSettlementTerm(this.checked)"
-                  class="mt-0.5 w-4 h-4 rounded text-sky-600 focus:ring-sky-500 shrink-0" />
+                  class="mt-0.5 w-4 h-4 rounded text-pink-600 focus:ring-pink-400 shrink-0" />
                 <span class="text-xs text-slate-700 leading-relaxed">
                   <strong>Termo de Aceite — Taxa de Manuseio e Embalo:</strong> Declaro que estou ciente e concordo com a cobrança da taxa de <strong>${formatBRL(summary.settlementHandlingFee)}</strong> (${handlingTierLabel}), ciente de que esta taxa refere-se <strong>exclusivamente aos custos de manuseio e embalo interno</strong> dos <strong>${readyCount} produto(s)</strong>, <strong>NÃO sendo referente a frete ou envio</strong>.
                 </span>
@@ -2550,7 +2550,7 @@
                 ☝️ Marque o Termo de Aceite acima para liberar a chave e o QR Code PIX de quitação.
               </div>
 
-              <div id="settlementPixActionsArea" class="${acceptedSettlementTerms ? '' : 'hidden'} bg-white border border-sky-200/80 shadow-sm border-emerald-500/40 rounded-xl p-4 space-y-3">
+              <div id="settlementPixActionsArea" class="${acceptedSettlementTerms ? '' : 'hidden'} bg-white border border-pink-200/80 shadow-sm border-emerald-500/40 rounded-xl p-4 space-y-3">
                 ${storeConfig.pixKey ? `
                   <div class="flex flex-col sm:flex-row items-center gap-4">
                     <img src="${qrNetUrl}" alt="QR Code Quitação PIX" class="w-32 h-32 rounded-lg bg-white p-1.5 border border-slate-300 shrink-0" />
@@ -2563,9 +2563,9 @@
                         Ao ler o QR Code ou colar o código abaixo no seu banco, o valor de <strong class="text-slate-900">${formatBRL(summary.netToPayWithHandling)}</strong> já entra automaticamente sem precisar digitar nada:
                       </p>
                       <div class="flex items-center gap-2">
-                        <code class="flex-1 font-mono bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 px-2.5 py-1.5 rounded truncate select-all">${storeConfig.pixKey}</code>
+                        <code class="flex-1 font-mono bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 px-2.5 py-1.5 rounded truncate select-all">${storeConfig.pixKey}</code>
                         <button type="button" onclick="copyTextToClipboard('${storeConfig.pixKey}', 'Chave PIX copiada!')"
-                          class="px-3 py-1.5 rounded-lg bg-sky-500 hover:bg-sky-600 text-white font-semibold shrink-0">
+                          class="px-3 py-1.5 rounded-lg bg-pink-400 hover:bg-pink-500 text-white font-semibold shrink-0">
                           Copiar Chave
                         </button>
                       </div>
@@ -2588,13 +2588,13 @@
             </h3>
 
             ${summary.groupedByProduct.length === 0 ? `
-              <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-6 text-center text-xs text-slate-500">
+              <div class="bg-white border border-pink-200/80 shadow-sm rounded-xl p-6 text-center text-xs text-slate-500">
                 Você ainda não possui reservas registradas. Adicione no mínimo 3 peças ao carrinho para começar!
               </div>
             ` : `
-              <div class="overflow-x-auto border border-sky-200 rounded-xl bg-white border border-sky-200/80 shadow-sm">
+              <div class="overflow-x-auto border border-pink-200 rounded-xl bg-white border border-pink-200/80 shadow-sm">
                 <table class="w-full text-left text-xs">
-                  <thead class="bg-sky-50 text-slate-600 border-b border-sky-200">
+                  <thead class="bg-pink-50 text-slate-600 border-b border-pink-200">
                     <tr>
                       <th class="p-3">Produto</th>
                       <th class="p-3 text-center">Qtd. Total</th>
@@ -2604,7 +2604,7 @@
                       <th class="p-3">Situação / Boxes</th>
                     </tr>
                   </thead>
-                  <tbody class="divide-y border-sky-200">
+                  <tbody class="divide-y border-pink-200">
                     ${summary.groupedByProduct.map(item => {
                       const badges = [];
                       if (item.paidFullQty > 0) {
@@ -2614,18 +2614,18 @@
                         badges.push(`<span class="inline-block px-2 py-0.5 rounded bg-amber-100 text-amber-800 border border-amber-300 font-bold text-[10px]">🔓 ${item.readyToPayQty} Habilitado (Até Seg 22h)</span>`);
                       }
                       if (item.waitingQty > 0) {
-                        badges.push(`<span class="inline-block px-2 py-0.5 rounded bg-sky-100 text-sky-700 font-semibold text-[10px]">⏳ ${item.waitingQty} Aguardando Box</span>`);
+                        badges.push(`<span class="inline-block px-2 py-0.5 rounded bg-pink-100 text-pink-700 font-semibold text-[10px]">⏳ ${item.waitingQty} Aguardando Box</span>`);
                       }
 
                       return `
                         <tr>
                           <td class="p-3 font-bold text-slate-900">${item.productName}</td>
                           <td class="p-3 text-center">
-                            <span class="px-2.5 py-0.5 rounded-full bg-sky-50/70 text-slate-900 font-extrabold">
+                            <span class="px-2.5 py-0.5 rounded-full bg-pink-50/70 text-slate-900 font-extrabold">
                               ${item.qty} pç(s)
                             </span>
                           </td>
-                          <td class="p-3 text-right font-bold text-sky-600">${formatBRL(item.totalDepositPaid)}</td>
+                          <td class="p-3 text-right font-bold text-pink-600">${formatBRL(item.totalDepositPaid)}</td>
                           <td class="p-3 text-right font-bold ${item.readyToPayQty > 0 ? 'text-amber-500' : 'text-slate-500'}">
                             ${item.readyToPayQty > 0 ? `${formatBRL(item.readyToPayRemaining)} (${item.readyToPayQty} pç)` : 'R$ 0,00'}
                           </td>
@@ -2640,11 +2640,11 @@
                       `;
                     }).join("")}
                   </tbody>
-                  <tfoot class="bg-sky-50 text-slate-600 border-b border-sky-200 font-bold text-slate-900">
+                  <tfoot class="bg-pink-50 text-slate-600 border-b border-pink-200 font-bold text-slate-900">
                     <tr>
                       <td class="p-3">TOTAIS GERAIS</td>
-                      <td class="p-3 text-center text-sky-600">${summary.activeRes.length} pç(s)</td>
-                      <td class="p-3 text-right text-sky-600">${formatBRL(summary.totalDepositsPaidActive)}</td>
+                      <td class="p-3 text-center text-pink-600">${summary.activeRes.length} pç(s)</td>
+                      <td class="p-3 text-right text-pink-600">${formatBRL(summary.totalDepositsPaidActive)}</td>
                       <td class="p-3 text-right text-amber-500">${formatBRL(summary.totalClosedRemaining)}</td>
                       <td class="p-3 text-right text-emerald-600">${formatBRL(summary.totalPaidIntegralAmount)}</td>
                       <td class="p-3 text-[11px] text-slate-500">
@@ -2663,7 +2663,7 @@
       if (activeClientPortalTab === "tracking") {
         container.innerHTML = `
           <div class="space-y-4">
-            <div class="bg-sky-50 border border-sky-200 text-slate-800 rounded-xl p-3.5 text-xs">
+            <div class="bg-pink-50 border border-pink-200 text-slate-800 rounded-xl p-3.5 text-xs">
               Consulte abaixo todos os rateios fechados separados por <strong>ciclo de rateio e data de fechamento</strong> com as informações atualizadas de rastreios e envios.
             </div>
             ${buildGroupedTrackingHtml("")}
@@ -2675,11 +2675,11 @@
       if (activeClientPortalTab === "paid") {
         container.innerHTML = `
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div class="bg-white border border-sky-200/80 shadow-sm border-emerald-500/40 rounded-xl p-4">
+            <div class="bg-white border border-pink-200/80 shadow-sm border-emerald-500/40 rounded-xl p-4">
               <p class="text-[11px] text-emerald-600 font-medium">Total de Produtos Pagos (Quitados)</p>
               <p class="text-xl font-extrabold text-slate-900 mt-0.5">${summary.paidRes.length} ${summary.paidRes.length === 1 ? 'produto pago' : 'produtos pagos'}</p>
             </div>
-            <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-4">
+            <div class="bg-white border border-pink-200/80 shadow-sm rounded-xl p-4">
               <p class="text-[11px] text-slate-500 font-medium">Valor Total em Compras Quitadas</p>
               <p class="text-xl font-extrabold text-emerald-600 mt-0.5">${formatBRL(summary.totalPaidIntegralAmount)}</p>
             </div>
@@ -2688,7 +2688,7 @@
           <div>
             <h3 class="text-xs font-bold uppercase tracking-wider text-emerald-600 mb-3">✅ Minha Lista de Compras Pagas Integralmente</h3>
             ${summary.paidRes.length === 0 ? `
-              <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-6 text-center text-xs text-slate-500">
+              <div class="bg-white border border-pink-200/80 shadow-sm rounded-xl p-6 text-center text-xs text-slate-500">
                 Você ainda não possui compras com quitação integral confirmada. Assim que um item for quitado, ele aparecerá aqui.
               </div>
             ` : `
@@ -2703,12 +2703,12 @@
                   const methodLabel = r.paidMethod ? ` (${r.paidMethod})` : "";
 
                   return `
-                    <div class="bg-white border border-sky-200/80 shadow-sm border-emerald-500/35 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div class="bg-white border border-pink-200/80 shadow-sm border-emerald-500/35 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                       <div class="space-y-1">
                         <div class="flex flex-wrap items-center gap-2">
                           <span class="px-2 py-0.5 rounded bg-emerald-600 text-white font-bold text-[10px]">PAGO INTEGRAL${methodLabel} ✓</span>
-                          <span class="px-2 py-0.5 rounded bg-sky-50/70 text-slate-900 font-semibold text-[10px]">${isFree ? 'Liberação Direta' : `Box #${boxNum}`}</span>
-                          <span class="px-2 py-0.5 rounded bg-sky-100 text-sky-700 font-semibold text-[10px]">
+                          <span class="px-2 py-0.5 rounded bg-pink-50/70 text-slate-900 font-semibold text-[10px]">${isFree ? 'Liberação Direta' : `Box #${boxNum}`}</span>
+                          <span class="px-2 py-0.5 rounded bg-pink-100 text-pink-700 font-semibold text-[10px]">
                             Data: ${closedDate}
                           </span>
                         </div>
@@ -2721,8 +2721,8 @@
 
                       <div class="sm:max-w-sm w-full">
                         ${trk && trk.infoText ? `
-                          <div class="bg-sky-50 border border-sky-200 text-slate-800 rounded-xl p-3 text-xs space-y-1">
-                            <p class="text-[10px] font-bold uppercase text-sky-600">📦 Rastreios e Envios</p>
+                          <div class="bg-pink-50 border border-pink-200 text-slate-800 rounded-xl p-3 text-xs space-y-1">
+                            <p class="text-[10px] font-bold uppercase text-pink-600">📦 Rastreios e Envios</p>
                             <p class="font-semibold text-slate-900 whitespace-pre-line leading-relaxed">${trk.infoText}</p>
                           </div>
                         ` : `
@@ -2759,16 +2759,16 @@
                 const methodLabel = r.paidMethod ? ` (${r.paidMethod})` : "";
 
                 return `
-                  <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-3.5 flex flex-wrap items-center justify-between gap-3">
+                  <div class="bg-white border border-pink-200/80 shadow-sm rounded-xl p-3.5 flex flex-wrap items-center justify-between gap-3">
                     <div>
                       <div class="flex flex-wrap items-center gap-2">
-                        <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-sky-50/70 text-slate-900 border border-sky-200">
+                        <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-pink-50/70 text-slate-900 border border-pink-200">
                           ${resCycle}
                         </span>
-                        <span class="text-[11px] font-bold px-2 py-0.5 rounded ${r.paidFull ? 'bg-emerald-600 text-white' : isComplete ? 'bg-amber-500 text-slate-950' : 'bg-sky-100 text-sky-700'}">
+                        <span class="text-[11px] font-bold px-2 py-0.5 rounded ${r.paidFull ? 'bg-emerald-600 text-white' : isComplete ? 'bg-amber-500 text-slate-950' : 'bg-pink-100 text-pink-700'}">
                           ${isFree ? 'Liberação Direta' : `Box #${boxNum} (${boxCount}/10)`}
                         </span>
-                        <span class="text-xs font-semibold ${r.paidFull ? 'text-emerald-600' : isComplete ? 'text-amber-500' : 'text-sky-600'}">
+                        <span class="text-xs font-semibold ${r.paidFull ? 'text-emerald-600' : isComplete ? 'text-amber-500' : 'text-pink-600'}">
                           ${r.paidFull
                             ? `✅ Pago Integralmente${methodLabel}`
                             : isFree
@@ -2780,12 +2780,12 @@
                       </div>
                       <h4 class="font-bold text-slate-900 text-sm mt-1">${r.productName}</h4>
                       <p class="text-xs text-slate-500 mt-0.5">
-                        Sinal pago: <strong class="text-sky-600">${formatBRL(r.depositPrice)}</strong> •
+                        Sinal pago: <strong class="text-pink-600">${formatBRL(r.depositPrice)}</strong> •
                         Valor por peça: <strong class="text-slate-900">${formatBRL(r.fullPrice)}</strong> •
                         Restante: <strong class="text-emerald-600">${formatBRL(remaining)}</strong>
                       </p>
                       ${trk && trk.infoText ? `
-                        <p class="text-xs text-sky-600 mt-1.5 font-semibold">
+                        <p class="text-xs text-pink-600 mt-1.5 font-semibold">
                           📦 Rastreios e Envios: <span class="text-slate-900 font-normal">${trk.infoText}</span>
                         </p>
                       ` : ''}
@@ -2863,7 +2863,7 @@
         );
 
         return `
-          <div class="bg-white border border-sky-200/80 shadow-sm border-amber-500/50 rounded-xl p-4 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+          <div class="bg-white border border-pink-200/80 shadow-sm border-amber-500/50 rounded-xl p-4 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
             <div class="space-y-1.5 flex-1">
               <div class="flex flex-wrap items-center gap-2">
                 <span class="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-300 font-extrabold text-[11px]">
@@ -2875,8 +2875,8 @@
 
               <div class="flex flex-wrap gap-1.5 pt-1">
                 ${summary.readyToPayRes.map(r => `
-                  <span class="text-[11px] px-2.5 py-1 rounded-lg bg-sky-50/70 border border-sky-200 text-slate-900">
-                    <strong>${r.productName}</strong> (${r.isNoBoxLimit ? 'Direto' : `Box #${r.boxNumber}`} • ${r.closedDateStr}) — Restante: <strong class="text-sky-600">${formatBRL(r.remainingValue)}</strong>
+                  <span class="text-[11px] px-2.5 py-1 rounded-lg bg-pink-50/70 border border-pink-200 text-slate-900">
+                    <strong>${r.productName}</strong> (${r.isNoBoxLimit ? 'Direto' : `Box #${r.boxNumber}`} • ${r.closedDateStr}) — Restante: <strong class="text-pink-600">${formatBRL(r.remainingValue)}</strong>
                   </span>
                 `).join("")}
               </div>
@@ -2972,24 +2972,24 @@
       container.innerHTML = Array.from(groupsByDate.entries()).map(([dateStr, items]) => {
         const safeDateId = dateStr.replace(/\//g, "-");
         return `
-          <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl overflow-hidden">
-            <div class="px-4 py-3 bg-sky-50/70 border-b border-sky-200 space-y-2.5">
+          <div class="bg-white border border-pink-200/80 shadow-sm rounded-xl overflow-hidden">
+            <div class="px-4 py-3 bg-pink-50/70 border-b border-pink-200 space-y-2.5">
               <div class="flex flex-wrap items-center justify-between gap-2">
-                <span class="text-xs font-bold text-sky-600">📅 Data de Fechamento / Liberação: <strong class="text-slate-900">${dateStr}</strong></span>
+                <span class="text-xs font-bold text-pink-600">📅 Data de Fechamento / Liberação: <strong class="text-slate-900">${dateStr}</strong></span>
                 <span class="text-[11px] text-slate-500">${items.length} produto(s)/box(es) nesta data</span>
               </div>
 
               <div class="flex flex-col sm:flex-row gap-2">
                 <input id="bulk-trk-${safeDateId}" type="text" placeholder="Escreva a informação para aplicar a TODOS os produtos fechados em ${dateStr}..."
-                  class="flex-1 bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs outline-none" />
+                  class="flex-1 bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-lg px-3 py-2 text-xs outline-none" />
                 <button type="button" onclick="saveBulkTrackingForDate('${dateStr}', '${safeDateId}')"
-                  class="px-4 py-2 rounded-lg bg-sky-500 hover:bg-sky-600 text-white font-semibold text-xs shrink-0">
+                  class="px-4 py-2 rounded-lg bg-pink-400 hover:bg-pink-500 text-white font-semibold text-xs shrink-0">
                   Aplicar a Todos desta Data
                 </button>
               </div>
             </div>
 
-            <div class="divide-y border-sky-200">
+            <div class="divide-y border-pink-200">
               ${items.map(({ product: p, box }) => {
                 const trk = box.trackingData || {};
                 const paidCount = box.members.filter(m => m.paidFull).length;
@@ -3011,7 +3011,7 @@
 
                     <div class="flex flex-col sm:flex-row gap-2.5">
                       <input id="trk-info-${box.trackingKey}" type="text" value="${trk.infoText || ''}" placeholder="Informação de rastreios e envios para ${p.name}..."
-                        class="flex-1 bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-2 text-xs outline-none" />
+                        class="flex-1 bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-lg px-3 py-2 text-xs outline-none" />
                       <button type="button" onclick="saveBoxTracking('${p.id}', ${box.boxNumber}, '${p.name.replace(/'/g, "")}', '${dateStr}')"
                         class="px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 font-semibold text-xs transition shrink-0">
                         Salvar Individual
@@ -3062,15 +3062,15 @@
       const selectedCycle = cyclesMap.get(selector.value) || sortedCycles[0];
 
       cardsEl.innerHTML = `
-        <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-4">
+        <div class="bg-white border border-pink-200/80 shadow-sm rounded-xl p-4">
           <p class="text-xs text-slate-500">Sinais Arrecadados (${selectedCycle.reservationsCount} reservas)</p>
-          <p class="text-xl font-extrabold text-sky-600 mt-1">${formatBRL(selectedCycle.depositsTotal)}</p>
+          <p class="text-xl font-extrabold text-pink-600 mt-1">${formatBRL(selectedCycle.depositsTotal)}</p>
         </div>
-        <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-4">
+        <div class="bg-white border border-pink-200/80 shadow-sm rounded-xl p-4">
           <p class="text-xs text-slate-500">Restantes Quitados no Ciclo (PIX / Cartão)</p>
           <p class="text-xl font-extrabold text-indigo-400 mt-1">${formatBRL(selectedCycle.fullPaymentsTotal)}</p>
         </div>
-        <div class="bg-white border border-sky-200/80 shadow-sm border-emerald-500/40 rounded-xl p-4">
+        <div class="bg-white border border-pink-200/80 shadow-sm border-emerald-500/40 rounded-xl p-4">
           <p class="text-xs text-emerald-600 font-semibold">Total Geral (${selectedCycle.shortTitle})</p>
           <p class="text-2xl font-extrabold text-emerald-600 mt-1">${formatBRL(selectedCycle.grandTotal)}</p>
         </div>
@@ -3082,10 +3082,10 @@
           <tr>
             <td class="p-3 font-medium text-slate-900">
               ${w.label}
-              ${w.key === currentCycle.key ? '<span class="ml-2 text-[10px] px-2 py-0.5 rounded bg-sky-500 text-white font-bold">Atual</span>' : ''}
+              ${w.key === currentCycle.key ? '<span class="ml-2 text-[10px] px-2 py-0.5 rounded bg-pink-400 text-white font-bold">Atual</span>' : ''}
             </td>
             <td class="p-3 text-slate-500">${w.reservationsCount}</td>
-            <td class="p-3 text-sky-600 font-medium">${formatBRL(w.depositsTotal)}</td>
+            <td class="p-3 text-pink-600 font-medium">${formatBRL(w.depositsTotal)}</td>
             <td class="p-3 text-indigo-400 font-medium">${formatBRL(w.fullPaymentsTotal)}</td>
             <td class="p-3 text-right font-extrabold text-emerald-600">${formatBRL(w.grandTotal)}</td>
             <td class="p-3 text-center">
@@ -3166,14 +3166,14 @@
       container.innerHTML = filteredUsers.map(u => {
         const summary = getClientFinancialSummary(u);
         return `
-          <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-4 space-y-3">
-            <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-sky-200">
+          <div class="bg-white border border-pink-200/80 shadow-sm rounded-xl p-4 space-y-3">
+            <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-pink-200">
               <div>
                 <h4 class="font-bold text-slate-900 text-sm">${u.name}</h4>
                 <p class="text-xs text-slate-500">E-mail: ${u.email} • Tel/WhatsApp: ${u.phone}</p>
               </div>
               <div class="text-right text-xs space-y-0.5">
-                <p class="text-slate-500">Sinais Pagos: <strong class="text-sky-600">${formatBRL(summary.totalDepositsPaidActive)}</strong></p>
+                <p class="text-slate-500">Sinais Pagos: <strong class="text-pink-600">${formatBRL(summary.totalDepositsPaidActive)}</strong></p>
                 <p class="text-slate-500">Restante Habilitado (${summary.readyToPayRes.length} pçs) + Manuseio (${formatBRL(summary.settlementHandlingFee)}): <strong class="text-slate-900">${formatBRL(summary.totalClosedRemaining + summary.settlementHandlingFee)}</strong></p>
                 <p class="text-amber-500">Crédito Retido (Cancelados): <strong>- ${formatBRL(summary.totalRetainedCredit)}</strong></p>
                 <p class="text-emerald-600 font-bold">Total Líquido a Cobrar (Até Seg 22:00): ${formatBRL(summary.netToPayWithHandling)}</p>
@@ -3181,17 +3181,17 @@
             </div>
 
             <div class="flex flex-col sm:flex-row gap-2">
-              <select id="admin-add-prod-${u.id}" class="flex-1 bg-sky-50/60 border border-sky-200 focus:border-sky-500 text-slate-900 rounded-lg px-3 py-1.5 text-xs">
+              <select id="admin-add-prod-${u.id}" class="flex-1 bg-pink-50/60 border border-pink-200 focus:border-pink-400 text-slate-900 rounded-lg px-3 py-1.5 text-xs">
                 <option value="">-- Selecione um produto para acrescentar ao cliente --</option>
                 ${productOptions}
               </select>
-              <button type="button" onclick="adminAddProductToClient('${u.id}')" class="px-3.5 py-1.5 rounded-lg bg-sky-500 hover:bg-sky-600 text-white font-semibold text-xs shrink-0">
+              <button type="button" onclick="adminAddProductToClient('${u.id}')" class="px-3.5 py-1.5 rounded-lg bg-pink-400 hover:bg-pink-500 text-white font-semibold text-xs shrink-0">
                 + Acrescentar Produto (Senha)
               </button>
             </div>
 
             ${summary.activeRes.length === 0 ? `<p class="text-xs text-slate-500">Nenhuma reserva ativa para este cliente.</p>` : `
-              <div class="divide-y border-sky-200">
+              <div class="divide-y border-pink-200">
                 ${summary.activeRes.map(r => {
                   const isFree = isNoBoxLimitProduct(r.productName);
                   const info = getBoxesInfo(r.productId);
@@ -3203,7 +3203,7 @@
                   return `
                     <div class="py-2 flex flex-wrap items-center justify-between gap-2 text-xs">
                       <div>
-                        <span class="px-2 py-0.5 rounded text-[10px] font-bold ${isComplete ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-sky-100 text-sky-700'}">
+                        <span class="px-2 py-0.5 rounded text-[10px] font-bold ${isComplete ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-pink-100 text-pink-700'}">
                           ${isFree ? 'Liberação Direta' : `Box #${boxNum} (${boxCount}/10)`}
                         </span>
                         <span class="font-semibold text-slate-900 ml-1.5">${r.productName}</span>
@@ -3271,20 +3271,20 @@
           : `⏳ BOX #${box.boxNumber} EM ANDAMENTO (${box.members.length}/10)`;
 
         return `
-          <div class="bg-white border border-sky-200/80 shadow-sm rounded-xl p-4">
-            <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-sky-200">
+          <div class="bg-white border border-pink-200/80 shadow-sm rounded-xl p-4">
+            <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-pink-200">
               <div>
-                <span class="text-xs font-bold ${box.isComplete ? 'text-emerald-600' : 'text-sky-600'}">${titleBanner}</span>
+                <span class="text-xs font-bold ${box.isComplete ? 'text-emerald-600' : 'text-pink-600'}">${titleBanner}</span>
                 <h4 class="font-bold text-slate-900 text-sm">${p.name}</h4>
               </div>
               <div class="text-right text-xs">
                 <span class="text-slate-500">Peça: <strong class="text-slate-900">${formatBRL(p.fullPrice)}</strong></span> |
-                <span class="text-slate-500">Sinal: <strong class="text-sky-600">${formatBRL(p.depositPrice)}</strong></span> |
+                <span class="text-slate-500">Sinal: <strong class="text-pink-600">${formatBRL(p.depositPrice)}</strong></span> |
                 <span class="text-slate-500">Restante base: <strong class="text-emerald-600">${formatBRL(remaining)}</strong></span>
               </div>
             </div>
 
-            <div class="mt-3 divide-y border-sky-200">
+            <div class="mt-3 divide-y border-pink-200">
               ${box.members.map((r, idx) => {
                 const clientObj = users.find(u => u.id === r.userId || (u.email && u.email === r.clientEmail));
                 const clientSummary = clientObj ? getClientFinancialSummary(clientObj) : { totalRetainedCredit: 0, readyToPayRes: [], settlementHandlingFee: 0 };
@@ -3307,7 +3307,7 @@
                 return `
                   <div class="py-2 flex flex-wrap items-center justify-between gap-2 text-xs">
                     <div class="flex items-center gap-2">
-                      <span class="w-6 h-6 rounded-full font-bold flex items-center justify-center ${box.isComplete ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-sky-100 text-sky-700'}">
+                      <span class="w-6 h-6 rounded-full font-bold flex items-center justify-center ${box.isComplete ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-pink-100 text-pink-700'}">
                         #${idx + 1}
                       </span>
                       <div>
@@ -3332,7 +3332,7 @@
                         </button>
                       `}
                       <a href="https://wa.me/55${r.clientWhatsapp}?text=${msg}" target="_blank"
-                        class="px-3 py-1 rounded ${box.isComplete ? 'bg-sky-500 hover:bg-sky-600 text-white' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200'} font-semibold">
+                        class="px-3 py-1 rounded ${box.isComplete ? 'bg-pink-400 hover:bg-pink-500 text-white' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200'} font-semibold">
                         ${box.isComplete ? `Cobrar ${formatBRL(finalToCharge)}` : 'WhatsApp'}
                       </a>
                     </div>
@@ -3428,7 +3428,7 @@
           <tr>
             <td class="p-3 font-medium text-slate-900">${p.name}</td>
             <td class="p-3 text-slate-500">${p.category || '-'}</td>
-            <td class="p-3 text-sky-600 font-semibold">${formatBRL(p.depositPrice)}</td>
+            <td class="p-3 text-pink-600 font-semibold">${formatBRL(p.depositPrice)}</td>
             <td class="p-3 text-slate-900 font-semibold">${formatBRL(p.fullPrice)}</td>
             <td class="p-3 text-slate-700 font-medium">${formatBRL(boxTotalValue)}</td>
             <td class="p-3">
@@ -3440,7 +3440,7 @@
                 <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">
                   ${info.completedBoxesCount} Box(es) Fechado(s)
                 </span>
-                <span class="ml-1 px-2 py-0.5 rounded text-[11px] bg-sky-100 text-sky-700">
+                <span class="ml-1 px-2 py-0.5 rounded text-[11px] bg-pink-100 text-pink-700">
                   Box #${info.activeBoxNumber}: ${info.activeBoxCount}/10 (Ativas: ${info.total})
                 </span>
               `}
@@ -3495,7 +3495,7 @@
           <tr>
             <td class="p-3 font-semibold text-slate-900">
               ${a.name}
-              ${currentAdmin && currentAdmin.id === a.id ? '<span class="ml-1.5 text-[10px] px-1.5 py-0.5 rounded bg-sky-500 text-white">Você</span>' : ''}
+              ${currentAdmin && currentAdmin.id === a.id ? '<span class="ml-1.5 text-[10px] px-1.5 py-0.5 rounded bg-pink-400 text-white">Você</span>' : ''}
             </td>
             <td class="p-3 text-slate-500">${a.email}</td>
             <td class="p-3 text-slate-500">${formatDateTime(a.createdAtMs)}</td>
@@ -3514,7 +3514,7 @@
           : auditLogs.map(log => `
             <tr>
               <td class="p-3 text-slate-500 whitespace-nowrap">${formatDateTime(log.createdAtMs)}</td>
-              <td class="p-3 font-semibold text-sky-600">${log.adminName} <span class="opacity-70 font-normal">(${log.adminEmail})</span></td>
+              <td class="p-3 font-semibold text-pink-600">${log.adminName} <span class="opacity-70 font-normal">(${log.adminEmail})</span></td>
               <td class="p-3 font-medium text-slate-900">${log.action}</td>
               <td class="p-3 text-slate-500">${log.details}</td>
             </tr>
